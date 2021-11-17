@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import NextLink from 'next/link';
 import {
   Box,
   Flex,
@@ -16,13 +17,23 @@ import {
   useColorModeValue,
   Stack,
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, AddIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon, AddIcon, CalendarIcon } from '@chakra-ui/icons';
 import Logo from './Logo';
 
 const Links = ['Dashboard', 'Projects', 'Team'];
 
-const NavLink = ({ children }: { children: ReactNode }) => (
+const NavigationLinks = {
+  '/cart': 'Košík - prázdný',
+  '/cart/full': 'Košík - plný',
+  '/cart/payment': 'Košík - doprava a platba',
+  '/search': 'Hledání',
+  '/account/orders': 'Historie objednávek',
+  '/account/settings': 'Nastavení účtu',
+};
+
+const NavLink = ({ children, href }: { children: ReactNode, href: string }) => (
   <Link
+    as={NextLink}
     px={2}
     py={1}
     rounded={'md'}
@@ -30,7 +41,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
       textDecoration: 'none',
       bg: useColorModeValue('gray.200', 'gray.700'),
     }}
-    href={'#'}>
+    href={href}>
     {children}
   </Link>
 );
@@ -50,25 +61,24 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box><Logo /></Box>
+            <Box>
+              <NextLink href="/" as="a">
+                <Logo />
+              </NextLink>
+            </Box>
             <HStack
               as={'nav'}
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+              {Object.keys(NavigationLinks).map((key) => (
+                <NavLink href={key} key={key}>{(NavigationLinks as any)[key]}</NavLink>
               ))}
             </HStack>
           </HStack>
           <Flex alignItems={'center'}>
-            <Button
-              variant={'solid'}
-              colorScheme={'teal'}
-              size={'sm'}
-              mr={4}
-              leftIcon={<AddIcon />}>
-              Action
-            </Button>
+            <NextLink href="/cart">
+              <IconButton aria-label="Košík" icon={<CalendarIcon />} />
+            </NextLink>
             <Menu>
               <MenuButton
                 as={Button}
@@ -84,10 +94,10 @@ export default function Navbar() {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
+                <MenuItem>Účet</MenuItem>
+                <MenuItem>Objednávky</MenuItem>
                 <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem>Odhlásit se</MenuItem>
               </MenuList>
             </Menu>
           </Flex>
@@ -96,8 +106,8 @@ export default function Navbar() {
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+              {Object.keys(NavigationLinks).map((key) => (
+                <NavLink href={key} key={key}>{(NavigationLinks as any)[key]}</NavLink>
               ))}
             </Stack>
           </Box>

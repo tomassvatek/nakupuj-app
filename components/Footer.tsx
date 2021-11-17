@@ -1,3 +1,4 @@
+import NextLink from 'next/link';
 import {
   Box,
   chakra,
@@ -68,7 +69,7 @@ export default function LargeWithNewsletter() {
               <Logo color={useColorModeValue('gray.700', 'white')} />
             </Box>
             <Text fontSize={'sm'}>
-              © 2020 Chakra Templates. All rights reserved
+              © 2022 Nakupuj k.s.
             </Text>
             <Stack direction={'row'} spacing={6}>
               <SocialButton label={'Twitter'} href={'#'}>
@@ -83,26 +84,22 @@ export default function LargeWithNewsletter() {
             </Stack>
           </Stack>
           <Stack align={'flex-start'}>
-            <ListHeader>Company</ListHeader>
-            <Link href={'#'}>About us</Link>
-            <Link href={'#'}>Blog</Link>
-            <Link href={'#'}>Contact us</Link>
-            <Link href={'#'}>Pricing</Link>
-            <Link href={'#'}>Testimonials</Link>
+            <ListHeader>Nakupuj</ListHeader>
+            <Link as={NextLink} href="/about">O nás</Link>
+            <Link as={NextLink} href="/about">Blog</Link>
+            <Link as={NextLink} href="/about">Kontakt</Link>
           </Stack>
           <Stack align={'flex-start'}>
-            <ListHeader>Support</ListHeader>
-            <Link href={'#'}>Help Center</Link>
-            <Link href={'#'}>Terms of Service</Link>
-            <Link href={'#'}>Legal</Link>
-            <Link href={'#'}>Privacy Policy</Link>
-            <Link href={'#'}>Satus</Link>
+            <ListHeader>Pomoc</ListHeader>
+            <Link as={NextLink} href="/about">Nápověda</Link>
+            <Link as={NextLink} href="/about">Obchodní podmínky</Link>
+            <Link as={NextLink} href="/about">Doprava a platba</Link>
           </Stack>
           <Stack align={'flex-start'}>
-            <ListHeader>Stay up to date</ListHeader>
+            <ListHeader>Zůstaňte s námi v kontaktu</ListHeader>
             <Stack direction={'row'}>
               <Input
-                placeholder={'Your email address'}
+                placeholder={'Vaše e-mailová adresa'}
                 bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
                 border={0}
                 _focus={{

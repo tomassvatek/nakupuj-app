@@ -2,27 +2,23 @@ import { Box, Heading } from '@chakra-ui/layout'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import BreadcrumbComponent from '../components/Breadcrumb'
 import CallToActionWithAnnotation from '../components/Hero'
-import Slider from '../components/Slider'
-import styles from '../styles/Home.module.css'
 import { getTitle } from '../utils/getTitle'
 
-const Home: NextPage = () => {
+const About: NextPage = () => {
   return (
     <main>
       <Head>
-        <title>{getTitle()}</title>
+        <title>{getTitle('O nás')}</title>
       </Head>
 
-      <CallToActionWithAnnotation />
-
       <Box p={4}>
-        <Heading>Homepage</Heading>
-
-        <Slider />
+        <BreadcrumbComponent items={['index', 'about']} />
+        <Heading>O nás</Heading>
       </Box>
     </main>
   )
 }
 
-export default Home
+export default About
