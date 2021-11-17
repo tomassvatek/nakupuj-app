@@ -57,7 +57,7 @@ export const products: IProduct[] = [
     price: 64.9,
     description: 'Vepřové maso 90%, Pitná voda, Jedlá sůl, Stabilizátory E250, E451, Koření, Aroma, Antioxidant erythorban sodný, Cukr, Maltodextrin, Česnekový prášek, Skopové střívko',
     imageURL: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80',
-    isNew: false,
+    isNew: true,
   },
   {
     id: 2,
@@ -75,7 +75,7 @@ export const products: IProduct[] = [
     price: 11.9,
     description: 'S vysokým obsahem bílkovin - 7,3g obsahu bílkovin v balení, 2,7% tuku.',
     imageURL: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80',
-    isNew: false,
+    isNew: true,
   },
   {
     id: 4,
