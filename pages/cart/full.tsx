@@ -29,34 +29,36 @@ type State = {
   items: ICartItem[];
 };
 
-function reducer(state: State, action: Action) {
+function reducer(state: State, action: Action): State {
   console.log("Change amount");
   switch (action.type) {
     case "increment": {
-      const item = state.items.find((s) => s.id === action.itemId);
-      if (!item) return state;
+      const itemIndex = state.items.findIndex((s) => s.id === action.itemId);
+      if (itemIndex === -1) return state;
 
       return {
         items: [
-          ...state.items.filter((s) => s.id !== action.itemId),
-          {
-            ...item,
-            quantity: item.quantity + 1,
-          },
+          ...state.items.map((item, index) => {
+            if (index === itemIndex) {
+              item.quantity += 1;
+            }
+            return item;
+          }),
         ],
       };
     }
     case "decrement": {
-      const item = state.items.find((s) => s.id === action.itemId);
-      if (!item) return state;
+      const itemIndex = state.items.findIndex((s) => s.id === action.itemId);
+      if (itemIndex === -1) return state;
 
       return {
         items: [
-          ...state.items.filter((s) => s.id !== action.itemId),
-          {
-            ...item,
-            quantity: item.quantity - 1,
-          },
+          ...state.items.map((item, index) => {
+            if (index === itemIndex) {
+              item.quantity -= 1;
+            }
+            return item;
+          }),
         ],
       };
     }
