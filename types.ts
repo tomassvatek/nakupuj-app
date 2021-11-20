@@ -1,13 +1,12 @@
-
 export interface ISupplier {
   id: number;
   name: string;
-};
+}
 
 export interface ICategory {
   id: number;
   name: string;
-};
+}
 
 export interface IProductVariant {
   id: number;
@@ -15,7 +14,7 @@ export interface IProductVariant {
   supplier: number;
   price_formatted: string;
   price: number;
-};
+}
 
 export interface IProduct {
   id: number;
@@ -25,16 +24,18 @@ export interface IProduct {
   imageURL: string;
   manufacturer: string;
   category: number;
-  variants: IProductVariant[];
+  variants?: IProductVariant[];
   weight: number;
-};
+  price_formatted: string;
+  price: number;
+}
 
 export interface ICartItem {
   id: number;
-  product: number;
+  product: IProduct;
   quantity: number;
-};
+}
 
 export interface ICart {
   items: ICartItem;
-};
+}
