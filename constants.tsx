@@ -40,8 +40,6 @@ export const pages = {
   },
 };
 
-
-
 export const products: IProduct[] = [
   {
     id: 1,

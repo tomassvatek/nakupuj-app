@@ -11,6 +11,7 @@ export interface ICategory {
 
 export interface IProductVariant {
   id: number;
+  title: string;
   supplier: number;
   price_formatted: string;
   price: number;
