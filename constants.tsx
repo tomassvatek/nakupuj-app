@@ -1,3 +1,4 @@
+import { IProduct } from './types';
 
 interface IPage {
   title: string,
@@ -39,15 +40,7 @@ export const pages = {
   },
 };
 
-export interface IProduct {
-  id: number;
-  title: string;
-  price_formatted: string;
-  price: number;
-  description: string;
-  isNew: boolean;
-  imageURL: string;
-};
+
 
 export const products: IProduct[] = [
   {
@@ -58,41 +51,5 @@ export const products: IProduct[] = [
     description: 'Vepřové maso 90%, Pitná voda, Jedlá sůl, Stabilizátory E250, E451, Koření, Aroma, Antioxidant erythorban sodný, Cukr, Maltodextrin, Česnekový prášek, Skopové střívko',
     imageURL: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80',
     isNew: true,
-  },
-  {
-    id: 2,
-    title: 'Klasik bílý jogurt Olma 2,7%, 150g',
-    price_formatted: '11,90 Kč',
-    price: 11.9,
-    description: 'S vysokým obsahem bílkovin - 7,3g obsahu bílkovin v balení, 2,7% tuku.',
-    imageURL: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80',
-    isNew: false,
-  },
-  {
-    id: 3,
-    title: 'Klasik bílý jogurt Olma 2,7%, 150g',
-    price_formatted: '11,90 Kč',
-    price: 11.9,
-    description: 'S vysokým obsahem bílkovin - 7,3g obsahu bílkovin v balení, 2,7% tuku.',
-    imageURL: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80',
-    isNew: true,
-  },
-  {
-    id: 4,
-    title: 'Klasik bílý jogurt Olma 2,7%, 150g',
-    price_formatted: '11,90 Kč',
-    price: 11.9,
-    description: 'S vysokým obsahem bílkovin - 7,3g obsahu bílkovin v balení, 2,7% tuku.',
-    imageURL: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80',
-    isNew: false,
-  },
-  {
-    id: 5,
-    title: 'Klasik bílý jogurt Olma 2,7%, 150g',
-    price_formatted: '11,90 Kč',
-    price: 11.9,
-    description: 'S vysokým obsahem bílkovin - 7,3g obsahu bílkovin v balení, 2,7% tuku.',
-    imageURL: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80',
-    isNew: false,
-  },
+  } as any,
 ];
