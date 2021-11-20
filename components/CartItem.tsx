@@ -3,7 +3,6 @@ import {
   Flex,
   AspectRatio,
   Image,
-  Box,
   Text,
   VStack,
   HStack,
@@ -14,9 +13,13 @@ import { ICartItem, IProduct } from "../types";
 import ChangeAmount, { ChangeEvent } from "./ChangeAmout";
 import { CloseIcon } from "@chakra-ui/icons";
 
+export type AmountChangeEvent = ChangeEvent & {
+  item: ICartItem;
+};
+
 type CartItemProps = {
   item: ICartItem;
-  onAmoutChange: (changeEvent: ChangeEvent) => void;
+  onAmoutChange: (changeEvent: AmountChangeEvent) => void;
 };
 
 // function AmountReducer(amount: number, action: ChangeAction) {
@@ -51,10 +54,10 @@ function CartItem({ item, onAmoutChange }: CartItemProps) {
       <HStack spacing="4">
         <ChangeAmount
           defaultValue={item.quantity}
-          onAmoutChange={onAmoutChange}
+          onAmoutChange={(e) => onAmoutChange({ ...e, item })}
         />
         <Text fontWeight="600" w="90px">
-          {item.product.price_formatted}
+          {item.quantity * item.product.price}
         </Text>
         <IconButton aria-label="Remove cart item" icon={<CloseIcon />} />
       </HStack>

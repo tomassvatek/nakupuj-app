@@ -5,7 +5,6 @@ import React, { useRef } from "react";
 export type ChangeAction = "increment" | "decrement";
 
 export type ChangeEvent = {
-  value: number;
   action: ChangeAction;
 };
 
@@ -15,12 +14,11 @@ type ChangeAmountProps = {
 };
 
 function ChangeAmount({ defaultValue, onAmoutChange }: ChangeAmountProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
       step: 1,
       defaultValue: defaultValue,
-      min: 1,
+      min: 0,
       max: 100,
     });
 
@@ -29,18 +27,16 @@ function ChangeAmount({ defaultValue, onAmoutChange }: ChangeAmountProps) {
   const input = getInputProps({ readOnly: true });
 
   function changeAmount(action: ChangeAction) {
-    if (!inputRef?.current) return;
-
-    onAmoutChange({ value: +inputRef.current.value, action: action });
+    onAmoutChange({ action });
   }
 
   return (
     <HStack maxW="150px">
-      <Button onChange={() => changeAmount("decrement")} {...dec}>
+      <Button onClick={() => changeAmount("decrement")} {...dec}>
         -
       </Button>
-      <Input ref={inputRef} {...input} />
-      <Button onChange={() => changeAmount("increment")} {...inc}>
+      <Input {...input} />
+      <Button onClick={() => changeAmount("increment")} {...inc}>
         +
       </Button>
     </HStack>
