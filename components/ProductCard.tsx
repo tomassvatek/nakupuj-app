@@ -7,21 +7,22 @@ import {
   useColorModeValue,
   chakra,
   Tooltip,
-} from '@chakra-ui/react';
-import NextLink from 'next/link';
-import { IProduct } from '../constants';
+} from "@chakra-ui/react";
+import NextLink from "next/link";
+import { IProduct } from "../types";
 
 function ProductCard({ product }: { product: IProduct }) {
   return (
     <NextLink href={`/product/${product.id}`}>
       <Flex p={50} w="full" alignItems="center" justifyContent="center">
         <Box
-          bg={useColorModeValue('white', 'gray.800')}
+          bg={useColorModeValue("white", "gray.800")}
           maxW="sm"
           borderWidth="1px"
           rounded="lg"
           shadow="lg"
-          position="relative">
+          position="relative"
+        >
           {product.isNew && (
             <Circle
               size="10px"
@@ -52,24 +53,28 @@ function ProductCard({ product }: { product: IProduct }) {
                 fontWeight="semibold"
                 as="h4"
                 lineHeight="tight"
-                isTruncated>
+                isTruncated
+              >
                 {product.title}
               </Box>
               <Tooltip
                 label="Přidat do košíku"
                 bg="white"
-                placement={'top'}
-                color={'gray.800'}
-                fontSize={'1.2em'}>
-                <chakra.a href={'#'} display={'flex'}>
-                </chakra.a>
+                placement={"top"}
+                color={"gray.800"}
+                fontSize={"1.2em"}
+              >
+                <chakra.a href={"#"} display={"flex"}></chakra.a>
               </Tooltip>
             </Flex>
 
             <Flex justifyContent="space-between" alignContent="center">
-              <Box fontSize="2xl" color={useColorModeValue('gray.800', 'white')}>
+              <Box
+                fontSize="2xl"
+                color={useColorModeValue("gray.800", "white")}
+              >
                 {product.price.toFixed(2)}
-                <Box as="span" color={'gray.600'} fontSize="lg">
+                <Box as="span" color={"gray.600"} fontSize="lg">
                   Kč
                 </Box>
               </Box>
