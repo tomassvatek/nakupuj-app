@@ -5,16 +5,25 @@ import { AmountChangeEvent } from "./CartItem";
 
 type CartItemListProps = {
   items: ICartItem[];
+  onItemRemove: (item: ICartItem) => void;
   onAmountChange: (event: AmountChangeEvent) => void;
 };
 
-function CartItemList({ items, onAmountChange }: CartItemListProps) {
+function CartItemList({
+  items,
+  onItemRemove,
+  onAmountChange,
+}: CartItemListProps) {
   return (
     <Box>
       {items.map((item) => {
         return (
           <Box key={item.id} pb="5">
-            <CartItem item={item} onAmoutChange={onAmountChange} />
+            <CartItem
+              item={item}
+              onAmoutChange={onAmountChange}
+              onItemRemove={onItemRemove}
+            />
           </Box>
         );
       })}

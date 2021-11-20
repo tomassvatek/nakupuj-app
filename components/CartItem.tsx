@@ -19,19 +19,11 @@ export type AmountChangeEvent = ChangeEvent & {
 
 type CartItemProps = {
   item: ICartItem;
+  onItemRemove: (item: ICartItem) => void;
   onAmoutChange: (changeEvent: AmountChangeEvent) => void;
 };
 
-// function AmountReducer(amount: number, action: ChangeAction) {
-//   switch (action) {
-//     case "increment":
-//       return amount + 1;
-//     case "decrement":
-//       return amount - 1;
-//   }
-// }
-
-function CartItem({ item, onAmoutChange }: CartItemProps) {
+function CartItem({ item, onItemRemove, onAmoutChange }: CartItemProps) {
   return (
     <Flex justify="space-between" align="center">
       <Flex>
@@ -59,7 +51,11 @@ function CartItem({ item, onAmoutChange }: CartItemProps) {
         <Text fontWeight="600" w="90px">
           {item.quantity * item.product.price}
         </Text>
-        <IconButton aria-label="Remove cart item" icon={<CloseIcon />} />
+        <IconButton
+          aria-label="Remove cart item"
+          onClick={() => onItemRemove(item)}
+          icon={<CloseIcon />}
+        />
       </HStack>
     </Flex>
   );

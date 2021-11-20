@@ -15,22 +15,18 @@ const fakeData: ICartItem[] = products.map((item, index) => ({
   quantity: 1,
 }));
 
-type Action =
-  | {
-      type: ChangeAction;
-      itemId: number;
-    }
-  | {
-      type: ChangeAction;
-      itemId: number;
-    };
+type ActionType = ChangeAction | "remove";
+
+type Action = {
+  itemId: number;
+  type: ActionType;
+};
 
 type State = {
   items: ICartItem[];
 };
 
 function reducer(state: State, action: Action): State {
-  console.log("Change amount");
   switch (action.type) {
     case "increment": {
       const itemIndex = state.items.findIndex((s) => s.id === action.itemId);
@@ -62,6 +58,11 @@ function reducer(state: State, action: Action): State {
         ],
       };
     }
+    case "remove": {
+      return {
+        items: state.items.filter((item) => item.id !== action.itemId),
+      };
+    }
     default:
       return state;
   }
@@ -69,8 +70,6 @@ function reducer(state: State, action: Action): State {
 
 const Cart: NextPage = () => {
   const [{ items }, dispatch] = useReducer(reducer, { items: fakeData });
-
-  //ChangeAmount()
 
   return (
     <Box px="20" py="15">
@@ -86,6 +85,9 @@ const Cart: NextPage = () => {
           onAmountChange={(e) =>
             dispatch({ type: e.action, itemId: e.item.id })
           }
+          onItemRemove={(e) => {
+            dispatch({ type: "remove", itemId: e.id });
+          }}
         />
       </Box>
     </Box>
