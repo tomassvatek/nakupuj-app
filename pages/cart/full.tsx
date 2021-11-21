@@ -6,12 +6,14 @@ import CartItemList from "../../components/CartItemList";
 import { products } from "../../constants";
 import { ICartItem } from "../../types";
 import { getTitle } from "../../utils/getTitle";
+import {DeliveryOptions} from "../../components/DeliveryOptions";
 
 const fakeData: ICartItem[] = products.map((item, index) => ({
   product: item,
   id: index,
   quantity: 1,
 }));
+
 
 const Cart: NextPage = () => {
   return (
@@ -24,6 +26,7 @@ const Cart: NextPage = () => {
         <BreadcrumbComponent items={["index", "cart-full"]} />
         <Heading mb="5">Plný košík</Heading>
         <CartItemList items={fakeData} />
+        <DeliveryOptions></DeliveryOptions>
       </Box>
     </Box>
   );
