@@ -11,7 +11,7 @@ export interface ICategory {
 export interface IProductVariant {
   id: number;
   title: string;
-  supplier: number;
+  supplier: ISupplier;
   price_formatted: string;
   price: number;
 }
@@ -21,13 +21,11 @@ export interface IProduct {
   title: string;
   description: string;
   isNew: boolean;
-  imageURL: string;
+  imageURLs: string[];
   manufacturer: string;
-  category: number;
-  variants?: IProductVariant[];
+  category: ICategory;
+  variants: IProductVariant[];
   weight: number;
-  price_formatted: string;
-  price: number;
 }
 
 export interface ICartItem {

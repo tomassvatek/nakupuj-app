@@ -14,11 +14,10 @@ const Home: NextPage = () => {
         <title>{getTitle()}</title>
       </Head>
 
-      <CallToActionWithAnnotation />
+      {/* <CallToActionWithAnnotation /> */}
 
       <Box p={4}>
-        <Heading>Homepage</Heading>
-
+        <Heading>Domovská stránka</Heading>
         <Slider />
       </Box>
     </main>
