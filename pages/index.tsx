@@ -1,4 +1,4 @@
-import { Box, Heading } from '@chakra-ui/layout'
+import { Box, Heading, HStack, Text } from '@chakra-ui/layout'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -6,6 +6,7 @@ import CallToActionWithAnnotation from '../components/Hero'
 import ProductSlider from '../components/ProductSlider'
 import styles from '../styles/Home.module.css'
 import { getTitle } from '../utils/getTitle'
+import { uzeniny } from '../constants';
 
 const Home: NextPage = () => {
   return (
@@ -16,11 +17,22 @@ const Home: NextPage = () => {
 
       {/* <CallToActionWithAnnotation /> */}
 
-      <Box p={4}>
-        <Heading>Všechny produkty</Heading>
+      <Box p={4} ml={20}>
+        <HStack>
+          <Heading>Všechny produkty</Heading>
+          <Text as="u">Zobrazit více</Text>
+        </HStack>
         <ProductSlider/>
-        <Heading>Uzeniny</Heading>
-        <ProductSlider category={1}/>
+        <HStack>
+          <Heading>{uzeniny.name}</Heading>
+          <Text as="u">Zobrazit více</Text>
+        </HStack>
+        <ProductSlider category={uzeniny.id}/>
+        <HStack>
+          <Heading>Novinky</Heading>
+          <Text as="u">Zobrazit více</Text>
+        </HStack>
+        <ProductSlider onlyNew={true}/>
       </Box>
     </main>
   )

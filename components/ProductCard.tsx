@@ -1,3 +1,4 @@
+import { AddIcon } from "@chakra-ui/icons";
 import {
   Flex,
   Circle,
@@ -7,40 +8,43 @@ import {
   useColorModeValue,
   chakra,
   Tooltip,
-  Center
+  Center,
+  Button,
+  HStack
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { IProduct } from "../types";
+import styles from "../styles/ProductCard.module.css"
 
 function ProductCard({ product }: { product: IProduct }) {
   return (
     <NextLink href={`/product/${product.id}`}>
       <Flex p={50} w={500} h={500} alignItems="center" justifyContent="center">
         <Box bg={useColorModeValue("white", "gray.800")} maxW="sm" borderWidth="1px" rounded="lg" shadow="lg" position="relative">
-          {product.isNew && (
-            <Circle size="10px" position="absolute" top={2} right={2} bg="red.200"/>
-          )}
-
-          <Center>
+          <Center className="cardImgContainer">
             <Image src={product.imageURLs[0]} alt={`Obrázek ${product.title}`} roundedTop="lg" maxW={300} maxH={300}/>
+            <Tooltip label="Přidat do košíku" bg="white" placement={"top-start"} color={"gray.800"} fontSize={"1.2em"}>
+                <Button boxSize={10} className="addToCartBtn">
+                  <AddIcon boxSize={5}/>
+                  <chakra.a href={"#"} display={"flex"}/>
+                </Button>
+              </Tooltip>
           </Center>
 
           <Box p="6">
-            <Box d="flex" alignItems="baseline">
-              {product.isNew && (
-                <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
-                  Novinka
-                </Badge>
-              )}
-            </Box>
-
             <Flex mt="1" justifyContent="space-between" alignContent="center">
-              <Box fontSize="3xl" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
-                {product.title}
-              </Box>
-              <Tooltip label="Přidat do košíku" bg="white" placement={"top"} color={"gray.800"} fontSize={"1.2em"}>
-                <chakra.a href={"#"} display={"flex"}/>
-              </Tooltip>
+              <HStack>
+                <Box fontSize="3xl" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
+                  {product.title}
+                </Box>
+                <Box d="flex" alignItems="baseline">
+                  {product.isNew && (
+                    <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
+                      Novinka
+                    </Badge>
+                  )}
+                </Box>
+              </HStack>
             </Flex>
 
             <Flex justifyContent="space-between" alignContent="center">

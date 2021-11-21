@@ -20,6 +20,16 @@ a {
   width: 70px !important;
   height: 70px !important;
   color: black !important;
+  background-color: #EDF2F7 !important;
+}
+
+.addToCartBtn {
+  position: absolute !important;
+  top: 90% !important;
+  left: 5% !important;
   border-radius: 50% !important;
-  background-color: #E0E0E0 !important;
+}
+
+.cardImgContainer {
+  position: relative;
 }

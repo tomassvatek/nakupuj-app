@@ -41,37 +41,37 @@ export const pages = {
   },
 };
 
-const rohlik: ISupplier = {
+export const rohlik: ISupplier = {
   id: 1,
   name: "Rohlík"
 }
 
-const kosik: ISupplier = {
+export const kosik: ISupplier = {
   id: 2,
   name: "Rohlík"
 }
 
-const tesco: ISupplier = {
+export const tesco: ISupplier = {
   id: 3,
   name: "Tesco"
 }
 
-const uzeniny: ICategory = {
+export const uzeniny: ICategory = {
   id: 1,
   name: "Uzeniny"
 }
 
-const mlecneVyrobky: ICategory = {
+export const mlecneVyrobky: ICategory = {
   id: 2,
   name: "Mléčné výrobky"
 }
 
-const ovoce: ICategory = {
+export const ovoce: ICategory = {
   id: 3,
   name: "Ovoce"
 }
 
-const maso: ICategory = {
+export const maso: ICategory = {
   id: 4,
   name: "Maso"
 }
@@ -242,7 +242,7 @@ export const products: IProduct[] = [
     title: "Vysočina",
     description:
       "Ideální na sendviče, Uzené kořenité aroma, přiměřeně slaná chuť, 130 g masa/100 g výrobku. Masný výrobek trvanlivý tepelně opracovaný, krájený.",
-    isNew: false,
+    isNew: true,
     imageURLs: [
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/1404253/1404253-1609786999175.jpg",
       "https://static.kosik.cz/images/thumbs/07/860x800x1_07eae6c8ce92d6b022c06eb45e1cfd62.jpg",
@@ -274,7 +274,7 @@ export const products: IProduct[] = [
     title: "Eidam 30%",
     description:
       "Miil Eidam, přírodní sýr v plátcích, 30% tuku v sušině. Jedná se o polotvrdý, zrající sýr, který je znám svou plnou chutí. Původ mléka Německo. Sýr vyroben v Německu. Baleno v České republice.",
-    isNew: false,
+    isNew: true,
     imageURLs: [
       "https://static.kosik.cz/images/thumbs/74/860x800x1_7440af83f084352d0810a9db82be2071.jpg",
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/1413424/1413424-1631005178535.jpg",

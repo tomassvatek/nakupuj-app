@@ -7,7 +7,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 interface ProductSliderProps {
-  category?: number
+  category?: number,
+  onlyNew?: boolean
 }
 
 const ProductSlider = (props: ProductSliderProps) => {
@@ -17,6 +18,10 @@ const ProductSlider = (props: ProductSliderProps) => {
     filteredProducts = products.filter(function(product: IProduct) { return product.category.id == props.category });
   } else {
     filteredProducts = products;
+  }
+
+  if (props.onlyNew) {
+    filteredProducts = filteredProducts.filter(function(product: IProduct) { return product.isNew });
   }
 
   return (
