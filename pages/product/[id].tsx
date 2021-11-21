@@ -10,6 +10,14 @@ import {
   StackDivider,
   Button,
   useDisclosure,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  AspectRatio,
+  VStack,
+  Badge,
+  Spacer,
 } from '@chakra-ui/react';
 import ErrorPage from '../404'
 import { BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/breadcrumb';
@@ -24,7 +32,9 @@ import type { IProduct } from '../../types';
 import AddToCartConfirmation from '../../components/AddToCartConfirmation';
 import { useCart } from '../../hooks/useCart';
 import ChangeAmount, { ChangeAmountHandler } from '../../components/ChangeAmout';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { ChevronDownIcon } from '@chakra-ui/icons';
+import { formatPrice, formatWeight } from '../../utils/formatters';
 
 interface Props {
   product?: IProduct,
@@ -34,19 +44,19 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { addItem } = useCart();
   const [amount, setAmount] = useState(1);
-  
+  const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
+
   const handleAmountChange: ChangeAmountHandler = (event) => {
     setAmount(event.value || 0);
   };
-  
-  if (!product) {
+
+  if (!product || !selectedVariant) {
     return <ErrorPage />;
   }
-  
-  const variant = product.variants[0]!;
+
   const handleAddToCart: React.MouseEventHandler = () => {
     setAmount(1);
-    addItem(variant, amount);
+    addItem(selectedVariant, amount);
     onOpen();
   };
 
@@ -69,21 +79,16 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
               <Image
                 rounded={'md'}
                 alt={`Obrázek ${product.title}`}
-                src={variant.imageURL}
+                src={selectedVariant.imageURL}
                 objectFit={'cover'}
               />
             </Flex>
             <Stack spacing={4}>
               {product.isNew && (
-                <Text
-                  textTransform={'uppercase'}
-                  color={'blue.400'}
-                  fontWeight={600}
-                  fontSize={'sm'}
-                  p={2}
-                  alignSelf={'flex-start'}
-                  rounded={'md'}>
-                  Novinka
+                <Text>
+                  <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
+                    Novinka
+                  </Badge>
                 </Text>
               )}
               <Heading>{product.title}</Heading>
@@ -91,6 +96,37 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
               <Text color={'gray.500'} fontSize={'lg'}>
                 {product.description}
               </Text>
+
+              <Menu>
+                <MenuButton as={Button} textAlign="left" rightIcon={<ChevronDownIcon />}>
+                  {selectedVariant.title}
+                </MenuButton>
+                <MenuList>
+                  {product.variants.map((variant, index) => (
+                    <MenuItem as={Flex} key={variant.id} onClick={() => setSelectedVariant(product.variants[index])}>
+                      <AspectRatio w="64px" h="64px" ratio={4 / 3}>
+                        <Image
+                          src={variant.imageURL}
+                          alt={variant.title}
+                          objectFit="cover"
+                        />
+                      </AspectRatio>
+                      <VStack align="flex-start" ml="5" pt="2">
+                        <strong>{variant.title}</strong>
+                        <Text>{variant.supplier.name}</Text>
+                        <Text fontSize="sm">
+                          {formatWeight(variant.weight)}
+                        </Text>
+                      </VStack>
+                      <Spacer/>
+                      <VStack align="flex-start" ml="5" pt="2" textAlign="right">
+                        <Text fontSize={'lg'}>{formatPrice(variant.price)}</Text>
+                      </VStack>
+                      
+                    </MenuItem>
+                  ))}
+                </MenuList>
+              </Menu>
 
               <ChangeAmount
                 defaultValue={amount}
@@ -103,7 +139,7 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
                 Přidat do košíku
               </Button>
               <AddToCartConfirmation
-                variant={variant}
+                variant={selectedVariant}
                 onClose={onClose}
                 isOpen={isOpen}
               />

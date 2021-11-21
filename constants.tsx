@@ -44,7 +44,7 @@ export const rohlik: ISupplier = {
 
 export const kosik: ISupplier = {
   id: 2,
-  name: "Rohlík"
+  name: "Košík"
 }
 
 export const tesco: ISupplier = {
