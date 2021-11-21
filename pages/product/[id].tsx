@@ -8,21 +8,48 @@ import {
   Box,
   Stack,
   StackDivider,
-  Icon,
-  useColorModeValue,
+  Button,
+  useDisclosure,
 } from '@chakra-ui/react';
+import ErrorPage from '../404'
 import { BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/breadcrumb';
 import NextLink from 'next/link';
-import type { NextPage } from 'next'
+import type { NextPage, GetServerSideProps } from 'next'
+import { BsCartFill } from 'react-icons/bs'
 import Head from 'next/head'
-import NextImage from 'next/image'
 import BreadcrumbComponent from '../../components/Breadcrumb'
 import { getTitle } from '../../utils/getTitle'
 import { products } from '../../constants';
+import type { IProduct } from '../../types';
+import AddToCartConfirmation from '../../components/AddToCartConfirmation';
+import { useCart } from '../../hooks/useCart';
+import ChangeAmount, { ChangeAmountHandler } from '../../components/ChangeAmout';
+import { useState } from 'react';
 
-const product = products[0];
+interface Props {
+  product?: IProduct,
+};
 
-const ProductDetail: NextPage = () => {
+const ProductDetail: NextPage<Props> = ({ product }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { addItem } = useCart();
+  const [amount, setAmount] = useState(1);
+  
+  const handleAmountChange: ChangeAmountHandler = (event) => {
+    setAmount(event.value || 0);
+  };
+  
+  if (!product) {
+    return <ErrorPage />;
+  }
+  
+  const variant = product.variants[0]!;
+  const handleAddToCart: React.MouseEventHandler = () => {
+    setAmount(1);
+    addItem(variant, amount);
+    onOpen();
+  };
+
   return (
     <main>
       <Head>
@@ -32,7 +59,7 @@ const ProductDetail: NextPage = () => {
       <Box p={4}>
         <BreadcrumbComponent items={['index']}>
           <BreadcrumbItem>
-            <BreadcrumbLink as={NextLink} href="/product/123">{product.title}</BreadcrumbLink>
+            <BreadcrumbLink as={NextLink} href={`/product/${product.id}`}>{product.title}</BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbComponent>
 
@@ -42,7 +69,7 @@ const ProductDetail: NextPage = () => {
               <Image
                 rounded={'md'}
                 alt={`Obrázek ${product.title}`}
-                src={product.imageURL}
+                src={variant.imageURL}
                 objectFit={'cover'}
               />
             </Flex>
@@ -60,23 +87,67 @@ const ProductDetail: NextPage = () => {
                 </Text>
               )}
               <Heading>{product.title}</Heading>
+
               <Text color={'gray.500'} fontSize={'lg'}>
                 {product.description}
               </Text>
+
+              <ChangeAmount
+                defaultValue={amount}
+                value={amount}
+                min={1}
+                onAmoutChange={handleAmountChange}
+              />
+
+              <Button colorScheme="green" size="lg" mr={4} leftIcon={<BsCartFill />} onClick={handleAddToCart}>
+                Přidat do košíku
+              </Button>
+              <AddToCartConfirmation
+                variant={variant}
+                onClose={onClose}
+                isOpen={isOpen}
+              />
+
               <Stack
                 spacing={4}
                 divider={
                   <StackDivider
-                    borderColor={useColorModeValue('gray.100', 'gray.700')}
+                    borderColor="gray.100"
                   />
                 }>
               </Stack>
             </Stack>
           </SimpleGrid>
+
+          {product.fullDescription && (
+            <Container maxW={'6xl'} py={12}>
+              <Text dangerouslySetInnerHTML={{ __html: product.fullDescription }} />
+            </Container>
+          )}
         </Container>
       </Box>
     </main>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const id = context.params?.id as string | undefined;
+
+  let product = null;
+  if (id) {
+    const _id = parseInt(id, 10);
+    product = products.find(p => p.id === _id) || null;
+  }
+
+  if (!product) {
+    context.res.statusCode = 404;
+  }
+
+  return {
+    props: {
+      product,
+    },
+  };
 }
 
 export default ProductDetail

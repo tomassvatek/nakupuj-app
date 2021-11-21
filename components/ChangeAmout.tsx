@@ -1,42 +1,48 @@
 import { HStack } from "@chakra-ui/layout";
-import { Button, Input, InputProps, useNumberInput } from "@chakra-ui/react";
-import React, { useRef } from "react";
+import { Button, Input, useNumberInput } from "@chakra-ui/react";
+import React from "react";
 
-export type ChangeAction = "increment" | "decrement";
+export type ChangeAction = "increment" | "decrement" | "set";
 
-export type ChangeEvent = {
+type ChangeEvent = {
   action: ChangeAction;
+  value?: number;
+};
+
+export interface ChangeAmountHandler {
+  (changeEvent: ChangeEvent): void
 };
 
 type ChangeAmountProps = {
-  defaultValue: number;
-  onAmoutChange: (changeEvent: ChangeEvent) => void;
+  value?: number;
+  defaultValue?: number;
+  onAmoutChange: ChangeAmountHandler;
+  min?: number;
+  max?: number;
 };
 
-function ChangeAmount({ defaultValue, onAmoutChange }: ChangeAmountProps) {
+function ChangeAmount({ defaultValue, value, onAmoutChange: onAmountChange, min = 0, max = 100 }: ChangeAmountProps) {
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
       step: 1,
-      defaultValue: defaultValue,
-      min: 0,
-      max: 100,
+      defaultValue,
+      value,
+      min,
+      max,
+      onChange: (_, value) => onAmountChange({ action: 'set', value }),
     });
 
   const inc = getIncrementButtonProps();
   const dec = getDecrementButtonProps();
   const input = getInputProps({ readOnly: true });
 
-  function changeAmount(action: ChangeAction) {
-    onAmoutChange({ action });
-  }
-
   return (
     <HStack maxW="150px">
-      <Button onClick={() => changeAmount("decrement")} {...dec}>
+      <Button {...dec}>
         -
       </Button>
       <Input {...input} />
-      <Button onClick={() => changeAmount("increment")} {...inc}>
+      <Button {...inc}>
         +
       </Button>
     </HStack>

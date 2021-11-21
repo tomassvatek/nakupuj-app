@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { ICartItem } from "../types";
+import { ICartItem } from '../hooks/useCart';
 import CartItem from "./CartItem";
 import { AmountChangeEvent } from "./CartItem";
 
