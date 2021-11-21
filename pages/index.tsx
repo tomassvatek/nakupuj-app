@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import CallToActionWithAnnotation from '../components/Hero'
-import Slider from '../components/Slider'
+import ProductSlider from '../components/ProductSlider'
 import styles from '../styles/Home.module.css'
 import { getTitle } from '../utils/getTitle'
 
@@ -17,8 +17,10 @@ const Home: NextPage = () => {
       {/* <CallToActionWithAnnotation /> */}
 
       <Box p={4}>
-        <Heading>Domovská stránka</Heading>
-        <Slider />
+        <Heading>Všechny produkty</Heading>
+        <ProductSlider/>
+        <Heading>Uzeniny</Heading>
+        <ProductSlider category={1}/>
       </Box>
     </main>
   )

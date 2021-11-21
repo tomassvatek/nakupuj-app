@@ -14,3 +14,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  width: 70px !important;
+  height: 70px !important;
+  color: black !important;
+  border-radius: 50% !important;
+  background-color: #E0E0E0 !important;
+}
