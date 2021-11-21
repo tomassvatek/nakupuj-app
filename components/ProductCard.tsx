@@ -1,7 +1,6 @@
 import { AddIcon } from "@chakra-ui/icons";
 import {
   Flex,
-  Circle,
   Box,
   Image,
   Badge,
@@ -10,18 +9,28 @@ import {
   Tooltip,
   Center,
   Button,
-  HStack
+  HStack,
+  useDisclosure,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { IProduct } from "../types";
-import styles from "../styles/ProductCard.module.css"
 import { formatPrice } from '../utils/formatters';
 import { useCart } from '../hooks/useCart';
+import AddToCartConfirmation from "./AddToCartConfirmation";
+import { useState } from "react";
 
 function ProductCard({ product }: { product: IProduct }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { addItem } = useCart();
+  const [amount, setAmount] = useState(1);
   const variant = product.variants[0];
-  
+
+  const handleAddToCart: React.MouseEventHandler = () => {
+    setAmount(1);
+    addItem(variant, amount);
+    onOpen();
+  };
+
   return (
     <Flex p={50} w={500} h={500} alignItems="center" justifyContent="center">
       <Box bg={useColorModeValue("white", "gray.800")} maxW="sm" borderWidth="1px" rounded="lg" shadow="lg" position="relative">
@@ -32,12 +41,18 @@ function ProductCard({ product }: { product: IProduct }) {
             </a>  
           </NextLink>
           <Tooltip label="Přidat do košíku" bg="white" placement={"top-start"} color={"gray.800"} fontSize={"1.2em"}>
-              <Button boxSize={10} className="addToCartBtn">
+              <Button boxSize={10} className="addToCartBtn" onClick={handleAddToCart}>
                 <AddIcon boxSize={5}/>
                 <chakra.a href={"#"} display={"flex"}/>
               </Button>
             </Tooltip>
         </Center>
+
+        <AddToCartConfirmation
+          variant={variant}
+          onClose={onClose}
+          isOpen={isOpen}
+        />
 
         <Box p="6">
           <Flex mt="1" justifyContent="space-between" alignContent="center">
