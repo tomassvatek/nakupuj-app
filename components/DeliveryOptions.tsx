@@ -1,61 +1,47 @@
-import React, {useState} from "react";
-import { Box, SimpleGrid } from "@chakra-ui/layout";
-import { Radio } from "@chakra-ui/radio/src/radio";
-import { RadioGroup } from "@chakra-ui/react/dist/declarations/src";
+import { Flex, Stack, VStack } from "@chakra-ui/layout";
+import { Box, Text, Radio, RadioGroup, SimpleGrid } from "@chakra-ui/react";
+import React, { useMemo, useState } from "react";
+import DeliveryOption, { DeliveryOptionItem } from "./DeliveryOption";
+import { deliveryOptions } from "../constants";
 
+function DeliveryOptions() {
+  const [selectedValue, setSelectedValue] = useState("1");
+  const [selectedInnerValue, setInnerSelectedValue] = useState("2");
+  const options = useMemo<DeliveryOptionItem[]>(() => deliveryOptions, []);
 
-export const DeliveryOptions: React.FC = () => {
-
-    const [displayOptions, setDisplayOptions] = useState<boolean>(false)
-
-    return (
-        <>
-            <SimpleGrid  columns={3} border="1px" borderColor="gray.200" borderRadius="5px" m={2} p={2} background={'#E2E8F0'}>
-                <Box>
-                    Váš nejlevnější nákup
-                </Box>
-                <Box style={{textAlign: "right", fontSize: "0.625rem", justifyContent: "flex-end", display: "flex", alignItems: "center"}}>
-                    Zítra
-                </Box>
-                <Box style={{textAlign: "right", justifyContent: "flex-end", display: "flex", alignItems: "center"}}>
-                    200 Kč
-                </Box>
-            </SimpleGrid>
-
-            <SimpleGrid  columns={3} border="1px" borderColor="gray.200" borderRadius="5px" m={2} p={2}>
-                <Box>
-                    <span>Nejlevnější nákup</span><br/>
-                    <span style={{fontSize: '0.625rem'}}>Přijede z Rohlíku a iTesca</span>
-                </Box>
-                <Box style={{textAlign: "right", fontSize: "0.625rem", justifyContent: "flex-end", display: "flex", alignItems: "center"}}>
-                    Za 4 dny
-                </Box>
-                <Box style={{textAlign: "right", justifyContent: "flex-end", display: "flex", alignItems: "center"}}>
-                    <div>
-                        <span style={{fontSize: '0.625rem'}}>Ušetříte 20 Kč</span><br/>
-                        <span>180 Kč</span>
-                    </div>
-                </Box>
-            </SimpleGrid>
-
-            <SimpleGrid  columns={3} border="1px" borderColor="gray.200" borderRadius="5px" m={2} p={2}>
-                <Box>
-                    Chci to najednou
-                </Box>
-                <Box>
-                </Box>
-                <Box style={{textAlign: "right", justifyContent: "flex-end", display: "flex", alignItems: "center"}}>
-                    190 - 220 Kč
-                </Box>
-                {!displayOptions && (
-                    <>
-                        {/*<RadioGroup>*/}
-                        {/*    <Radio>iTesco</Radio>*/}
-                        {/*    <Radio>Rohlík</Radio>*/}
-                        {/*</RadioGroup>*/}
-                    </>
+  return (
+    <RadioGroup value={selectedValue} onChange={setSelectedValue}>
+      <VStack w="100%" align="flex-start" justifyContent="flex-start">
+        {options.map((prop) => {
+          const bg = selectedValue == prop.optionId ? "gray.100" : undefined;
+          if (prop?.childrenOptions) {
+            return (
+              <VStack w="100%">
+                <DeliveryOption key={prop.optionId} bgColor={bg} {...prop} />
+                {selectedValue == "3" && (
+                  <Box w="100%" pl="80px">
+                    <RadioGroup
+                      value={selectedInnerValue}
+                      onChange={setInnerSelectedValue}
+                    >
+                      {prop.childrenOptions.map((option) => (
+                        <DeliveryOption
+                          key={option.optionId}
+                          py="2"
+                          {...option}
+                        />
+                      ))}
+                    </RadioGroup>
+                  </Box>
                 )}
-            </SimpleGrid>
-        </>
-    )
+              </VStack>
+            );
+          }
+          return <DeliveryOption key={prop.optionId} bgColor={bg} {...prop} />;
+        })}
+      </VStack>
+    </RadioGroup>
+  );
 }
+
+export default DeliveryOptions;

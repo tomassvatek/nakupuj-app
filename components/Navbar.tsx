@@ -16,15 +16,15 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  AvatarBadge,
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, AddIcon, CalendarIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Logo from './Logo';
-
-const Links = ['Dashboard', 'Projects', 'Team'];
+import { BsCartFill } from 'react-icons/bs';
+import { useCart } from '../hooks/useCart';
+import { formatPrice } from '../utils/formatters';
 
 const NavigationLinks = {
-  '/cart': 'Košík - prázdný',
-  '/cart/full': 'Košík - plný',
   '/cart/payment': 'Košík - doprava a platba',
   '/search': 'Hledání',
   '/account/orders': 'Historie objednávek',
@@ -47,6 +47,7 @@ const NavLink = ({ children, href }: { children: ReactNode, href: string }) => (
 );
 
 export default function Navbar() {
+  const { cartTotal } = useCart();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -62,8 +63,10 @@ export default function Navbar() {
           />
           <HStack spacing={8} alignItems={'center'}>
             <Box>
-              <NextLink href="/" as="a">
-                <Logo />
+              <NextLink href="/">
+                <a>
+                  <Logo />
+                </a>
               </NextLink>
             </Box>
             <HStack
@@ -77,7 +80,10 @@ export default function Navbar() {
           </HStack>
           <Flex alignItems={'center'}>
             <NextLink href="/cart">
-              <IconButton aria-label="Košík" icon={<CalendarIcon />} />
+              <Button aria-label="Košík" leftIcon={<BsCartFill />}>
+                {cartTotal > 0 ? formatPrice(cartTotal) : 'Košík'}
+              </Button>
+              
             </NextLink>
             <Menu>
               <MenuButton
@@ -91,7 +97,9 @@ export default function Navbar() {
                   src={
                     'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
                   }
-                />
+                >
+                </Avatar>
+
               </MenuButton>
               <MenuList>
                 <MenuItem>Účet</MenuItem>

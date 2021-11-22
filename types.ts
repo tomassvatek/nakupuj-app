@@ -1,41 +1,42 @@
 export interface ISupplier {
+  /** Globally unique ID for this type */
   id: number;
   name: string;
 }
 
 export interface ICategory {
+  /** Globally unique ID for this type */
   id: number;
   name: string;
 }
 
 export interface IProductVariant {
+  /** Globally unique ID for this type */
   id: number;
   title: string;
-  supplier: number;
-  price_formatted: string;
+  supplier: ISupplier;
+  /** Price in CZK */
   price: number;
+  /** Weight in grams */
+  weight: number;
+  /** Manufacturer of this product variant */
+  manufacturer: string;
+
+  imageURL?: string;
 }
 
 export interface IProduct {
+  /** Globally unique ID for this type */
   id: number;
   title: string;
-  description: string;
   isNew: boolean;
-  imageURL: string;
-  manufacturer: string;
-  category: number;
-  variants?: IProductVariant[];
-  weight: number;
-  price_formatted: string;
-  price: number;
-}
+  category: ICategory;
+  variants: IProductVariant[];
 
-export interface ICartItem {
-  id: number;
-  product: IProduct;
-  quantity: number;
-}
-
-export interface ICart {
-  items: ICartItem;
+  /** For simplicity, same for all variants */
+  description: string;
+  /** For simplicity, same for all variants */
+  fullDescription?: string;
+  // /** For simplicity, same for all variants */
+  // imageURL?: string;
 }

@@ -66,7 +66,7 @@ export default function LargeWithNewsletter() {
           spacing={8}>
           <Stack spacing={6}>
             <Box>
-              <Logo color={useColorModeValue('gray.700', 'white')} />
+              <Logo />
             </Box>
             <Text fontSize={'sm'}>
               © 2022 Nakupuj k.s.

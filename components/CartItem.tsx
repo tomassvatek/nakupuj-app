@@ -3,38 +3,37 @@ import {
   Flex,
   AspectRatio,
   Image,
-  Box,
   Text,
   VStack,
   HStack,
   IconButton,
   Link,
 } from "@chakra-ui/react";
-import { ICartItem, IProduct } from "../types";
-import ChangeAmount, { ChangeEvent } from "./ChangeAmout";
+import { IProduct } from "../types";
+import ChangeAmount, { ChangeAmountHandler } from "./ChangeAmout";
 import { CloseIcon } from "@chakra-ui/icons";
+import { formatPrice, formatWeight } from '../utils/formatters';
+import { ICartItem } from '../hooks/useCart';
 
-type CartItemProps = {
+export type AmountChangeEvent = any & {
   item: ICartItem;
-  onAmoutChange: (changeEvent: ChangeEvent) => void;
 };
 
-// function AmountReducer(amount: number, action: ChangeAction) {
-//   switch (action) {
-//     case "increment":
-//       return amount + 1;
-//     case "decrement":
-//       return amount - 1;
-//   }
-// }
+interface CartItemProps {
+  item: ICartItem;
+  onItemRemove: (item: ICartItem) => void;
+  onAmoutChange: (changeEvent: AmountChangeEvent) => void;
+};
 
-function CartItem({ item, onAmoutChange }: CartItemProps) {
+function CartItem({ item, onItemRemove, onAmoutChange }: CartItemProps) {
+  const variant = item.product.variants[0]!;
+
   return (
     <Flex justify="space-between" align="center">
       <Flex>
         <AspectRatio w="64px" h="64px" ratio={4 / 3}>
           <Image
-            src={item.product.imageURL}
+            src={variant.imageURL}
             alt={item.product.title}
             objectFit="cover"
           />
@@ -44,19 +43,23 @@ function CartItem({ item, onAmoutChange }: CartItemProps) {
             {item.product.title}
           </Text>
           <Text fontSize="sm">
-            {item.product.weight} &nbsp; <Link>Vybrat alternativu</Link>
+            {formatWeight(variant.weight)} &nbsp; <Link>Vybrat alternativu</Link>
           </Text>
         </VStack>
       </Flex>
       <HStack spacing="4">
         <ChangeAmount
           defaultValue={item.quantity}
-          onAmoutChange={onAmoutChange}
+          onAmoutChange={(e) => onAmoutChange({ ...e, item })}
         />
         <Text fontWeight="600" w="90px">
-          {item.product.price_formatted}
+          {formatPrice(item.quantity * variant.price)}
         </Text>
-        <IconButton aria-label="Remove cart item" icon={<CloseIcon />} />
+        <IconButton
+          aria-label="Remove cart item"
+          onClick={() => onItemRemove(item)}
+          icon={<CloseIcon />}
+        />
       </HStack>
     </Flex>
   );
