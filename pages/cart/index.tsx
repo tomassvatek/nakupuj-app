@@ -1,12 +1,13 @@
 import { Box, Heading } from "@chakra-ui/layout";
+import { Button, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useReducer, useState } from "react";
-import BreadcrumbComponent from "../../components/Breadcrumb";
+import React, { useReducer } from "react";
 import CartItemList from "../../components/CartItemList";
 import { ChangeAction } from "../../components/ChangeAmout";
+import DeliveryOptions from "../../components/DeliveryOptions";
 import { products } from "../../constants";
-import { ICartItem } from '../../hooks/useCart';
+import { ICartItem } from "../../hooks/useCart";
 import { getTitle } from "../../utils/getTitle";
 
 const fakeData: ICartItem[] = products.map((item, index) => ({
@@ -44,7 +45,7 @@ function reducer(state: State, action: Action): State {
               return {
                 ...item,
                 quantity: item.quantity + 1,
-              }
+              };
             }
             return item;
           }),
@@ -62,7 +63,7 @@ function reducer(state: State, action: Action): State {
               return {
                 ...item,
                 quantity: item.quantity - 1,
-              }
+              };
             }
             return item;
           }),
@@ -80,7 +81,7 @@ function reducer(state: State, action: Action): State {
               return {
                 ...item,
                 quantity: action.value || 0,
-              }
+              };
             }
             return item;
           }),
@@ -101,13 +102,12 @@ const Cart: NextPage = () => {
   const [{ items }, dispatch] = useReducer(reducer, { items: fakeData });
 
   return (
-    <Box px="20" py="15">
+    <Box px="20" pt="5" pb="20">
       <Head>
         <Heading>{getTitle("Košík")}</Heading>
       </Head>
 
       <Box p={4}>
-        <BreadcrumbComponent items={["index", "cart"]} />
         <Heading mb="5">Košík</Heading>
         <CartItemList
           items={items}
@@ -115,9 +115,24 @@ const Cart: NextPage = () => {
             dispatch({ type: e.action, itemId: e.item.id })
           }
           onItemRemove={(e) => {
-            dispatch({ type: "remove", itemId: parseInt(e.id+'') });
+            dispatch({ type: "remove", itemId: parseInt(e.id + "") });
           }}
         />
+      </Box>
+      <Box pt="5">
+        <Box pb="5">
+          <Heading as="h2" size="lg" pb="1">
+            Doporučené nákupy
+          </Heading>
+          <Text color="gray.500" fontSize="sm">
+            Zde si můžete vybrat jiný nákup. Pokud se Vám nebude líbit, můžete
+            se vrátit zpět na Váš výber.
+          </Text>
+        </Box>
+        <DeliveryOptions />
+        <Box pt="10" textAlign="right">
+          <Button size="lg">Na dopravu a platbu</Button>
+        </Box>
       </Box>
     </Box>
   );
