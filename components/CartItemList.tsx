@@ -1,28 +1,29 @@
 import { Box } from "@chakra-ui/react";
-import { ICartItem } from "../types";
+import { ICartItem } from '../hooks/useCart';
 import CartItem from "./CartItem";
-import { ChangeAction } from "./ChangeAmout";
+import { AmountChangeEvent } from "./CartItem";
 
 type CartItemListProps = {
   items: ICartItem[];
+  onItemRemove: (item: ICartItem) => void;
+  onAmountChange: (event: AmountChangeEvent) => void;
 };
 
-function AmountReducer(amount: number, action: ChangeAction) {
-  switch (action) {
-    case "increment":
-      return amount + 1;
-    case "decrement":
-      return amount - 1;
-  }
-}
-
-function CartItemList({ items }: CartItemListProps) {
+function CartItemList({
+  items,
+  onItemRemove,
+  onAmountChange,
+}: CartItemListProps) {
   return (
     <Box>
       {items.map((item) => {
         return (
           <Box key={item.id} pb="5">
-            <CartItem item={item} onAmoutChange={(e) => console.log(e)} />
+            <CartItem
+              item={item}
+              onAmoutChange={onAmountChange}
+              onItemRemove={onItemRemove}
+            />
           </Box>
         );
       })}
