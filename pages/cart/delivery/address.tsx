@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
-export const Address: React.FC = () => {
+const Address: React.FC = () => {
   const [deliveryDate, setDeliveryDate] = useState<string>("");
   const [deliveryTime, setDeliveryTime] = useState<string>("");
 
@@ -122,3 +122,4 @@ export const Address: React.FC = () => {
     </>
   );
 };
+export default Address;
