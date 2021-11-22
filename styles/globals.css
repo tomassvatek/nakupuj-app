@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.chakra-radio__label {
+  width: 100%;
+}

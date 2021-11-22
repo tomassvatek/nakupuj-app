@@ -1,3 +1,4 @@
+import { DeliveryOptionItem } from "./components/DeliveryOption";
 import { IProduct } from "./types";
 
 interface IPage {
@@ -39,6 +40,46 @@ export const pages = {
     url: "/search",
   },
 };
+
+export const deliveryOptions: DeliveryOptionItem[] = [
+  {
+    title: "Váš aktuální nákup",
+    deliveryDuration: "Za 4 dny",
+    price: "50 Kč",
+    save: 10,
+    optionId: "1",
+  },
+  {
+    title: "Nejlevnější nákup",
+    deliveryDuration: "Zítra",
+    price: "100 Kč",
+    save: 4,
+    optionId: "2",
+  },
+  {
+    title: "Chci to najednou",
+    deliveryDuration: "Za 6 dní",
+    price: "50 Kč",
+    save: 5,
+    optionId: "3",
+    childrenOptions: [
+      {
+        title: "Rohlik",
+        deliveryDuration: "Zítra",
+        price: "100 Kč",
+        save: 4,
+        optionId: "1",
+      },
+      {
+        title: "Kosik",
+        deliveryDuration: "Za 2 dny",
+        price: "120 Kč",
+        save: 4,
+        optionId: "2",
+      },
+    ],
+  },
+];
 
 export const products: IProduct[] = [
   {
