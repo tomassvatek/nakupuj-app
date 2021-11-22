@@ -9,6 +9,7 @@ import DeliveryOptions from "../../components/DeliveryOptions";
 import { products } from "../../constants";
 import { ICartItem } from "../../hooks/useCart";
 import { getTitle } from "../../utils/getTitle";
+import NextLink from "next/link";
 
 const fakeData: ICartItem[] = products.map((item, index) => ({
   product: item,
@@ -131,7 +132,15 @@ const Cart: NextPage = () => {
         </Box>
         <DeliveryOptions />
         <Box pt="10" textAlign="right">
-          <Button size="lg">Na dopravu a platbu</Button>
+          {/* <NextLink href="/cart">
+              <Button aria-label="Košík" leftIcon={<BsCartFill />}>
+                {cartTotal > 0 ? formatPrice(cartTotal) : 'Košík'}
+              </Button>
+              
+            </NextLink> */}
+          <NextLink href="/cart/payment">
+            <Button size="lg">Na dopravu a platbu</Button>
+          </NextLink>
         </Box>
       </Box>
     </Box>
