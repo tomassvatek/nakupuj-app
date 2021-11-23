@@ -12,7 +12,7 @@ import NextLink from "next/link";
 
 const Payment: NextPage = () => {
 
-    const {cartTotal} = useCart()
+    const {cartTotal, emptyCart} = useCart()
 
   return (
     <main>
@@ -31,12 +31,18 @@ const Payment: NextPage = () => {
               width: "60%",
               padding: "0 2rem",
               display: "flex",
-              justifyContent: "flex-end",
+              justifyContent: "space-between",
             }}
           >
-              <NextLink href="/cart/delivery/success">
-                  <Button size="lg">Dokončit nákup</Button>
+
+              <NextLink href="/cart/index">
+                  <Button size="lg">Zpět na košík</Button>
               </NextLink>
+
+              <NextLink href="/cart/delivery/success">
+                  <Button size="lg" onClick={emptyCart}>Dokončit nákup</Button>
+              </NextLink>
+
           </div>
         </Box>
       </Box>
