@@ -1,3 +1,6 @@
+// cena 
+// cenová range
+
 import {
   Container,
   SimpleGrid,
@@ -5,7 +8,6 @@ import {
   Flex,
   Heading,
   Text,
-  Box,
   Stack,
   StackDivider,
   Button,
@@ -14,37 +16,51 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  AspectRatio,
-  VStack,
   Badge,
-  Spacer,
 } from '@chakra-ui/react';
-import ErrorPage from '../404'
+import ErrorPage from '../../404'
 import { BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/breadcrumb';
 import NextLink from 'next/link';
 import type { NextPage, GetServerSideProps } from 'next'
 import { BsCartFill } from 'react-icons/bs'
 import Head from 'next/head'
-import BreadcrumbComponent from '../../components/Breadcrumb'
-import { getTitle } from '../../utils/getTitle'
-import { products } from '../../constants';
-import type { IProduct } from '../../types';
-import AddToCartConfirmation from '../../components/AddToCartConfirmation';
-import { useCart } from '../../hooks/useCart';
-import ChangeAmount, { ChangeAmountHandler } from '../../components/ChangeAmout';
+import { useRouter } from 'next/router'
+import BreadcrumbComponent from '../../../components/Breadcrumb'
+import { getTitle } from '../../../utils/getTitle'
+import { products } from '../../../constants';
+import type { IProduct } from '../../../types';
+import AddToCartConfirmation from '../../../components/AddToCartConfirmation';
+import { useCart } from '../../../hooks/useCart';
+import ChangeAmount, { ChangeAmountHandler } from '../../../components/ChangeAmout';
 import React, { useState } from 'react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { formatPrice, formatWeight } from '../../utils/formatters';
+import ProductVariantItem from '../../../components/ProductVariantItem';
 
 interface Props {
   product?: IProduct,
 };
 
 const ProductDetail: NextPage<Props> = ({ product }) => {
+  const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { addItem } = useCart();
   const [amount, setAmount] = useState(1);
-  const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
+  
+  const getSelectedVariant = () => {
+    let variantIndex = 0;
+    const variantId = router.query.variant ? parseInt(router.query.variant as any, 10) : undefined;
+    if (product && typeof variantId !== 'undefined') {
+      variantIndex = product.variants.findIndex((i) => i.id === variantId);
+    }
+    return product?.variants[variantIndex !== -1 ? variantIndex : 0 ];
+  }
+
+  const selectedVariant = getSelectedVariant();
+
+  const setSelectedVariant = (variantId: number) => {
+    const productId = product?.id;
+    router.replace(`/product/${productId}/${variantId}`);
+  }
 
   const handleAmountChange: ChangeAmountHandler = (event) => {
     setAmount(event.value || 0);
@@ -102,26 +118,8 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
               </MenuButton>
               <MenuList>
                 {product.variants.map((variant, index) => (
-                  <MenuItem as={Flex} key={variant.id} onClick={() => setSelectedVariant(product.variants[index])}>
-                    <AspectRatio w="64px" h="64px" ratio={4 / 3}>
-                      <Image
-                        src={variant.imageURL}
-                        alt={variant.title}
-                        objectFit="cover"
-                      />
-                    </AspectRatio>
-                    <VStack align="flex-start" ml="5" pt="2">
-                      <strong>{variant.title}</strong>
-                      <Text>{variant.supplier.name}</Text>
-                      <Text fontSize="sm">
-                        {formatWeight(variant.weight)}
-                      </Text>
-                    </VStack>
-                    <Spacer/>
-                    <VStack align="flex-start" ml="5" pt="2" textAlign="right">
-                      <Text fontSize={'lg'}>{formatPrice(variant.price)}</Text>
-                    </VStack>
-                    
+                  <MenuItem as={Flex} key={variant.id} onClick={() => setSelectedVariant(variant.id)}>
+                    <ProductVariantItem variant={variant} />
                   </MenuItem>
                 ))}
               </MenuList>
@@ -166,22 +164,24 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const props: any = {};
   const id = context.params?.id as string | undefined;
 
-  let product = null;
+
+  console.log(context.params);
+  
+
   if (id) {
     const _id = parseInt(id, 10);
-    product = products.find(p => p.id === _id) || null;
+    props.product = products.find(p => p.id === _id) || null;
   }
 
-  if (!product) {
+  if (!props.product) {
     context.res.statusCode = 404;
   }
 
   return {
-    props: {
-      product,
-    },
+    props,
   };
 }
 
