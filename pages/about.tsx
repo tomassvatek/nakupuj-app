@@ -1,9 +1,7 @@
-import { Box, Heading } from '@chakra-ui/layout'
+import { Box, Heading, Container, Text } from '@chakra-ui/layout'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import BreadcrumbComponent from '../components/Breadcrumb'
-import CallToActionWithAnnotation from '../components/Hero'
 import { getTitle } from '../utils/getTitle'
 
 const About: NextPage = () => {
@@ -13,10 +11,15 @@ const About: NextPage = () => {
         <title>{getTitle('O nás')}</title>
       </Head>
 
-      <Box p={4}>
+      <Container maxW={'6xl'} py={12}>
         <BreadcrumbComponent items={['index', 'about']} />
-        <Heading>O nás</Heading>
-      </Box>
+        
+        <Heading pb={2}>O nás</Heading>
+
+        <Text>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat adipisci, ex sequi dicta at veniam voluptatem nisi nihil inventore a necessitatibus vitae iste quibusdam, doloremque libero cumque fugiat ipsam commodi.
+        </Text>
+      </Container>
     </main>
   )
 }

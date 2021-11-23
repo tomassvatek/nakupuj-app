@@ -66,102 +66,101 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
         <title>{getTitle(product.title)}</title>
       </Head>
 
-      <Box p={4}>
+      <Container maxW={'6xl'} py={12}>
         <BreadcrumbComponent items={['index']}>
           <BreadcrumbItem>
             <BreadcrumbLink as={NextLink} href={`/product/${product.id}`}>{product.title}</BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbComponent>
 
-        <Container maxW={'6xl'} py={12}>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-            <Flex>
-              <Image
-                rounded={'md'}
-                alt={`Obrázek ${product.title}`}
-                src={selectedVariant.imageURL}
-                objectFit={'cover'}
-              />
-            </Flex>
-            <Stack spacing={4}>
-              {product.isNew && (
-                <Text>
-                  <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
-                    Novinka
-                  </Badge>
-                </Text>
-              )}
-              <Heading>{product.title}</Heading>
-
-              <Text color={'gray.500'} fontSize={'lg'}>
-                {product.description}
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+          <Flex>
+            <Image
+              rounded={'md'}
+              alt={product.title}
+              src={selectedVariant.imageURL}
+              objectFit={'cover'}
+            />
+          </Flex>
+          <Stack spacing={4}>
+            {product.isNew && (
+              <Text>
+                <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
+                  Novinka
+                </Badge>
               </Text>
+            )}
+            <Heading>{product.title}</Heading>
 
-              <Menu>
-                <MenuButton as={Button} textAlign="left" rightIcon={<ChevronDownIcon />}>
-                  {selectedVariant.title}
-                </MenuButton>
-                <MenuList>
-                  {product.variants.map((variant, index) => (
-                    <MenuItem as={Flex} key={variant.id} onClick={() => setSelectedVariant(product.variants[index])}>
-                      <AspectRatio w="64px" h="64px" ratio={4 / 3}>
-                        <Image
-                          src={variant.imageURL}
-                          alt={variant.title}
-                          objectFit="cover"
-                        />
-                      </AspectRatio>
-                      <VStack align="flex-start" ml="5" pt="2">
-                        <strong>{variant.title}</strong>
-                        <Text>{variant.supplier.name}</Text>
-                        <Text fontSize="sm">
-                          {formatWeight(variant.weight)}
-                        </Text>
-                      </VStack>
-                      <Spacer/>
-                      <VStack align="flex-start" ml="5" pt="2" textAlign="right">
-                        <Text fontSize={'lg'}>{formatPrice(variant.price)}</Text>
-                      </VStack>
-                      
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </Menu>
+            <Text color={'gray.500'} fontSize={'lg'}>
+              {product.description}
+            </Text>
 
-              <ChangeAmount
-                defaultValue={amount}
-                value={amount}
-                min={1}
-                onAmoutChange={handleAmountChange}
-              />
+            <Menu>
+              <MenuButton as={Button} textAlign="left" rightIcon={<ChevronDownIcon />}>
+                {selectedVariant.title}
+              </MenuButton>
+              <MenuList>
+                {product.variants.map((variant, index) => (
+                  <MenuItem as={Flex} key={variant.id} onClick={() => setSelectedVariant(product.variants[index])}>
+                    <AspectRatio w="64px" h="64px" ratio={4 / 3}>
+                      <Image
+                        src={variant.imageURL}
+                        alt={variant.title}
+                        objectFit="cover"
+                      />
+                    </AspectRatio>
+                    <VStack align="flex-start" ml="5" pt="2">
+                      <strong>{variant.title}</strong>
+                      <Text>{variant.supplier.name}</Text>
+                      <Text fontSize="sm">
+                        {formatWeight(variant.weight)}
+                      </Text>
+                    </VStack>
+                    <Spacer/>
+                    <VStack align="flex-start" ml="5" pt="2" textAlign="right">
+                      <Text fontSize={'lg'}>{formatPrice(variant.price)}</Text>
+                    </VStack>
+                    
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </Menu>
 
-              <Button colorScheme="green" size="lg" mr={4} leftIcon={<BsCartFill />} onClick={handleAddToCart}>
-                Přidat do košíku
-              </Button>
-              <AddToCartConfirmation
-                variant={selectedVariant}
-                onClose={onClose}
-                isOpen={isOpen}
-              />
+            <ChangeAmount
+              defaultValue={amount}
+              value={amount}
+              min={1}
+              onAmoutChange={handleAmountChange}
+            />
 
-              <Stack
-                spacing={4}
-                divider={
-                  <StackDivider
-                    borderColor="gray.100"
-                  />
-                }>
-              </Stack>
+            <Button colorScheme="green" size="lg" mr={4} leftIcon={<BsCartFill />} onClick={handleAddToCart}>
+              Přidat do košíku
+            </Button>
+            <AddToCartConfirmation
+              variant={selectedVariant}
+              onClose={onClose}
+              isOpen={isOpen}
+            />
+
+            <Stack
+              spacing={4}
+              divider={
+                <StackDivider
+                  borderColor="gray.100"
+                />
+              }>
             </Stack>
-          </SimpleGrid>
+          </Stack>
+        </SimpleGrid>
 
-          {product.fullDescription && (
-            <Container maxW={'6xl'} py={12}>
-              <Text dangerouslySetInnerHTML={{ __html: product.fullDescription }} />
-            </Container>
-          )}
-        </Container>
-      </Box>
+        {product.fullDescription && (
+          <Container maxW={'6xl'} py={12}>
+            <Text dangerouslySetInnerHTML={{ __html: product.fullDescription }} />
+          </Container>
+        )}
+      </Container>
+      
     </main>
   )
 }
