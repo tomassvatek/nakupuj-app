@@ -1,6 +1,6 @@
 // based on https://github.com/notrab/react-use-cart/blob/main/src/index.tsx
 import React, { useContext, useEffect, useReducer, createContext } from "react";
-import { IProductVariant } from '../types';
+import { IProductVariant } from "../types";
 
 import useLocalStorage from "./useLocalStorage";
 
@@ -28,7 +28,10 @@ export interface Metadata {
 }
 
 interface CartProviderState extends InitialState {
-  addItem: (item: Omit<ICartItem, 'quantity' | 'itemTotal'>, quantity?: number) => void;
+  addItem: (
+    item: Omit<ICartItem, "quantity" | "itemTotal">,
+    quantity?: number
+  ) => void;
   removeItem: (id: ICartItem["id"]) => void;
   updateItem: (id: ICartItem["id"], payload: ICartItem) => void;
   setItems: (items: ICartItem[]) => void;
@@ -64,9 +67,7 @@ export const initialState: any = {
   metadata: {},
 };
 
-const CartContext = createContext<CartProviderState | undefined>(
-  initialState
-);
+const CartContext = createContext<CartProviderState | undefined>(initialState);
 
 export const createCartIdentifier = (len = 12) =>
   [...Array(len)].map(() => (~~(Math.random() * 36)).toString(36)).join("");
@@ -91,7 +92,6 @@ function reducer(state: CartProviderState, action: Actions) {
     }
 
     case "UPDATE_ITEM": {
-      
       const items = state.items.map((item: ICartItem) => {
         if (item.id !== action.payload.id) return item;
 
@@ -101,8 +101,7 @@ function reducer(state: CartProviderState, action: Actions) {
         };
       });
 
-    console.log(action, generateCartState(state, items), items);
-    
+      console.log(action, generateCartState(state, items), items);
 
       return generateCartState(state, items);
     }
@@ -160,7 +159,7 @@ const generateCartState = (state = initialState, items: ICartItem[]) => {
 };
 
 const calculateItemTotals = (items: ICartItem[]) =>
-  items.map(item => ({
+  items.map((item) => ({
     ...item,
     itemTotal: item.price * item.quantity!,
   }));
@@ -216,7 +215,7 @@ export const CartProvider: React.FC<{
   const setItems = (items: ICartItem[]) => {
     dispatch({
       type: "SET_ITEMS",
-      payload: items.map(item => ({
+      payload: items.map((item) => ({
         ...item,
         quantity: item.quantity || 1,
       })),
@@ -229,7 +228,9 @@ export const CartProvider: React.FC<{
     if (!item.id) throw new Error("You must provide an `id` for items");
     if (quantity <= 0) return;
 
-    const currentItem = state.items.find((i: ICartItem) => i.item.id === item.id);
+    const currentItem = state.items.find(
+      (i: ICartItem) => i.item.id === item.id
+    );
 
     if (!currentItem && !item.hasOwnProperty("price"))
       throw new Error("You must pass a `price` for new items");
@@ -252,7 +253,7 @@ export const CartProvider: React.FC<{
     const payload: ICartItem = {
       ...currentItem,
       item,
-      quantity: currentItem.quantity + quantity
+      quantity: currentItem.quantity + quantity,
     };
 
     dispatch({
@@ -314,7 +315,8 @@ export const CartProvider: React.FC<{
   const getItem = (id: ICartItem["id"]) =>
     state.items.find((i: ICartItem) => i.id === id);
 
-  const inCart = (id: ICartItem["id"]) => state.items.some((i: ICartItem) => i.id === id);
+  const inCart = (id: ICartItem["id"]) =>
+    state.items.some((i: ICartItem) => i.id === id);
 
   const clearCartMetadata = () => {
     dispatch({

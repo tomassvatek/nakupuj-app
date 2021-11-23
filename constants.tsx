@@ -128,7 +128,7 @@ export const pecivo: ICategory = {
 export const napoje: ICategory = {
   id: 5,
   name: "Nápoje",
-}
+};
 
 export const supplier: Record<number, ICategory> = {
   [rohlik.id]: rohlik,
@@ -424,167 +424,182 @@ const kaiserkaVariants: IProductVariant[] = [
 const perlivaVariants: IProductVariant[] = [
   {
     id: 24,
-    title: 'Korunní Jemně perlivá',
+    title: "Korunní Jemně perlivá",
     weight: 1.5,
     price: 12.48,
     supplier: rohlik,
-    manufacturer: 'Korunní',
-    imageURL: 'https://static.kosik.cz/images/thumbs/sh/430x400x1_shszyjgzn_thumbnail-korunni-6pack-1-5l-prirodni-jemne-perliva.jpg',
+    manufacturer: "Korunní",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/sh/430x400x1_shszyjgzn_thumbnail-korunni-6pack-1-5l-prirodni-jemne-perliva.jpg",
     parentId: 9,
   },
   {
     id: 25,
-    title: 'Aquila Jemně perlivá',
+    title: "Aquila Jemně perlivá",
     weight: 1.5,
     price: 12.99,
     supplier: rohlik,
-    manufacturer: 'Aquila',
-    imageURL: 'https://static.kosik.cz/images/thumbs/zq/207x174x1_zqa1ebkkm_6pack-aquila-aqualinea-jemne-perliva-2014-2.jpg',
+    manufacturer: "Aquila",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/zq/207x174x1_zqa1ebkkm_6pack-aquila-aqualinea-jemne-perliva-2014-2.jpg",
     parentId: 9,
   },
   {
     id: 26,
-    title: 'Magnesia Jemně perlivá',
+    title: "Magnesia Jemně perlivá",
     weight: 1.5,
     price: 13.99,
     supplier: tesco,
-    manufacturer: 'Magnesia',
-    imageURL: 'https://static.kosik.cz/images/thumbs/lg/207x174x1_lgjj4or1u_microsoftteams-image.png',
+    manufacturer: "Magnesia",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/lg/207x174x1_lgjj4or1u_microsoftteams-image.png",
     parentId: 9,
   },
-]
+];
 
-const pivoVariants: IProductVariant[] = [
+export const pivoVariants: IProductVariant[] = [
   {
     id: 27,
-    title: 'Pilsner Urquell světlý ležák',
+    title: "Pilsner Urquell světlý ležák",
     weight: 0.5,
-    price: 23.90,
+    price: 23.9,
     supplier: rohlik,
-    manufacturer: 'Pilsner Urquell',
-    imageURL: 'https://static.kosik.cz/images/thumbs/4e/207x174x1_4evdbxj9xm40-pu-lahev-0-5l-neorosena.png',
+    manufacturer: "Pilsner Urquell",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/4e/207x174x1_4evdbxj9xm40-pu-lahev-0-5l-neorosena.png",
     parentId: 10,
   },
   {
     id: 28,
-    title: 'Velkopopovický Kozel 11',
+    title: "Velkopopovický Kozel 11",
     weight: 0.5,
-    price: 19.90,
+    price: 19.9,
     supplier: tesco,
-    manufacturer: 'Kozel',
-    imageURL: 'https://static.kosik.cz/images/thumbs/5m/207x174x1_5mjw11ogg83s-vpk-11-0-5l-oro-plech.jpg',
+    manufacturer: "Kozel",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/5m/207x174x1_5mjw11ogg83s-vpk-11-0-5l-oro-plech.jpg",
     parentId: 10,
   },
   {
     id: 29,
-    title: 'Zlatopramen 11',
+    title: "Zlatopramen 11",
     weight: 0.5,
-    price: 13.90,
+    price: 13.9,
     supplier: tesco,
-    manufacturer: 'Zlatopramen',
-    imageURL: 'https://static.kosik.cz/images/thumbs/fc/207x174x1_fce4c23132b92529ffc6d09410a18eb1.jpg',
+    manufacturer: "Zlatopramen",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/fc/207x174x1_fce4c23132b92529ffc6d09410a18eb1.jpg",
     parentId: 10,
   },
-]
+];
 
 const energyVariants: IProductVariant[] = [
   {
     id: 30,
-    title: 'Monster Ultra Paradise',
+    title: "Monster Ultra Paradise",
     weight: 0.5,
-    price: 36.90,
+    price: 36.9,
     supplier: tesco,
-    manufacturer: 'Monster',
-    imageURL: 'https://static.kosik.cz/images/thumbs/wk/207x174x1_wkyo7qyao_monster-ultra-paradise-500ml.jpg',
+    manufacturer: "Monster",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/wk/207x174x1_wkyo7qyao_monster-ultra-paradise-500ml.jpg",
     parentId: 11,
   },
   {
     id: 31,
-    title: 'Big Shock! Original',
+    title: "Big Shock! Original",
     weight: 0.5,
-    price: 29.90,
+    price: 29.9,
     supplier: tesco,
-    manufacturer: 'Big Shock!',
-    imageURL: 'https://static.kosik.cz/images/thumbs/54/207x174x1_54tgl7qkb_8594033170028-t1.jpg',
+    manufacturer: "Big Shock!",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/54/207x174x1_54tgl7qkb_8594033170028-t1.jpg",
     parentId: 11,
   },
   {
     id: 32,
-    title: 'Tiger Energy Drink',
+    title: "Tiger Energy Drink",
     weight: 0.5,
-    price: 19.90,
+    price: 19.9,
     supplier: rohlik,
-    manufacturer: 'Tiger',
-    imageURL: 'https://static.kosik.cz/images/thumbs/1s/207x174x1_1snqkugjzhai-8594057637859-tiger-energy-drink-classic-0-5l-plech.png',
+    manufacturer: "Tiger",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/1s/207x174x1_1snqkugjzhai-8594057637859-tiger-energy-drink-classic-0-5l-plech.png",
     parentId: 11,
   },
-]
+];
 
 const rumVariants: IProductVariant[] = [
   {
     id: 33,
-    title: 'Božkov Republica Elixír Honey 35%',
+    title: "Božkov Republica Elixír Honey 35%",
     weight: 0.5,
-    price: 319.90,
+    price: 319.9,
     supplier: rohlik,
-    manufacturer: 'Božkov',
-    imageURL: 'https://static.kosik.cz/images/thumbs/8u/207x174x1_8upguxuu1_bozkov-republica-honey-500ml-01.png',
+    manufacturer: "Božkov",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/8u/207x174x1_8upguxuu1_bozkov-republica-honey-500ml-01.png",
     parentId: 12,
   },
   {
     id: 34,
-    title: 'Božkov Bylinný likér 33%',
+    title: "Božkov Bylinný likér 33%",
     weight: 0.5,
-    price: 169.90,
+    price: 169.9,
     supplier: tesco,
-    manufacturer: 'Božkov',
-    imageURL: 'https://static.kosik.cz/images/thumbs/t1/207x174x1_t15m8nwqn_bozkov-bylinny-500ml-01.png',
+    manufacturer: "Božkov",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/t1/207x174x1_t15m8nwqn_bozkov-bylinny-500ml-01.png",
     parentId: 12,
   },
   {
     id: 35,
-    title: 'Diplomático Reserva Exclusiva (40%)',
+    title: "Diplomático Reserva Exclusiva (40%)",
     weight: 0.7,
-    price: 1199.90,
+    price: 1199.9,
     supplier: tesco,
-    manufacturer: 'Diplomático',
-    imageURL: 'https://static.kosik.cz/images/thumbs/4z/207x174x1_4zqjkifc3_2911-diplomatico-reserva-exclusiva-tuba.png',
+    manufacturer: "Diplomático",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/4z/207x174x1_4zqjkifc3_2911-diplomatico-reserva-exclusiva-tuba.png",
     parentId: 12,
   },
-]
+];
 
-const dzusVariants: IProductVariant[]  = [
+const dzusVariants: IProductVariant[] = [
   {
     id: 36,
-    title: 'Pfanner 100% pomerančová šťáva',
+    title: "Pfanner 100% pomerančová šťáva",
     weight: 0.5,
-    price: 56.90,
+    price: 56.9,
     supplier: tesco,
-    manufacturer: 'Pfanner',
-    imageURL: 'https://static.kosik.cz/images/thumbs/c5/207x174x1_c5da11db13121b7b4fab2b804a8eb64d.jpg',
+    manufacturer: "Pfanner",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/c5/207x174x1_c5da11db13121b7b4fab2b804a8eb64d.jpg",
     parentId: 13,
   },
   {
     id: 37,
-    title: 'Relax 100% Pomeranč ',
+    title: "Relax 100% Pomeranč ",
     weight: 0.5,
-    price: 24.90,
+    price: 24.9,
     supplier: rohlik,
-    manufacturer: 'Relax',
-    imageURL: 'https://static.kosik.cz/images/thumbs/e7/207x174x1_e7d6053682a52e1ba813eebbedf7ba17.jpg',
+    manufacturer: "Relax",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/e7/207x174x1_e7d6053682a52e1ba813eebbedf7ba17.jpg",
     parentId: 13,
   },
   {
     id: 38,
-    title: 'NN Pomeranč 100%',
+    title: "NN Pomeranč 100%",
     weight: 0.5,
-    price: 23.90,
+    price: 23.9,
     supplier: tesco,
-    manufacturer: 'NN',
-    imageURL: 'https://static.kosik.cz/images/thumbs/c5/207x174x1_c5da11db13121b7b4fab2b804a8eb64d.jpg',
+    manufacturer: "NN",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/c5/207x174x1_c5da11db13121b7b4fab2b804a8eb64d.jpg",
     parentId: 13,
   },
-]
+];
 
 export const products: IProduct[] = [
   {
@@ -666,42 +681,47 @@ export const products: IProduct[] = [
   },
   {
     id: 9,
-    title: 'Perlivá voda',
+    title: "Perlivá voda",
     isNew: false,
-    description: "Pijete vodu, která urazila dlouhou cestu v hlubinách sopečného Doupovského pohoří. Na své cestě se obohatila minerály, nasytila se přírodním oxidem uhličitým a tak získala svoje charakteristické vlastnosti a chuť.",
+    description:
+      "Pijete vodu, která urazila dlouhou cestu v hlubinách sopečného Doupovského pohoří. Na své cestě se obohatila minerály, nasytila se přírodním oxidem uhličitým a tak získala svoje charakteristické vlastnosti a chuť.",
     category: napoje,
     variants: perlivaVariants,
   },
   {
     id: 10,
-    title: 'Pivo 11',
+    title: "Pivo 11",
     isNew: false,
-    description: "Pivo je kvašený alkoholický nápoj hořké chuti vyráběný v pivovaru z obilného sladu, vody a chmele pomocí pivovarských kvasinek, který se těší značné oblibě v Česku i v zahraničí.",
+    description:
+      "Pivo je kvašený alkoholický nápoj hořké chuti vyráběný v pivovaru z obilného sladu, vody a chmele pomocí pivovarských kvasinek, který se těší značné oblibě v Česku i v zahraničí.",
     category: napoje,
     variants: pivoVariants,
   },
   {
     id: 11,
-    title: 'Energetické nápoje',
+    title: "Energetické nápoje",
     isNew: false,
-    description: "Energetické nápoje jsou nealkoholické nápoje, které obsahují stimulační látky, v největší míře kofein a taurin. Mohou také obsahovat cukr či umělá sladidla, bylinné výtažky a aminokyseliny.",
+    description:
+      "Energetické nápoje jsou nealkoholické nápoje, které obsahují stimulační látky, v největší míře kofein a taurin. Mohou také obsahovat cukr či umělá sladidla, bylinné výtažky a aminokyseliny.",
     category: napoje,
     variants: energyVariants,
   },
   {
     id: 12,
-    title: 'Rum',
+    title: "Rum",
     isNew: false,
-    description: "Rum je alkoholický nápoj destilovaný z melasy nebo ze šťávy získané z cukrové třtiny. Původ slova rum není jasný. Odborníci uvádějí dvě varianty. Podle první teorie je slovo rum odvozeno od slova rumbellion, což je anglicky „velký ruch“.",
+    description:
+      "Rum je alkoholický nápoj destilovaný z melasy nebo ze šťávy získané z cukrové třtiny. Původ slova rum není jasný. Odborníci uvádějí dvě varianty. Podle první teorie je slovo rum odvozeno od slova rumbellion, což je anglicky „velký ruch“.",
     category: napoje,
     variants: rumVariants,
   },
   {
     id: 13,
-    title: 'Džus',
+    title: "Džus",
     isNew: false,
-    description: "Džus je šťáva připravená lisováním ovoce nebo zeleniny. Existují džusy jednodruhové nebo smíšené z několika druhů ovoce. Oblíbený je například pomerančový džus, který je vyráběn z plodů pomerančovníku. Džusy se dodávají i ve formě koncentrátu a ředí se pak do původní hustoty vodou.",
+    description:
+      "Džus je šťáva připravená lisováním ovoce nebo zeleniny. Existují džusy jednodruhové nebo smíšené z několika druhů ovoce. Oblíbený je například pomerančový džus, který je vyráběn z plodů pomerančovníku. Džusy se dodávají i ve formě koncentrátu a ředí se pak do původní hustoty vodou.",
     category: napoje,
     variants: dzusVariants,
-  }
+  },
 ];
