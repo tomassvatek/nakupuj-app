@@ -671,7 +671,7 @@ export const products: IProduct[] = [
   {
     id: 8,
     title: "Kaiserka",
-    isNew: false,
+    isNew: true,
     description:
       "Kaiserka cereální je běžným vícezrnným pečivem, upečeným ze zmrazeného polotovaru.",
     fullDescription:
@@ -709,7 +709,7 @@ export const products: IProduct[] = [
   {
     id: 12,
     title: "Rum",
-    isNew: false,
+    isNew: true,
     description:
       "Rum je alkoholický nápoj destilovaný z melasy nebo ze šťávy získané z cukrové třtiny. Původ slova rum není jasný. Odborníci uvádějí dvě varianty. Podle první teorie je slovo rum odvozeno od slova rumbellion, což je anglicky „velký ruch“.",
     category: napoje,

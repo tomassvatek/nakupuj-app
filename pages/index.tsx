@@ -6,7 +6,7 @@ import CallToActionWithAnnotation from '../components/Hero'
 import ProductSlider from '../components/ProductSlider'
 import styles from '../styles/Home.module.css'
 import { getTitle } from '../utils/getTitle'
-import { uzeniny } from '../constants';
+import { napoje } from '../constants';
 
 const Home: NextPage = () => {
   return (
@@ -14,14 +14,11 @@ const Home: NextPage = () => {
       <Head>
         <title>{getTitle()}</title>
       </Head>
-
-      {/* <CallToActionWithAnnotation /> */}
-
       <Box p={5}>
         <Heading fontSize="3xl">Všechny produkty</Heading>
         <ProductSlider />
-        <Heading fontSize="3xl">{uzeniny.name}</Heading>
-        <ProductSlider category={uzeniny.id} />
+        <Heading fontSize="3xl">{napoje.name}</Heading>
+        <ProductSlider category={napoje.id} />
         <Heading fontSize="3xl">Novinky</Heading>
         <ProductSlider onlyNew={true} />
       </Box>
