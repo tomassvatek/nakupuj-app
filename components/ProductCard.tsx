@@ -32,7 +32,7 @@ function ProductCard({ product }: { product: IProduct }) {
   };
 
   return (
-    <Flex p={50} w={500} h={500} alignItems="center" justifyContent="center">
+    <Flex p={50} w={500} h={500} alignItems="start" justifyContent="start">
       <Box bg={useColorModeValue("white", "gray.800")} maxW="sm" borderWidth="1px" rounded="lg" shadow="lg" position="relative">
         <Center className="cardImgContainer">
           <NextLink href={`/product/${product.id}`}>

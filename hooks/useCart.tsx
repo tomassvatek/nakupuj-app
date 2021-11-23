@@ -101,9 +101,6 @@ function reducer(state: CartProviderState, action: Actions) {
         };
       });
 
-    console.log(action, generateCartState(state, items), items);
-    
-
       return generateCartState(state, items);
     }
 
