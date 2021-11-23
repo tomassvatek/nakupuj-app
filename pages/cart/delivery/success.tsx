@@ -1,6 +1,8 @@
-import { Box, Heading, Text } from '@chakra-ui/react';
+import {Box, Button, Heading, Text} from '@chakra-ui/react';
 import { CheckCircleIcon } from '@chakra-ui/icons';
 import type {NextPage} from "next";
+import NextLink from "next/link";
+import React from "react";
 
 const Success:NextPage =  () => {
     return (
@@ -12,6 +14,11 @@ const Success:NextPage =  () => {
             <Text color={'gray.500'}>
                 Děkujeme Vám za nákup na portálu Nakupuj.cz. <br/> Vaši objednávku předáme dodavateli a bude u Vás v zadaný čas.
             </Text>
+            <div style={{paddingTop: '2rem'}}>
+                <NextLink href="/">
+                    <Button size="lg">Zpět na home page</Button>
+                </NextLink>
+            </div>
         </Box>
     );
 }

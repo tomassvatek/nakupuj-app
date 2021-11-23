@@ -23,6 +23,8 @@ export interface IProductVariant {
   manufacturer: string;
 
   imageURL?: string;
+
+  parentId: number
 }
 
 export interface IProduct {

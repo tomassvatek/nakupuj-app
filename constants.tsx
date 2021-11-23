@@ -154,6 +154,7 @@ const avokadoVariants: IProductVariant[] = [
     weight: 100,
     imageURL:
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/1303459/1303459-1482829885.jpg",
+    parentId: 1,
   },
   {
     id: 2,
@@ -164,6 +165,7 @@ const avokadoVariants: IProductVariant[] = [
     weight: 100,
     imageURL:
       "https://static.kosik.cz/images/thumbs/fc/860x800x1_fc7c2eb04d55b8a9a50a86cd997af661.jpg",
+    parentId: 1,
   },
   {
     id: 3,
@@ -174,6 +176,7 @@ const avokadoVariants: IProductVariant[] = [
     weight: 100,
     imageURL:
       "https://secure.ce-tescoassets.com/assets/CZ/586/0000096091586/ShotType1_540x540.jpg",
+    parentId: 1,
   },
 ];
 
@@ -187,6 +190,7 @@ const vysocinaVariants: IProductVariant[] = [
     weight: 100,
     imageURL:
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/1404253/1404253-1609786999175.jpg",
+    parentId: 2,
   },
   {
     id: 5,
@@ -197,6 +201,7 @@ const vysocinaVariants: IProductVariant[] = [
     weight: 100,
     imageURL:
       "https://static.kosik.cz/images/thumbs/07/860x800x1_07eae6c8ce92d6b022c06eb45e1cfd62.jpg",
+    parentId: 2,
   },
   {
     id: 6,
@@ -207,6 +212,7 @@ const vysocinaVariants: IProductVariant[] = [
     weight: 100,
     imageURL:
       "https://secure.ce-tescoassets.com/assets/CZ/701/5051007132701/ShotType1_540x540.jpg",
+    parentId: 2,
   },
 ];
 
@@ -220,6 +226,7 @@ const prazskaSunkaVariants: IProductVariant[] = [
     weight: 100,
     imageURL:
       "https://static.kosik.cz/images/thumbs/c7/860x800x1_c7748f279158848ace9600fc4a99336d.jpg",
+    parentId: 3,
   },
   {
     id: 8,
@@ -230,6 +237,7 @@ const prazskaSunkaVariants: IProductVariant[] = [
     weight: 100,
     imageURL:
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/800393/800393-1606501125.jpg",
+    parentId: 3,
   },
   {
     id: 9,
@@ -240,6 +248,7 @@ const prazskaSunkaVariants: IProductVariant[] = [
     weight: 100,
     imageURL:
       "https://secure.ce-tescoassets.com/assets/CZ/888/8595610503888/ShotType1_540x540.jpg",
+    parentId: 3,
   },
 ];
 
@@ -253,6 +262,7 @@ const eidamVariants: IProductVariant[] = [
     weight: 100,
     imageURL:
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/1413424/1413424-1631005178535.jpg",
+    parentId: 4,
   },
   {
     id: 11,
@@ -263,6 +273,7 @@ const eidamVariants: IProductVariant[] = [
     weight: 100,
     imageURL:
       "https://static.kosik.cz/images/thumbs/74/860x800x1_7440af83f084352d0810a9db82be2071.jpg",
+    parentId: 4,
   },
   {
     id: 12,
@@ -273,6 +284,7 @@ const eidamVariants: IProductVariant[] = [
     weight: 100,
     imageURL:
       "https://secure.ce-tescoassets.com/assets/CZ/401/8594052743401/ShotType1_540x540.jpg",
+    parentId: 4,
   },
 ];
 
@@ -286,6 +298,7 @@ const videnskeParkyVariants: IProductVariant[] = [
     weight: 200,
     imageURL:
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/1412785/1412785-1629809491873.jpg",
+    parentId: 5,
   },
   {
     id: 14,
@@ -296,6 +309,7 @@ const videnskeParkyVariants: IProductVariant[] = [
     weight: 200,
     imageURL:
       "https://static.kosik.cz/images/thumbs/9q/860x800x1_9q4ctd86f_8594036020924-t1.jpg",
+    parentId: 5,
   },
   {
     id: 15,
@@ -306,6 +320,7 @@ const videnskeParkyVariants: IProductVariant[] = [
     weight: 200,
     imageURL:
       "https://secure.ce-tescoassets.com/assets/CZ/725/5051007132725/ShotType1_540x540.jpg",
+    parentId: 5,
   },
 ];
 
@@ -319,6 +334,7 @@ const kureciPrsniRizkyVariants: IProductVariant[] = [
     weight: 1000,
     imageURL:
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/1353081/1353081-1582104399.jpg",
+    parentId: 6,
   },
   {
     id: 17,
@@ -329,6 +345,7 @@ const kureciPrsniRizkyVariants: IProductVariant[] = [
     weight: 1000,
     imageURL:
       "https://static.kosik.cz/images/thumbs/da/860x800x1_da51dfb4c89ad964f50cd366a7748586.jpg",
+    parentId: 6,
   },
   {
     id: 18,
@@ -339,6 +356,7 @@ const kureciPrsniRizkyVariants: IProductVariant[] = [
     weight: 1000,
     imageURL:
       "https://secure.ce-tescoassets.com/assets/CZ/224/281224/ShotType1_540x540.jpg",
+    parentId: 6,
   },
 ];
 
@@ -352,6 +370,7 @@ const chlebVariants: IProductVariant[] = [
     manufacturer: "Pekárna Kabát",
     imageURL:
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/1314061/1314061-1470908573.jpg",
+    parentId: 7,
   },
   {
     id: 20,
@@ -362,6 +381,7 @@ const chlebVariants: IProductVariant[] = [
     manufacturer: "United Bakeries a.s.",
     imageURL:
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/1314061/1314061-1470908573.jpg",
+    parentId: 7,
   },
 ];
 
@@ -375,6 +395,7 @@ const kaiserkaVariants: IProductVariant[] = [
     manufacturer: "Bidfood",
     imageURL:
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/717953/717953-1498808178.jpg",
+    parentId: 8,
   },
   {
     id: 22,
@@ -385,6 +406,7 @@ const kaiserkaVariants: IProductVariant[] = [
     manufacturer: "Tesco Stores ČR a.s.",
     imageURL:
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/717953/717953-1498808178.jpg",
+    parentId: 8,
   },
   {
     id: 23,
@@ -395,156 +417,172 @@ const kaiserkaVariants: IProductVariant[] = [
     manufacturer: "Košík.cz",
     imageURL:
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/717953/717953-1498808178.jpg",
+    parentId: 8,
   },
 ];
 
 const perlivaVariants: IProductVariant[] = [
   {
-    id: 22,
+    id: 24,
     title: 'Korunní Jemně perlivá',
     weight: 1.5,
     price: 12.48,
     supplier: rohlik,
     manufacturer: 'Korunní',
-    imageURL: 'https://static.kosik.cz/images/thumbs/sh/430x400x1_shszyjgzn_thumbnail-korunni-6pack-1-5l-prirodni-jemne-perliva.jpg'
+    imageURL: 'https://static.kosik.cz/images/thumbs/sh/430x400x1_shszyjgzn_thumbnail-korunni-6pack-1-5l-prirodni-jemne-perliva.jpg',
+    parentId: 9,
   },
   {
-    id: 23,
+    id: 25,
     title: 'Aquila Jemně perlivá',
     weight: 1.5,
     price: 12.99,
     supplier: rohlik,
     manufacturer: 'Aquila',
-    imageURL: 'https://static.kosik.cz/images/thumbs/zq/207x174x1_zqa1ebkkm_6pack-aquila-aqualinea-jemne-perliva-2014-2.jpg'
+    imageURL: 'https://static.kosik.cz/images/thumbs/zq/207x174x1_zqa1ebkkm_6pack-aquila-aqualinea-jemne-perliva-2014-2.jpg',
+    parentId: 9,
   },
   {
-    id: 24,
+    id: 26,
     title: 'Magnesia Jemně perlivá',
     weight: 1.5,
     price: 13.99,
     supplier: tesco,
     manufacturer: 'Magnesia',
-    imageURL: 'https://static.kosik.cz/images/thumbs/lg/207x174x1_lgjj4or1u_microsoftteams-image.png'
+    imageURL: 'https://static.kosik.cz/images/thumbs/lg/207x174x1_lgjj4or1u_microsoftteams-image.png',
+    parentId: 9,
   },
 ]
 
 const pivoVariants: IProductVariant[] = [
   {
-    id: 25,
+    id: 27,
     title: 'Pilsner Urquell světlý ležák',
     weight: 0.5,
     price: 23.90,
     supplier: rohlik,
     manufacturer: 'Pilsner Urquell',
-    imageURL: 'https://static.kosik.cz/images/thumbs/4e/207x174x1_4evdbxj9xm40-pu-lahev-0-5l-neorosena.png'
+    imageURL: 'https://static.kosik.cz/images/thumbs/4e/207x174x1_4evdbxj9xm40-pu-lahev-0-5l-neorosena.png',
+    parentId: 10,
   },
   {
-    id: 26,
+    id: 28,
     title: 'Velkopopovický Kozel 11',
     weight: 0.5,
     price: 19.90,
     supplier: tesco,
     manufacturer: 'Kozel',
-    imageURL: 'https://static.kosik.cz/images/thumbs/5m/207x174x1_5mjw11ogg83s-vpk-11-0-5l-oro-plech.jpg'
+    imageURL: 'https://static.kosik.cz/images/thumbs/5m/207x174x1_5mjw11ogg83s-vpk-11-0-5l-oro-plech.jpg',
+    parentId: 10,
   },
   {
-    id: 27,
+    id: 29,
     title: 'Zlatopramen 11',
     weight: 0.5,
     price: 13.90,
     supplier: tesco,
     manufacturer: 'Zlatopramen',
-    imageURL: 'https://static.kosik.cz/images/thumbs/fc/207x174x1_fce4c23132b92529ffc6d09410a18eb1.jpg'
+    imageURL: 'https://static.kosik.cz/images/thumbs/fc/207x174x1_fce4c23132b92529ffc6d09410a18eb1.jpg',
+    parentId: 10,
   },
 ]
 
 const energyVariants: IProductVariant[] = [
   {
-    id: 28,
+    id: 30,
     title: 'Monster Ultra Paradise',
     weight: 0.5,
     price: 36.90,
     supplier: tesco,
     manufacturer: 'Monster',
-    imageURL: 'https://static.kosik.cz/images/thumbs/wk/207x174x1_wkyo7qyao_monster-ultra-paradise-500ml.jpg'
+    imageURL: 'https://static.kosik.cz/images/thumbs/wk/207x174x1_wkyo7qyao_monster-ultra-paradise-500ml.jpg',
+    parentId: 11,
   },
   {
-    id: 29,
+    id: 31,
     title: 'Big Shock! Original',
     weight: 0.5,
     price: 29.90,
     supplier: tesco,
     manufacturer: 'Big Shock!',
-    imageURL: 'https://static.kosik.cz/images/thumbs/54/207x174x1_54tgl7qkb_8594033170028-t1.jpg'
+    imageURL: 'https://static.kosik.cz/images/thumbs/54/207x174x1_54tgl7qkb_8594033170028-t1.jpg',
+    parentId: 11,
   },
   {
-    id: 30,
+    id: 32,
     title: 'Tiger Energy Drink',
     weight: 0.5,
     price: 19.90,
     supplier: rohlik,
     manufacturer: 'Tiger',
-    imageURL: 'https://static.kosik.cz/images/thumbs/1s/207x174x1_1snqkugjzhai-8594057637859-tiger-energy-drink-classic-0-5l-plech.png'
+    imageURL: 'https://static.kosik.cz/images/thumbs/1s/207x174x1_1snqkugjzhai-8594057637859-tiger-energy-drink-classic-0-5l-plech.png',
+    parentId: 11,
   },
 ]
 
 const rumVariants: IProductVariant[] = [
   {
-    id: 31,
+    id: 33,
     title: 'Božkov Republica Elixír Honey 35%',
     weight: 0.5,
     price: 319.90,
     supplier: rohlik,
     manufacturer: 'Božkov',
-    imageURL: 'https://static.kosik.cz/images/thumbs/8u/207x174x1_8upguxuu1_bozkov-republica-honey-500ml-01.png'
+    imageURL: 'https://static.kosik.cz/images/thumbs/8u/207x174x1_8upguxuu1_bozkov-republica-honey-500ml-01.png',
+    parentId: 12,
   },
   {
-    id: 32,
+    id: 34,
     title: 'Božkov Bylinný likér 33%',
     weight: 0.5,
     price: 169.90,
     supplier: tesco,
     manufacturer: 'Božkov',
-    imageURL: 'https://static.kosik.cz/images/thumbs/t1/207x174x1_t15m8nwqn_bozkov-bylinny-500ml-01.png'
+    imageURL: 'https://static.kosik.cz/images/thumbs/t1/207x174x1_t15m8nwqn_bozkov-bylinny-500ml-01.png',
+    parentId: 12,
   },
   {
-    id: 33,
+    id: 35,
     title: 'Diplomático Reserva Exclusiva (40%)',
     weight: 0.7,
     price: 1199.90,
     supplier: tesco,
     manufacturer: 'Diplomático',
-    imageURL: 'https://static.kosik.cz/images/thumbs/4z/207x174x1_4zqjkifc3_2911-diplomatico-reserva-exclusiva-tuba.png'
+    imageURL: 'https://static.kosik.cz/images/thumbs/4z/207x174x1_4zqjkifc3_2911-diplomatico-reserva-exclusiva-tuba.png',
+    parentId: 12,
   },
 ]
 
 const dzusVariants: IProductVariant[]  = [
   {
-    id: 34,
+    id: 36,
     title: 'Pfanner 100% pomerančová šťáva',
     weight: 0.5,
     price: 56.90,
     supplier: tesco,
     manufacturer: 'Pfanner',
-    imageURL: 'https://static.kosik.cz/images/thumbs/c5/207x174x1_c5da11db13121b7b4fab2b804a8eb64d.jpg'
+    imageURL: 'https://static.kosik.cz/images/thumbs/c5/207x174x1_c5da11db13121b7b4fab2b804a8eb64d.jpg',
+    parentId: 13,
   },
   {
-    id: 35,
+    id: 37,
     title: 'Relax 100% Pomeranč ',
     weight: 0.5,
     price: 24.90,
     supplier: rohlik,
     manufacturer: 'Relax',
-    imageURL: 'https://static.kosik.cz/images/thumbs/e7/207x174x1_e7d6053682a52e1ba813eebbedf7ba17.jpg'
+    imageURL: 'https://static.kosik.cz/images/thumbs/e7/207x174x1_e7d6053682a52e1ba813eebbedf7ba17.jpg',
+    parentId: 13,
   },
   {
-    id: 36,
+    id: 38,
     title: 'NN Pomeranč 100%',
     weight: 0.5,
     price: 23.90,
     supplier: tesco,
     manufacturer: 'NN',
-    imageURL: 'https://static.kosik.cz/images/thumbs/c5/207x174x1_c5da11db13121b7b4fab2b804a8eb64d.jpg'
+    imageURL: 'https://static.kosik.cz/images/thumbs/c5/207x174x1_c5da11db13121b7b4fab2b804a8eb64d.jpg',
+    parentId: 13,
   },
 ]
 
