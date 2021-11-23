@@ -75,44 +75,40 @@ const Address: React.FC = () => {
 
   return (
     <>
-      <Box style={{ display: "flex", justifyContent: "center" }}>
-        <div style={{ width: "60%", paddingTop: "3rem" }}>
-          <span style={{ fontSize: "2rem" }}>Adresa:</span>
-            <Input
-              placeholder="Doručovací adresa"
-              size="md"
-              style={{ margin: "1rem 0" }}
-            />
-          <Image
-            src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg"
-            alt="Segun Adebayo"
-            style={{ marginBottom: "1rem", padding: "0 4rem" }}
-          />
-          <span>Vyberte den dodání:</span>
-          <div style={{ padding: "1rem 0" }}>
-            <Example />
-          </div>
-          <span>Vyberte čas dodání:</span>
-          <div style={{ padding: "1rem 0" }}>
-              <Select placeholder="Vyberte čas dodání" size="md" isRequired>
-                <option value="8:00">8:00</option>
-                <option value="9:00">9:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-                <option value="17:00">17:00</option>
-                <option value="18:00">18:00</option>
-                <option value="19:00">19:00</option>
-                <option value="20:00">20:00</option>
-                <option value="21:00">21:00</option>
-              </Select>
-          </div>
-        </div>
-      </Box>
+      <span style={{ fontSize: "2rem" }}>Adresa</span>
+        <Input
+          placeholder="Doručovací adresa"
+          size="md"
+          style={{ margin: "1rem 0" }}
+        />
+      <Image
+        src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg"
+        alt="Segun Adebayo"
+        style={{ marginBottom: "1rem", padding: "0 4rem" }}
+      />
+      <span>Vyberte den dodání</span>
+      <div style={{ padding: "1rem 0" }}>
+        <Example />
+      </div>
+      <span>Vyberte čas dodání</span>
+      <div style={{ padding: "1rem 0" }}>
+          <Select placeholder="Vyberte čas dodání" size="md" isRequired>
+            <option value="8:00">8:00</option>
+            <option value="9:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+          </Select>
+      </div>
     </>
   );
 };

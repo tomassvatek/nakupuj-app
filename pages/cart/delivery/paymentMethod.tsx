@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Box, Input, Radio, RadioGroup } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, Input, Radio, RadioGroup } from "@chakra-ui/react";
+import { formatPrice } from '../../../utils/formatters';
 
 interface IProps {
   totalAmount: number;
@@ -10,42 +11,46 @@ const PaymentMethod: React.FC<IProps> = (props) => {
 
   return (
     <>
-      <Box style={{ display: "flex", justifyContent: "center" }}>
-        <div style={{ width: "60%" }}>
-          <span style={{ fontSize: "2rem" }}>Platba</span>
-          <RadioGroup
-            onChange={setSelected}
-            value={selected}
-            style={{ paddingTop: "1rem" }}
-          >
-            <Radio value="1">Platba kartou</Radio>
-            <Radio value="2">Platba kurýrovi na místě</Radio>
-          </RadioGroup>
+      <span style={{ fontSize: "2rem" }}>Platba</span>
+      <RadioGroup
+        onChange={setSelected}
+        value={selected}
+        style={{ paddingTop: "1rem" }}
+      >
+        <Radio value="1">Platba kartou</Radio>
+        <Radio value="2">Platba kurýrovi na místě</Radio>
+      </RadioGroup>
 
-          {selected === "1" && (
-            <div style={{ display: "flex", paddingTop: "1rem" }}>
-              <div style={{ width: "30%" }}>
-                <span>Číslo karty</span>
-                <Input placeholder="Číslo karty" size="md" />
-              </div>
-              <div style={{ width: "30%", margin: "0 2rem" }}>
-                <span>Datum vypršení</span>
-                <Input placeholder="Datum vypršení" size="md" />
-              </div>
-              <div style={{ width: "10%" }}>
-                <span>CVV</span>
-                <Input placeholder="CCV" size="md" />
-              </div>
-            </div>
-          )}
+      {selected === "1" && (
+        <div style={{ display: "flex", paddingTop: "1rem" }}>
+          <div style={{ width: "30%" }}>
+            <FormControl id="cardNumber">
+              <FormLabel>Číslo karty</FormLabel>
+              <Input type="text" size="md" />
+            </FormControl>
+          </div>
 
-          <div style={{ padding: "2rem 0" }}>
-            <span style={{ fontSize: "1.5rem" }}>
-              Cena celkem: {props.totalAmount} Kč
-            </span>
+          <div style={{ width: "30%", margin: "0 2rem" }}>
+            <FormControl id="expiration">
+              <FormLabel>Datum vypršení</FormLabel>
+              <Input type="text" size="md" placeholder="11/23" />
+            </FormControl>
+          </div>
+
+          <div style={{ width: "10%" }}>
+            <FormControl id="cvv">
+              <FormLabel>CVV</FormLabel>
+              <Input type="text" size="md" placeholder="111" />
+            </FormControl>
           </div>
         </div>
-      </Box>
+      )}
+
+      <div style={{ padding: "2rem 0" }}>
+        <span style={{ fontSize: "1.5rem" }}>
+          Cena celkem <strong>{formatPrice(props.totalAmount)}</strong>
+        </span>
+      </div>
     </>
   );
 };

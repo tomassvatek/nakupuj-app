@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/layout";
+import { Box, Container, Heading, Text } from "@chakra-ui/layout";
 import type { NextPage } from "next";
 import Head from "next/head";
 import React from "react";
@@ -19,16 +19,16 @@ const Payment: NextPage = () => {
         <title>{getTitle("Doprava a platba")}</title>
       </Head>
 
-      <Box p={4}>
-        <Heading>Doprava a platba</Heading>
-        <Address />f
+      <Container maxW={'4xl'} py={12}>
+        <Heading mb={4}>Doprava a platba</Heading>
+        <Address />
         <PaymentMethod totalAmount={cartTotal} />
         <Box style={{ display: "flex", justifyContent: "center" }}>
-          <div
+          <Box
             style={{
-              width: "60%",
               padding: "0 2rem",
               display: "flex",
+              width: "100%",
               justifyContent: "space-between",
             }}
           >
@@ -37,13 +37,13 @@ const Payment: NextPage = () => {
             </NextLink>
 
             <NextLink href="/cart/delivery/success">
-              <Button size="lg" onClick={emptyCart}>
+              <Button size="lg" onClick={emptyCart} colorScheme="green">
                 Dokončit nákup
               </Button>
             </NextLink>
-          </div>
+          </Box>
         </Box>
-      </Box>
+      </Container>
     </main>
   );
 };

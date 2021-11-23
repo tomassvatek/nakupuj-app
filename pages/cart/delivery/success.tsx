@@ -16,7 +16,7 @@ const Success:NextPage =  () => {
             </Text>
             <div style={{paddingTop: '2rem'}}>
                 <NextLink href="/">
-                    <Button size="lg">Zpět na home page</Button>
+                    <Button size="lg">Zpět na hlavní stranu</Button>
                 </NextLink>
             </div>
         </Box>
