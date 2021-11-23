@@ -3,30 +3,21 @@ import NextLink from "next/link";
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link,
   IconButton,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
   Stack,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  AvatarBadge,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon, SearchIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import Logo from "./Logo";
 import { BsCartFill } from "react-icons/bs";
 import { useCart } from "../hooks/useCart";
 import { formatPrice } from "../utils/formatters";
-import useLocalStorage from '../hooks/useLocalStorage';
+import { Search } from './Search';
+import UserAvatar from './UserAvatar';
 
 const NavigationLinks = {
   "/search": "Hledání",
@@ -77,12 +68,7 @@ export default function Navbar() {
               display={{ base: "none", md: "flex" }}
               flex={1}
             >
-              <InputGroup>
-                <InputLeftElement pointerEvents="none">
-                  <SearchIcon />
-                </InputLeftElement>
-                <Input placeholder="Hledat" background="white" />
-              </InputGroup>
+              <Search />
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
@@ -110,60 +96,3 @@ export default function Navbar() {
     </>
   );
 }
-
-
-function UserAvatar() {
-  const [isLoggedIn, setLoggedIn] = useLocalStorage('login', '');
-  const handleLogin = () => {
-    setLoggedIn('true');
-  }
-  
-  const handleLogout = () => {
-    setLoggedIn('');
-  }
-
-  if (isLoggedIn) {
-    return (
-      <Menu>
-        <MenuButton
-          as={Button}
-          rounded={"full"}
-          variant={"link"}
-          cursor={"pointer"}
-          minW={0}
-        >
-          <Avatar
-            size={"sm"}
-            src={"https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"}
-          ></Avatar>
-        </MenuButton>
-        <MenuList>
-          <MenuItem>Účet</MenuItem>
-          <MenuItem>Objednávky</MenuItem>
-          <MenuDivider />
-          <MenuItem
-            onClick={handleLogout}
-          >
-            Odhlásit se
-          </MenuItem>
-        </MenuList>
-      </Menu>
-    );
-  }
-
-  return (
-    <Button
-      as={Button}
-      rounded={"full"}
-      variant={"link"}
-      cursor={"pointer"}
-      minW={0}
-      onClick={handleLogin}
-    >
-      <Avatar
-        size={"sm"}
-      ></Avatar>
-    </Button>
-  );
-}
-

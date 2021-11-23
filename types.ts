@@ -24,7 +24,7 @@ export interface IProductVariant {
 
   imageURL?: string;
 
-  parentId: number
+  parentId: number;
 }
 
 export interface IProduct {

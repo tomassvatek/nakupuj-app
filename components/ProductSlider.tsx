@@ -5,6 +5,7 @@ import { products } from '../constants';
 import { IProduct } from '../types';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { Box } from '@chakra-ui/layout';
 
 interface ProductSliderProps {
   category?: number,
@@ -15,17 +16,18 @@ const ProductSlider = (props: ProductSliderProps) => {
 
   let filteredProducts: IProduct[];
   if (props.category) {
-    filteredProducts = products.filter(function(product: IProduct) { return product.category.id == props.category });
+    filteredProducts = products.filter(function (product: IProduct) { return product.category.id == props.category });
   } else {
     filteredProducts = products;
   }
 
   if (props.onlyNew) {
-    filteredProducts = filteredProducts.filter(function(product: IProduct) { return product.isNew });
+    filteredProducts = filteredProducts.filter(function (product: IProduct) { return product.isNew });
   }
 
   return (
     <Swiper
+      className="swiper"
       modules={[Navigation]}
       spaceBetween={10}
       slidesPerView={1}
@@ -36,19 +38,19 @@ const ProductSlider = (props: ProductSliderProps) => {
       breakpoints={{
         640: {
           slidesPerView: 2,
+          spaceBetween: 5
+        },
+        900: {
+          slidesPerView: 4,
           spaceBetween: 10
         },
-        800: {
-          slidesPerView: 3,
-          spaceBetween: 20
-        },
         1280: {
-          slidesPerView: 4,
-          spaceBetween: 20
+          slidesPerView: 6,
+          spaceBetween: 12
         },
         1920: {
-          slidesPerView: 5,
-          spaceBetween: 30
+          slidesPerView: 8,
+          spaceBetween: 15
         }
       }}
     >
