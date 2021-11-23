@@ -9,8 +9,9 @@ import {
   Tooltip,
   Center,
   Button,
-  HStack,
+  VStack,
   useDisclosure,
+  Spacer
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { IProduct } from "../types";
@@ -32,20 +33,20 @@ function ProductCard({ product }: { product: IProduct }) {
   };
 
   return (
-    <Flex p={50} w={500} h={500} alignItems="start" justifyContent="start">
-      <Box bg={useColorModeValue("white", "gray.800")} maxW="sm" borderWidth="1px" rounded="lg" shadow="lg" position="relative">
-        <Center className="cardImgContainer">
+    <Flex p={5} align="center" justifyContent="center" minH={400}>
+      <Box bg={useColorModeValue("white", "gray.800")} maxW="sm" minW={200} minH={200} borderWidth="1px" rounded="lg" shadow="lg" position="relative">
+        <Center className="cardImgContainer" m={3}>
           <NextLink href={`/product/${product.id}`}>
             <a>
-              <Image src={variant.imageURL} alt={`Obrázek ${product.title}`} roundedTop="lg" maxW={300} maxH={300}/>
-            </a>  
+              <Image src={variant.imageURL} alt={`Obrázek ${product.title}`} fit="scale-down" align="center" roundedTop="lg" maxW={180} maxH={180} />
+            </a>
           </NextLink>
           <Tooltip label="Přidat do košíku" bg="white" placement={"top-start"} color={"gray.800"} fontSize={"1.2em"}>
-              <Button boxSize={10} className="addToCartBtn" onClick={handleAddToCart}>
-                <AddIcon boxSize={5}/>
-                <chakra.a href={"#"} display={"flex"}/>
-              </Button>
-            </Tooltip>
+            <Button boxSize={10} className="addToCartBtn" onClick={handleAddToCart}>
+              <AddIcon boxSize={5} />
+              <chakra.a href={"#"} display={"flex"} />
+            </Button>
+          </Tooltip>
         </Center>
 
         <AddToCartConfirmation
@@ -53,37 +54,35 @@ function ProductCard({ product }: { product: IProduct }) {
           onClose={onClose}
           isOpen={isOpen}
         />
-
         <Box p="6">
-          <Flex mt="1" justifyContent="space-between" alignContent="center">
-            <HStack>
-              <Box fontSize="3xl" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
-                {product.title}
-              </Box>
-              <Box d="flex" alignItems="baseline">
-                {product.isNew && (
-                  <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
-                    Novinka
-                  </Badge>
-                )}
-              </Box>
-            </HStack>
-          </Flex>
-          {variant && (
+          {product.isNew && (
+            <Badge rounded="full" fontSize="0.6em" colorScheme="red">
+              Novinka
+            </Badge>
+          )}
           <Flex justifyContent="space-between" alignContent="center">
-            <Box fontSize="2xl" color="gray.800">
-              <Box as="span" mr={1}>
-                od
-              </Box>
-              <Box as="span" fontWeight="semibold">
-                {formatPrice(getCheapestPriceForProduct(product))}
-              </Box>
+
+            <Box fontSize="xl" fontWeight="semibold" as="h4" lineHeight="tight" maxW={170} noOfLines={2} justifyContent="center">
+              <NextLink href={`/product/${product.id}`}>
+                <a>{product.title}</a>
+              </NextLink>
             </Box>
           </Flex>
+          {variant && (
+            <Flex justifyContent="space-between" alignContent="center">
+              <Box fontSize="md" color="gray.800">
+                <Box as="span" mr={1}>
+                  od
+                </Box>
+                <Box as="span" fontWeight="semibold">
+                  {formatPrice(getCheapestPriceForProduct(product))}
+                </Box>
+              </Box>
+            </Flex>
           )}
         </Box>
       </Box>
-    </Flex>
+    </Flex >
   );
 }
 

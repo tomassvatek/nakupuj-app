@@ -37,3 +37,7 @@ a {
 .cardImgContainer {
   position: relative;
 }
+
+.swiper {
+  margin-left: 20%;
+}
