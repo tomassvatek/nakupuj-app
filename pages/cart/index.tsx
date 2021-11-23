@@ -20,9 +20,9 @@ const Cart: NextPage = () => {
     useCart();
   const [originCart, setOriginCart] = useState<ICartItem[]>();
   const [selectedOption, setSelectedOption] = useState<number | string>("1");
-  const [selectedInnerValue, setInnerSelectedValue] = useState<
-    number | string | undefined
-  >(undefined);
+  const [selectedInnerValue, setInnerSelectedValue] = useState<number | string>(
+    "4"
+  );
 
   useEffect(() => {
     if (selectedOption == 1) setOriginCart([...items]);
@@ -111,7 +111,9 @@ const Cart: NextPage = () => {
               
             </NextLink> */}
           <NextLink href="/cart/payment">
-            <Button size="lg" colorScheme="green">Na dopravu a platbu</Button>
+            <Button size="lg" colorScheme="green">
+              Na dopravu a platbu
+            </Button>
           </NextLink>
         </Box>
       </Box>
