@@ -2,14 +2,14 @@ import { Box, Heading } from "@chakra-ui/layout";
 import { Button, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import CartItemList from "../../components/CartItemList";
-import { ChangeAction } from "../../components/ChangeAmout";
 import DeliveryOptions from "../../components/DeliveryOptions";
-import { products } from "../../constants";
-import { ICartItem } from "../../hooks/useCart";
+import { pivoVariants, products } from "../../constants";
+import { ICartItem, useCart } from "../../hooks/useCart";
 import { getTitle } from "../../utils/getTitle";
 import NextLink from "next/link";
+import { DeliveryOptionItem } from "../../components/DeliveryOption";
 
 const fakeData: ICartItem[] = products.map((item, index) => ({
   product: item,
@@ -17,90 +17,29 @@ const fakeData: ICartItem[] = products.map((item, index) => ({
   quantity: 1,
 })) as any;
 
-type ActionType = ChangeAction | "remove";
-
-type Action = {
-  itemId: number;
-  type: ActionType;
-  value?: number;
-};
-
-type State = {
-  items: ICartItem[];
-};
-
-function getItem(state: State, id: number) {
-  return state.items.find((s) => s.id === id);
-}
-
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case "increment": {
-      const currentItem = getItem(state, action.itemId);
-      if (!currentItem) return state;
-
-      return {
-        items: [
-          ...state.items.map((item) => {
-            if (item === currentItem) {
-              return {
-                ...item,
-                quantity: item.quantity + 1,
-              };
-            }
-            return item;
-          }),
-        ],
-      };
-    }
-    case "decrement": {
-      const currentItem = getItem(state, action.itemId);
-      if (!currentItem) return state;
-
-      return {
-        items: [
-          ...state.items.map((item) => {
-            if (item === currentItem) {
-              return {
-                ...item,
-                quantity: item.quantity - 1,
-              };
-            }
-            return item;
-          }),
-        ],
-      };
-    }
-    case "set": {
-      const currentItem = getItem(state, action.itemId);
-      if (!currentItem) return state;
-
-      return {
-        items: [
-          ...state.items.map((item) => {
-            if (item === currentItem) {
-              return {
-                ...item,
-                quantity: action.value || 0,
-              };
-            }
-            return item;
-          }),
-        ],
-      };
-    }
-    case "remove": {
-      return {
-        items: state.items.filter((item) => item.id !== action.itemId),
-      };
-    }
-    default:
-      return state;
-  }
-}
-
 const Cart: NextPage = () => {
-  const [{ items }, dispatch] = useReducer(reducer, { items: fakeData });
+  const { items, updateItemQuantity, addItem, emptyCart, removeItem } =
+    useCart();
+  const [originCart, setOriginCart] = useState<ICartItem[]>();
+
+  useEffect(() => {
+    setOriginCart(items);
+  }, []);
+
+  function handleDeliveryOptionChange(option: DeliveryOptionItem) {
+    // emptyCart();
+    // if (option.optionId == "1") {
+    //   originCart?.forEach((item) => {
+    //     addItem(item.item, item.quantity);
+    //   });
+    // }
+    // if (option.optionId == "2") {
+    //   pivoVariants.forEach((e) => {
+    //     addItem(e, 1);
+    //   });
+    //   console.log(items);
+    // }
+  }
 
   return (
     <Box px="20" pt="5" pb="20">
@@ -112,11 +51,11 @@ const Cart: NextPage = () => {
         <Heading mb="5">Košík</Heading>
         <CartItemList
           items={items}
-          onAmountChange={(e) =>
-            dispatch({ type: e.action, itemId: e.item.id })
-          }
+          onAmountChange={(e) => {
+            updateItemQuantity(e.item.id, e.value);
+          }}
           onItemRemove={(e) => {
-            dispatch({ type: "remove", itemId: parseInt(e.id + "") });
+            removeItem(e.id);
           }}
         />
       </Box>
@@ -130,7 +69,7 @@ const Cart: NextPage = () => {
             se vrátit zpět na Váš výber.
           </Text>
         </Box>
-        <DeliveryOptions />
+        <DeliveryOptions onChange={handleDeliveryOptionChange} />
         <Box pt="10" textAlign="right">
           {/* <NextLink href="/cart">
               <Button aria-label="Košík" leftIcon={<BsCartFill />}>
