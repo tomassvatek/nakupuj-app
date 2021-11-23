@@ -1,7 +1,6 @@
 import { Heading, SimpleGrid } from '@chakra-ui/layout'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import BreadcrumbComponent from '../../components/Breadcrumb'
 import { getTitle } from '../../utils/getTitle'
 import Account from '../../components/Account';
 import React from 'react'
@@ -42,18 +41,14 @@ const Orders: NextPage = () => {
           <Head>
             <title>{getTitle('Nastavení účtu')}</title>
           </Head>
-
           <Account>
-            <BreadcrumbComponent items={['index', 'settings']} />
             <Heading pt={2} pb={4}>Nastavení účtu</Heading>
-
             <SimpleGrid columns={2} spacing={5}>
               <InputControl name="firstName" label="Jméno" />
               <InputControl name="lastName" label="Příjmení" />
               <InputControl name="email" label="E-mail" />
               <InputControl name="phone" label="Telefonní číslo" />
             </SimpleGrid>
-
             <ButtonGroup py={4}>
               <SubmitButton>Uložit</SubmitButton>
             </ButtonGroup>

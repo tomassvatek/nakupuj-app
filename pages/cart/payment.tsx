@@ -25,7 +25,6 @@ const Payment: NextPage = () => {
         <Box style={{ display: "flex", justifyContent: "center" }}>
           <Box
             style={{
-              padding: "0 2rem",
               display: "flex",
               width: "100%",
               justifyContent: "space-between",

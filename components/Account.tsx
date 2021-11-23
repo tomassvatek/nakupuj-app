@@ -1,6 +1,6 @@
 import { Avatar } from '@chakra-ui/avatar'
 import NextLink from "next/link";
-import { Box, Divider, Flex, FlexProps, Heading, Link } from '@chakra-ui/layout'
+import { Box, Divider, Flex, FlexProps, Heading, Link, Text } from '@chakra-ui/layout'
 import useLocalStorage from '../hooks/useLocalStorage';
 
 interface NavItemProps extends FlexProps {
@@ -49,13 +49,13 @@ const Account: React.FC = ({ children }) => {
           </Box>
 
           <Box>
-            <NextLink href="/account/orders"><NavItem>Historie objednávek</NavItem></NextLink>
-            <NextLink href="/account/settings"><NavItem>Uživatelská nastavení</NavItem></NextLink>
-            <NextLink href="/account/adresses"><NavItem>Adresy</NavItem></NextLink>
-            <NextLink href="/account/payments"><NavItem>Platební metody</NavItem></NextLink>
+            <NextLink href="/account/orders"><Text fontWeight="bold" pt={4} pd={4} cursor="pointer">Historie objednávek</Text></NextLink>
+            <NextLink href="/account/settings"><Text fontWeight="bold" pt={4} pd={4} cursor="pointer">Uživatelská nastavení</Text></NextLink>
+            <NextLink href="/account/adresses"><Text fontWeight="bold" pt={4} pd={4} cursor="pointer">Adresy</Text></NextLink>
+            <NextLink href="/account/payments"><Text fontWeight="bold" pt={4} pd={4} cursor="pointer">Platební metody</Text></NextLink>
 
-            <Divider />
-            <NextLink href="/"><NavItem onClick={handleLogout}>Odhlásit se</NavItem></NextLink>
+            <Divider pt={4} pd={6} />
+            <NextLink href="/"><Text fontWeight="bold" pt={3} cursor="pointer" onClick={handleLogout}>Odhlásit se</Text></NextLink>
           </Box>
 
         </Flex>
