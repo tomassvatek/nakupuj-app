@@ -17,6 +17,7 @@ import {
   MenuItem,
   MenuList,
   Badge,
+  Box,
 } from '@chakra-ui/react';
 import ErrorPage from '../../404'
 import { BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/breadcrumb';
@@ -28,23 +29,50 @@ import { useRouter } from 'next/router'
 import BreadcrumbComponent from '../../../components/Breadcrumb'
 import { getTitle } from '../../../utils/getTitle'
 import { products } from '../../../constants';
-import type { IProduct } from '../../../types';
+import type { IProduct, IProductVariant } from '../../../types';
 import AddToCartConfirmation from '../../../components/AddToCartConfirmation';
 import { useCart } from '../../../hooks/useCart';
 import ChangeAmount, { ChangeAmountHandler } from '../../../components/ChangeAmout';
 import React, { useState } from 'react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import ProductVariantItem from '../../../components/ProductVariantItem';
+import { formatPrice } from '../../../utils/formatters';
 
 interface Props {
   product?: IProduct,
 };
+
+function getRanges(product?: IProduct): any {
+  if (!product || !product.variants) return '';
+  let min = product.variants[0];
+  let max = product.variants[0];
+
+  for (var i = 0; i < product.variants.length; i++) {
+    const variant = product.variants[i];
+    if (variant.price > max.price) {
+      max = variant;
+    }
+    if (variant.price < min.price) {
+      min = variant;
+    }
+  }
+
+  return [min, max];
+}
+
+function formatRange(min: IProductVariant, max: IProductVariant) {
+  if (min !== max) {
+    return `${formatPrice(min.price).replace('Kč', '')}- ${formatPrice(max.price)}`;
+  }
+  return `${formatPrice(min.price)}`;
+}
 
 const ProductDetail: NextPage<Props> = ({ product }) => {
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { addItem } = useCart();
   const [amount, setAmount] = useState(1);
+  const [min, max] = getRanges(product);
   
   const getSelectedVariant = () => {
     let variantIndex = 0;
@@ -106,7 +134,8 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
                 </Badge>
               </Text>
             )}
-            <Heading>{product.title}</Heading>
+            <Text color="gray.500">{selectedVariant.manufacturer}</Text>
+            <Heading m={0}>{product.title}</Heading>
 
             <Text color={'gray.500'} fontSize={'lg'}>
               {product.description}
@@ -114,23 +143,38 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
 
             <Menu>
               <MenuButton as={Button} textAlign="left" rightIcon={<ChevronDownIcon />}>
-                {selectedVariant.title}
+                <Flex justifyContent="space-between">
+                  <span>{selectedVariant.title}</span>
+
+                  <strong>{formatPrice(selectedVariant.price)}</strong>
+                </Flex>
               </MenuButton>
               <MenuList>
                 {product.variants.map((variant, index) => (
-                  <MenuItem as={Flex} key={variant.id} onClick={() => setSelectedVariant(variant.id)}>
-                    <ProductVariantItem variant={variant} />
+                  <MenuItem bg={variant === selectedVariant ? 'gray.200' : undefined} as={Flex} key={variant.id} onClick={() => setSelectedVariant(variant.id)}>
+                    <ProductVariantItem
+                      variant={variant}
+                      cheapest={min === variant}
+                    />
                   </MenuItem>
                 ))}
               </MenuList>
             </Menu>
 
-            <ChangeAmount
-              defaultValue={amount}
-              value={amount}
-              min={1}
-              onAmoutChange={handleAmountChange}
-            />
+            <Flex>
+              <Box mr={4}>
+                <ChangeAmount
+                  defaultValue={amount}
+                  value={amount}
+                  min={1}
+                  onAmoutChange={handleAmountChange}
+                />
+              </Box>
+
+              <Heading>
+                {formatRange(min, max)}
+              </Heading>
+            </Flex>
 
             <Button colorScheme="green" size="lg" mr={4} leftIcon={<BsCartFill />} onClick={handleAddToCart}>
               Přidat do košíku

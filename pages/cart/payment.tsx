@@ -2,7 +2,6 @@ import { Box, Container, Heading, Text } from "@chakra-ui/layout";
 import type { NextPage } from "next";
 import Head from "next/head";
 import React from "react";
-import BreadcrumbComponent from "../../components/Breadcrumb";
 import { getTitle } from "../../utils/getTitle";
 import Address from "./delivery/address";
 import PaymentMethod from "./delivery/paymentMethod";
@@ -32,7 +31,7 @@ const Payment: NextPage = () => {
               justifyContent: "space-between",
             }}
           >
-            <NextLink href="/cart/index">
+            <NextLink href="/cart">
               <Button size="lg">Zpět na košík</Button>
             </NextLink>
 

@@ -81,7 +81,7 @@ const Cart: NextPage = () => {
               
             </NextLink> */}
           <NextLink href="/cart/payment">
-            <Button size="lg">Na dopravu a platbu</Button>
+            <Button size="lg" colorScheme="green">Na dopravu a platbu</Button>
           </NextLink>
         </Box>
       </Box>

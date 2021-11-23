@@ -183,10 +183,10 @@ const avokadoVariants: IProductVariant[] = [
 const vysocinaVariants: IProductVariant[] = [
   {
     id: 4,
-    title: "Kmotr Kmotrova Vysočina krájená",
+    title: "Kmotrova Vysočina krájená",
     supplier: rohlik,
     price: 24.9,
-    manufacturer: "Česká republika",
+    manufacturer: "Kmotr",
     weight: 100,
     imageURL:
       "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/1404253/1404253-1609786999175.jpg",
@@ -194,10 +194,10 @@ const vysocinaVariants: IProductVariant[] = [
   },
   {
     id: 5,
-    title: "Pejskar Vysočina krájená",
+    title: "Vysočina krájená",
     supplier: kosik,
     price: 24.9,
-    manufacturer: "Česká republika",
+    manufacturer: "Pejskar",
     weight: 100,
     imageURL:
       "https://static.kosik.cz/images/thumbs/07/860x800x1_07eae6c8ce92d6b022c06eb45e1cfd62.jpg",
@@ -205,10 +205,10 @@ const vysocinaVariants: IProductVariant[] = [
   },
   {
     id: 6,
-    title: "Tesco Vysočina 100g",
+    title: "Vysočina 100g",
     supplier: tesco,
     price: 19.9,
-    manufacturer: "Česká republika",
+    manufacturer: "Tesco",
     weight: 100,
     imageURL:
       "https://secure.ce-tescoassets.com/assets/CZ/701/5051007132701/ShotType1_540x540.jpg",
