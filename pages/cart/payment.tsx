@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/layout";
+import { Box, Heading, Text } from "@chakra-ui/layout";
 import type { NextPage } from "next";
 import Head from "next/head";
 import React from "react";
@@ -6,8 +6,14 @@ import BreadcrumbComponent from "../../components/Breadcrumb";
 import { getTitle } from "../../utils/getTitle";
 import Address from "./delivery/address";
 import PaymentMethod from "./delivery/paymentMethod";
+import {useCart} from "../../hooks/useCart";
+import {Button} from "@chakra-ui/react";
+import NextLink from "next/link";
 
 const Payment: NextPage = () => {
+
+    const {cartTotal} = useCart()
+
   return (
     <main>
       <Head>
@@ -17,8 +23,8 @@ const Payment: NextPage = () => {
       <Box p={4}>
         <BreadcrumbComponent items={["index", "cart-payment"]} />
         <Heading>Doprava a platba</Heading>
-        <Address />
-        <PaymentMethod totalAmount={123} />
+        <Address />f
+        <PaymentMethod totalAmount={cartTotal} />
         <Box style={{ display: "flex", justifyContent: "center" }}>
           <div
             style={{
@@ -28,17 +34,9 @@ const Payment: NextPage = () => {
               justifyContent: "flex-end",
             }}
           >
-            <a
-              href="https://nakupuj-app.vercel.app/"
-              style={{
-                padding: "15px 32px",
-                border: "none",
-                backgroundColor: "#EDF2F7",
-                borderRadius: "5px",
-              }}
-            >
-              Dokončit nákup
-            </a>
+              <NextLink href="/cart/delivery/success">
+                  <Button size="lg">Dokončit nákup</Button>
+              </NextLink>
           </div>
         </Box>
       </Box>

@@ -13,7 +13,6 @@ const PaymentMethod: React.FC<IProps> = (props) => {
       <Box style={{ display: "flex", justifyContent: "center" }}>
         <div style={{ width: "60%" }}>
           <span style={{ fontSize: "2rem" }}>Platba</span>
-
           <RadioGroup
             onChange={setSelected}
             value={selected}

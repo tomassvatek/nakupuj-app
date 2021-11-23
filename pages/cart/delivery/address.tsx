@@ -54,7 +54,7 @@ const Address: React.FC = () => {
     const { getRootProps, getRadioProps } = useRadioGroup({
       name: "framework",
       defaultValue: "react",
-      onChange: setDeliveryDate,
+      onChange: console.log,
     });
 
     const group = getRootProps();
@@ -78,13 +78,11 @@ const Address: React.FC = () => {
       <Box style={{ display: "flex", justifyContent: "center" }}>
         <div style={{ width: "60%", paddingTop: "3rem" }}>
           <span style={{ fontSize: "2rem" }}>Adresa:</span>
-          <FormControl id="address" isRequired>
             <Input
               placeholder="Doručovací adresa"
               size="md"
               style={{ margin: "1rem 0" }}
             />
-          </FormControl>
           <Image
             src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg"
             alt="Segun Adebayo"
@@ -92,13 +90,10 @@ const Address: React.FC = () => {
           />
           <span>Vyberte den dodání:</span>
           <div style={{ padding: "1rem 0" }}>
-            <FormControl id="day" isRequired>
-              <Example />
-            </FormControl>
+            <Example />
           </div>
           <span>Vyberte čas dodání:</span>
           <div style={{ padding: "1rem 0" }}>
-            <FormControl id="time">
               <Select placeholder="Vyberte čas dodání" size="md" isRequired>
                 <option value="8:00">8:00</option>
                 <option value="9:00">9:00</option>
@@ -115,7 +110,6 @@ const Address: React.FC = () => {
                 <option value="20:00">20:00</option>
                 <option value="21:00">21:00</option>
               </Select>
-            </FormControl>
           </div>
         </div>
       </Box>
