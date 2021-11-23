@@ -6,13 +6,12 @@ import BreadcrumbComponent from "../../components/Breadcrumb";
 import { getTitle } from "../../utils/getTitle";
 import Address from "./delivery/address";
 import PaymentMethod from "./delivery/paymentMethod";
-import {useCart} from "../../hooks/useCart";
-import {Button} from "@chakra-ui/react";
+import { useCart } from "../../hooks/useCart";
+import { Button } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 const Payment: NextPage = () => {
-
-    const {cartTotal, emptyCart} = useCart()
+  const { cartTotal, emptyCart } = useCart();
 
   return (
     <main>
@@ -21,7 +20,6 @@ const Payment: NextPage = () => {
       </Head>
 
       <Box p={4}>
-        <BreadcrumbComponent items={["index", "cart-payment"]} />
         <Heading>Doprava a platba</Heading>
         <Address />f
         <PaymentMethod totalAmount={cartTotal} />
@@ -34,15 +32,15 @@ const Payment: NextPage = () => {
               justifyContent: "space-between",
             }}
           >
+            <NextLink href="/cart/index">
+              <Button size="lg">Zpět na košík</Button>
+            </NextLink>
 
-              <NextLink href="/cart/index">
-                  <Button size="lg">Zpět na košík</Button>
-              </NextLink>
-
-              <NextLink href="/cart/delivery/success">
-                  <Button size="lg" onClick={emptyCart}>Dokončit nákup</Button>
-              </NextLink>
-
+            <NextLink href="/cart/delivery/success">
+              <Button size="lg" onClick={emptyCart}>
+                Dokončit nákup
+              </Button>
+            </NextLink>
           </div>
         </Box>
       </Box>
