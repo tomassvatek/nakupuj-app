@@ -1,4 +1,5 @@
 import React from "react";
+import NextLink from "next/link";
 import {
   Avatar,
   Button,
@@ -36,8 +37,12 @@ export default function UserAvatar() {
           ></Avatar>
         </MenuButton>
         <MenuList zIndex="dropdown">
-          <MenuItem>Účet</MenuItem>
-          <MenuItem>Objednávky</MenuItem>
+          <NextLink href="/account/settings">
+            <MenuItem>Účet</MenuItem>
+          </NextLink>
+          <NextLink href="/account/orders">
+            <MenuItem>Objednávky</MenuItem>
+          </NextLink>
           <MenuDivider />
           <MenuItem
             onClick={handleLogout}

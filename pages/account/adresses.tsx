@@ -5,22 +5,23 @@ import BreadcrumbComponent from '../../components/Breadcrumb'
 import { getTitle } from '../../utils/getTitle'
 import Account from '../../components/Account';
 
-const Orders: NextPage = () => {
+const Adresses: NextPage = () => {
   return (
     <main>
       <Head>
-        <title>{getTitle('Historie objednávek')}</title>
+        <title>{getTitle('Adresy')}</title>
       </Head>
 
       <Account>
-        <BreadcrumbComponent items={['index', 'orders']} />
-        <Heading pt={2}>Historie objednávek</Heading>
+        <BreadcrumbComponent items={['index', 'settings']} />
+        <Heading pt={2}>Adresy</Heading>
+        
         <Center w="100%" h={200}>
-          <Heading color="gray.400">Nemáte žádné objednávky</Heading>
+          <Heading color="gray.400">Nemáte žádné adresy</Heading>
         </Center>
       </Account>
     </main>
   )
 }
 
-export default Orders
+export default Adresses

@@ -1,24 +1,67 @@
-import { Box, Heading } from '@chakra-ui/layout'
+import { Heading, SimpleGrid } from '@chakra-ui/layout'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import BreadcrumbComponent from '../../components/Breadcrumb'
-import CallToActionWithAnnotation from '../../components/Hero'
 import { getTitle } from '../../utils/getTitle'
+import Account from '../../components/Account';
+import React from 'react'
 
-const Settings: NextPage = () => {
+import { ButtonGroup } from "@chakra-ui/react";
+import { Formik } from "formik";
+import {
+  InputControl,
+  SubmitButton,
+} from "formik-chakra-ui";
+import * as Yup from "yup";
+
+const initialValues = {
+  firstName: 'Alena',
+  lastName: 'Vránová',
+  email: 'alena@vranova.cz',
+};
+
+const validationSchema = Yup.object({
+  firstName: Yup.string().required('Jméno je povinné'),
+  lastName: Yup.string().required('Příjmení je povinné'),
+  email: Yup.string().email('Zadejte správný e-mail').required('E-mail je povinný'),
+});
+
+
+const Orders: NextPage = () => {
+  const handleSubmit = () => {
+  }
+
   return (
-    <main>
-      <Head>
-        <title>{getTitle('Nastavení účtu')}</title>
-      </Head>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {() => (
+        <main>
+          <Head>
+            <title>{getTitle('Nastavení účtu')}</title>
+          </Head>
 
-      <Box p={4}>
-        <BreadcrumbComponent items={['index', 'settings']} />
-        <Heading>Nastavení účtu</Heading>
-      </Box>
-    </main>
+          <Account>
+            <BreadcrumbComponent items={['index', 'settings']} />
+            <Heading pt={2} pb={4}>Nastavení účtu</Heading>
+
+            <SimpleGrid columns={2} spacing={5}>
+              <InputControl name="firstName" label="Jméno" />
+              <InputControl name="lastName" label="Příjmení" />
+              <InputControl name="email" label="E-mail" />
+              <InputControl name="phone" label="Telefonní číslo" />
+            </SimpleGrid>
+
+            <ButtonGroup py={4}>
+              <SubmitButton>Uložit</SubmitButton>
+            </ButtonGroup>
+          </Account>
+        </main>
+      )}
+    </Formik>
   )
 }
 
-export default Settings
+export default Orders
