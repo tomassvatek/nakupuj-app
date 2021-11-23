@@ -5,6 +5,7 @@ import {
   useRadioGroup,
   useRadio,
   Select,
+  Text
 } from "@chakra-ui/react";
 import dynamic from 'next/dynamic'
 import React, { useState } from "react";
@@ -45,8 +46,7 @@ const Address: React.FC = () => {
     );
   }
 
-  // Step 2: Use the `useRadioGroup` hook to control a group of custom radios.
-  function Example() {
+  function DeliveryDayPicker() {
     const options = ["Dnes", "Zítra", "Pozítří"];
 
     const { getRootProps, getRadioProps } = useRadioGroup({
@@ -78,19 +78,19 @@ const Address: React.FC = () => {
 
   return (
     <>
-      <span style={{ fontSize: "2rem" }}>Adresa</span>
+      <Text fontSize="xl" fontWeight="bold">Adresa</Text>
       <Input
         placeholder="Doručovací adresa"
         size="md"
-        style={{ margin: "1rem 0" }}
+        style={{ margin: "0.5rem 0" }}
       />
       <Map />
-      <span>Vyberte den dodání</span>
-      <div style={{ padding: "1rem 0" }}>
-        <Example />
+      <Text mt={5} fontSize="xl" fontWeight="bold">Vyberte den dodání</Text>
+      <div style={{ padding: "0.5rem 0", paddingBottom: "" }}>
+        <DeliveryDayPicker />
       </div>
-      <span>Vyberte čas dodání</span>
-      <div style={{ padding: "1rem 0" }}>
+      <Text mt={5} fontSize="xl" fontWeight="bold">Vyberte čas dodání</Text>
+      <div style={{ padding: "0.5rem 0" }}>
         <Select placeholder="Vyberte čas dodání" size="md" isRequired>
           <option value="8:00">8:00</option>
           <option value="9:00">9:00</option>
