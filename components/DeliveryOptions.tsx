@@ -5,34 +5,34 @@ import DeliveryOption, { DeliveryOptionItem } from "./DeliveryOption";
 import { deliveryOptions } from "../constants";
 
 type DeliveryOptionsProps = {
-  onChange: (deliveryOption: DeliveryOptionItem) => void;
+  radioValue: string | number;
+  innerRadioValue: string | number;
+  onChange: (optionId: string) => void;
+  onInnerOptionChange: (optionId: string) => void;
 };
 
-function DeliveryOptions({ onChange }: DeliveryOptionsProps) {
-  const [selectedValue, setSelectedValue] = useState("1");
-  const [selectedInnerValue, setInnerSelectedValue] = useState("2");
+function DeliveryOptions({
+  radioValue,
+  innerRadioValue,
+  onChange,
+  onInnerOptionChange,
+}: DeliveryOptionsProps) {
   const options = useMemo<DeliveryOptionItem[]>(() => deliveryOptions, []);
 
-  function handleChange(optionId: string) {
-    setSelectedValue(optionId);
-    const option = options.find((s) => s.optionId === optionId);
-    if (option) onChange(option);
-  }
-
   return (
-    <RadioGroup value={selectedValue} onChange={handleChange}>
+    <RadioGroup value={radioValue} onChange={onChange}>
       <VStack w="100%" align="flex-start" justifyContent="flex-start">
         {options.map((prop) => {
-          const bg = selectedValue == prop.optionId ? "gray.100" : undefined;
+          const bg = radioValue == prop.optionId ? "gray.100" : undefined;
           if (prop?.childrenOptions) {
             return (
               <VStack w="100%">
                 <DeliveryOption key={prop.optionId} bgColor={bg} {...prop} />
-                {selectedValue == "3" && (
+                {radioValue == "3" && (
                   <Box w="100%" pl="80px">
                     <RadioGroup
-                      value={selectedInnerValue}
-                      onChange={setInnerSelectedValue}
+                      value={innerRadioValue}
+                      onChange={onInnerOptionChange}
                     >
                       {prop.childrenOptions.map((option) => (
                         <DeliveryOption

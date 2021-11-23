@@ -64,14 +64,14 @@ export const deliveryOptions: DeliveryOptionItem[] = [
         deliveryDuration: "Zítra",
         price: "100 Kč",
         save: 4,
-        optionId: "1",
+        optionId: "4",
       },
       {
         title: "Kosik",
         deliveryDuration: "Za 2 dny",
         price: "120 Kč",
         save: 4,
-        optionId: "2",
+        optionId: "5",
       },
     ],
   },
@@ -252,7 +252,7 @@ const prazskaSunkaVariants: IProductVariant[] = [
   },
 ];
 
-const eidamVariants: IProductVariant[] = [
+export const eidamVariants: IProductVariant[] = [
   {
     id: 10,
     title: "Miil Eidam 30% plátky",
@@ -288,7 +288,7 @@ const eidamVariants: IProductVariant[] = [
   },
 ];
 
-const videnskeParkyVariants: IProductVariant[] = [
+export const videnskeParkyVariants: IProductVariant[] = [
   {
     id: 13,
     title: "Dacello Vídeňské párky 85 %",

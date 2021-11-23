@@ -235,7 +235,7 @@ export const CartProvider: React.FC<{
 
     if (!currentItem) {
       const payload: ICartItem = {
-        id: new Date().getTime(),
+        id: Math.floor(Math.random() * 300000),
         item,
         quantity,
         price: item.price,

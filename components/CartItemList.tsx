@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { ICartItem } from '../hooks/useCart';
+import { ICartItem } from "../hooks/useCart";
 import CartItem from "./CartItem";
 import { AmountChangeEvent } from "./CartItem";
 
@@ -18,7 +18,7 @@ function CartItemList({
     <Box>
       {items.map((item) => {
         return (
-          <Box key={item.id} pb="5">
+          <Box key={+item.id * Math.random()} pb="5">
             <CartItem
               item={item}
               onAmoutChange={onAmountChange}

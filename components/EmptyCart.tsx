@@ -1,4 +1,3 @@
-import { CheckCircleIcon } from "@chakra-ui/icons";
 import { Box, Center, Heading, Text } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
 import NextLink from "next/link";
