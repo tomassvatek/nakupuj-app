@@ -167,10 +167,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const props: any = {};
   const id = context.params?.id as string | undefined;
 
-
-  console.log(context.params);
-  
-
   if (id) {
     const _id = parseInt(id, 10);
     props.product = products.find(p => p.id === _id) || null;
