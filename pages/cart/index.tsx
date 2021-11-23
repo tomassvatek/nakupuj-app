@@ -10,6 +10,7 @@ import { ICartItem, useCart } from "../../hooks/useCart";
 import { getTitle } from "../../utils/getTitle";
 import NextLink from "next/link";
 import { DeliveryOptionItem } from "../../components/DeliveryOption";
+import EmptyCart from "../../components/EmptyCart";
 
 const fakeData: ICartItem[] = products.map((item, index) => ({
   product: item,
@@ -18,7 +19,7 @@ const fakeData: ICartItem[] = products.map((item, index) => ({
 })) as any;
 
 const Cart: NextPage = () => {
-  const { items, updateItemQuantity, addItem, emptyCart, removeItem } =
+  const { items, updateItemQuantity, addItem, emptyCart, removeItem, isEmpty } =
     useCart();
   const [originCart, setOriginCart] = useState<ICartItem[]>();
 
@@ -40,6 +41,8 @@ const Cart: NextPage = () => {
     //   console.log(items);
     // }
   }
+
+  if (isEmpty) return <EmptyCart />;
 
   return (
     <Box px="20" pt="5" pb="20">
