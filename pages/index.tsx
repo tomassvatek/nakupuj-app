@@ -17,22 +17,13 @@ const Home: NextPage = () => {
 
       {/* <CallToActionWithAnnotation /> */}
 
-      <Box p={4} ml={20}>
-        <HStack>
-          <Heading>Všechny produkty</Heading>
-          <Text as="u">Zobrazit více</Text>
-        </HStack>
-        <ProductSlider/>
-        <HStack>
-          <Heading>{uzeniny.name}</Heading>
-          <Text as="u">Zobrazit více</Text>
-        </HStack>
-        <ProductSlider category={uzeniny.id}/>
-        <HStack>
-          <Heading>Novinky</Heading>
-          <Text as="u">Zobrazit více</Text>
-        </HStack>
-        <ProductSlider onlyNew={true}/>
+      <Box p={5}>
+        <Heading fontSize="3xl">Všechny produkty</Heading>
+        <ProductSlider />
+        <Heading fontSize="3xl">{uzeniny.name}</Heading>
+        <ProductSlider category={uzeniny.id} />
+        <Heading fontSize="3xl">Novinky</Heading>
+        <ProductSlider onlyNew={true} />
       </Box>
     </main>
   )
