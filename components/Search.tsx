@@ -28,7 +28,6 @@ export function Search() {
   const ref = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState("");
   const product = products[0];
-  const variants = products[0].variants;
 
   const [data, setData] = useState<IProductVariant[]>([])
 
@@ -48,8 +47,8 @@ export function Search() {
     setQuery((event.target as any).value);
 
     setResults(data.filter(item => {
-      if( item.title.toLowerCase().includes(event.target.value.toLowerCase()) ||
-          products.find(product => product.id === item.parentId)?.title.toLowerCase().includes(event.target.value.toLowerCase()))
+      if( item.title.toLowerCase().includes((event.target as any).value.toLowerCase()) ||
+          products.find(product => product.id === item.parentId)?.title.toLowerCase().includes((event.target as any).value.toLowerCase()))
         return item
     }))
 
