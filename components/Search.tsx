@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import NextLink from "next/link";
 import {
   Flex,
@@ -13,6 +13,7 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 import { products } from "../constants";
 import ProductVariantItem from "./ProductVariantItem";
+import {IProductVariant} from "../types";
 
 // eslint-disable-next-line react/display-name
 const MenuPlacer: any = React.forwardRef<any>(
@@ -29,8 +30,28 @@ export function Search() {
   const product = products[0];
   const variants = products[0].variants;
 
+  const [data, setData] = useState<IProductVariant[]>([])
+
+  const [results, setResults] = useState<IProductVariant[]>([])
+
+  useEffect(() => {
+    let tmpData: IProductVariant[] = [];
+    for(let product of products){
+      for(let variant of product.variants){
+        tmpData.push(variant)
+      }
+    }
+    setData(tmpData)
+  },[])
+
   const handleQuery: React.ChangeEventHandler = (event) => {
     setQuery((event.target as any).value);
+
+    setResults(data.filter(item => {
+      if( item.title.toLowerCase().includes(event.target.value.toLowerCase()) ||
+          products.find(product => product.id === item.parentId)?.title.toLowerCase().includes(event.target.value.toLowerCase()))
+        return item
+    }))
 
     setTimeout(() => {
       if (ref.current) {
@@ -61,7 +82,7 @@ export function Search() {
 
       {query ? (
         <MenuList zIndex="200">
-          {variants.map((variant) => (
+          {results.length <= 6 && (results.map((variant) => (
             <NextLink
               href={`/product/${product.id}/${variant.id}`}
               key={variant.id}
@@ -70,7 +91,7 @@ export function Search() {
                 <ProductVariantItem variant={variant} />
               </MenuItem>
             </NextLink>
-          ))}
+          )))}
         </MenuList>
       ) : null}
     </Menu>
