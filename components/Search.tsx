@@ -83,7 +83,7 @@ export function Search() {
         <MenuList zIndex="200">
           {results.length <= 6 && (results.map((variant) => (
             <NextLink
-              href={`/product/${product.id}/${variant.id}`}
+              href={`/product/${variant.parentId}/${variant.id}`}
               key={variant.id}
             >
               <MenuItem as={Flex} onClick={handleSelect}>
