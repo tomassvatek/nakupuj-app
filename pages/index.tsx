@@ -21,7 +21,7 @@ const Home: NextPage = () => {
           <Heading fontSize="3xl">Kategorie</Heading>
           {products.map(product => {
               return (
-                      <NextLink href={`/variant/${product.id}`}>
+                      <NextLink href={`/variant/${product.id}`} key={product.id}>
                           <Button size="sm" colorScheme="green" style={{marginRight: '0.5rem', marginTop: '0.5rem'}}>{product.title}</Button>
                       </NextLink>
               )
