@@ -9,6 +9,7 @@ import VariantSlider from "../../components/VariantSlider";
 import {Box, Heading} from "@chakra-ui/layout";
 import {Button} from "@chakra-ui/react";
 import NextLink from "next/link";
+import Categories from "../../components/Categories";
 
 
 const Variant: NextPage= () => {
@@ -40,17 +41,18 @@ const Variant: NextPage= () => {
                 <title>{getTitle(title)}</title>
             </Head>
             <Box p={5}>
+                <Categories selected={variant}/>
                 <Heading mt={5} fontSize="3xl">{title}</Heading>
 
-            <VariantSlider variants={data}/>
+                <VariantSlider variants={data}/>
 
-            <Box style={{paddingTop: '2rem', display: 'flex', justifyContent: 'flex-end', paddingRight: '5rem'}}>
-                <NextLink href="/">
-                    <Button size="lg" colorScheme="green">
-                        Zpět na hlavní stranu
-                    </Button>
-                </NextLink>
-            </Box>
+                <Box style={{paddingTop: '2rem', display: 'flex', justifyContent: 'flex-end', paddingRight: '5rem'}}>
+                    <NextLink href="/">
+                        <Button size="lg" colorScheme="green">
+                            Zpět na hlavní stranu
+                        </Button>
+                    </NextLink>
+                </Box>
             </Box>
         </main>
     );

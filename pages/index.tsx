@@ -10,6 +10,7 @@ import {napoje, products} from '../constants';
 import React from "react";
 import { Button } from "@chakra-ui/react";
 import NextLink from "next/link";
+import Categories from '../components/Categories'
 
 const Home: NextPage = () => {
   return (
@@ -18,14 +19,7 @@ const Home: NextPage = () => {
         <title>{getTitle()}</title>
       </Head>
       <Box p={5}>
-          <Heading fontSize="3xl">Kategorie</Heading>
-          {products.map(product => {
-              return (
-                      <NextLink href={`/variant/${product.id}`} key={product.id}>
-                          <Button size="sm" colorScheme="green" style={{marginRight: '0.5rem', marginTop: '0.5rem'}}>{product.title}</Button>
-                      </NextLink>
-              )
-          })}
+        <Categories/>
         <Heading fontSize="3xl">Všechny produkty</Heading>
         <ProductSlider />
         <Heading mt={5} fontSize="3xl">{napoje.name}</Heading>
