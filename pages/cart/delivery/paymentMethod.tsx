@@ -1,47 +1,41 @@
-import React, { useState } from "react";
-import { Text, FormControl, FormLabel, Input, Radio, RadioGroup } from "@chakra-ui/react";
+import React from "react";
+import { Text, Radio } from "@chakra-ui/react";
 import { formatPrice } from '../../../utils/formatters';
+import { InputControl, RadioGroupControl } from 'formik-chakra-ui';
+import { addGaps, addSlash } from '../../../utils/inputFormatters';
+import { useField, useFormikContext } from 'formik';
 
 interface IProps {
   totalAmount: number;
 }
 
 const PaymentMethod: React.FC<IProps> = (props) => {
-  const [selected, setSelected] = useState<string>("1");
+  const [field] = useField('deliveryType');
+  const { values } = useFormikContext<any>();
 
   return (
     <>
       <Text fontSize="xl" fontWeight="bold" mt={5}>Platba</Text>
-      <RadioGroup
-        onChange={setSelected}
-        value={selected}
+      <RadioGroupControl
+        name="deliveryType"
         style={{ paddingTop: "1rem" }}
       >
         <Radio value="1">Platba kartou</Radio>
         <Radio value="2" ml={3}>Platba kurýrovi na místě</Radio>
-      </RadioGroup>
+      </RadioGroupControl>
 
-      {selected === "1" && (
+      {field.value === "1" && (
         <div style={{ display: "flex", paddingTop: "1rem" }}>
           <div style={{ width: "60%" }}>
-            <FormControl id="cardNumber">
-              <FormLabel>Číslo karty</FormLabel>
-              <Input type="text" size="md" placeholder="1234 1234 1234 1234" />
-            </FormControl>
+            <InputControl name="cardNumber" label="Číslo karty" inputProps={{ placeholder: '1234 1234 1234 1234', maxLength: 19, value: addGaps(values.cardNumber) }}/>
           </div>
 
           <div style={{ width: "20%", margin: "0 2rem" }}>
-            <FormControl id="expiration">
-              <FormLabel>Datum vypršení</FormLabel>
-              <Input type="text" size="md" placeholder="12/34" />
-            </FormControl>
+            <InputControl name="expiration" label="Datum vypršení" inputProps={{ placeholder: '12/34', value: addSlash(values.expiration) }} />
           </div>
 
           <div style={{ width: "20%" }}>
-            <FormControl id="cvv">
-              <FormLabel>CVV</FormLabel>
-              <Input type="text" size="md" placeholder="123" />
-            </FormControl>
+            <InputControl name="cvv" label="CVV" inputProps={{ placeholder: '123', maxLength: 4 }} />
           </div>
         </div>
       )}

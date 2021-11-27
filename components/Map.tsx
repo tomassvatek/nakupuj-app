@@ -1,7 +1,8 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
+import { memo } from 'react';
 
-export default function Map() {
+function Map() {
   return (
     <MapContainer center={[50.081587, 14.42717]} zoom={11} scrollWheelZoom={false} style={{ height: 400, width: "100%" }}>
       <TileLayer
@@ -11,3 +12,5 @@ export default function Map() {
     </MapContainer>
   )
 }
+
+export default memo(Map);

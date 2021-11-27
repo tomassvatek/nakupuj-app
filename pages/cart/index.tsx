@@ -69,6 +69,7 @@ const Cart: NextPage = () => {
   }
 
   if (items.length === 0) return (
+
     <Container maxW={'6xl'} p={5}>
       <Head>
         <title>{getTitle("Košík")}</title>

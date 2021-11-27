@@ -13,7 +13,7 @@ const Home: NextPage = () => {
       <Head>
         <title>{getTitle()}</title>
       </Head>
-      <Container maxW={'6xl'} p={5}>
+      <Container maxW={'6xl'} py={5}>
         <Categories/>
         <Heading mt={5} fontSize="3xl">Všechny produkty</Heading>
         <ProductSlider />

@@ -26,7 +26,7 @@ const Category: NextPage<Props> = ({ category }) => {
       <Head>
         <title>{getTitle(category.name)}</title>
       </Head>
-      <Container maxW={'6xl'} p={5}>
+      <Container maxW={'6xl'} py={5}>
         <BreadcrumbComponent items={['index']}>
           <BreadcrumbItem>
             <BreadcrumbLink as={NextLink} href={`/category/${category.id}`}>{category.name}</BreadcrumbLink>
@@ -51,7 +51,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     props.category = categories[_id];
   }
 
-  if (!props.product) {
+  if (!props.category) {
     context.res.statusCode = 404;
   }
 
