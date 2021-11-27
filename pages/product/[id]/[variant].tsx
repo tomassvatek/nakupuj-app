@@ -93,6 +93,11 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
     return variant;
   }
 
+  const isCheapestVariant = (variant: IProductVariant): boolean => {
+    let product = products.find((product) => product.id === variant.parentId);
+    return getCheapestVariantForProduct(product!).id === variant.id;
+  }
+
   const selectedVariant = getSelectedVariant();
 
   const setSelectedVariant = (variantId: number) => {
@@ -156,7 +161,9 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
                 <Flex justifyContent="space-between">
                   <Text maxW="60%" isTruncated={true}>{selectedVariant.title}</Text>
                   <div>
-                    <Badge mt={0.5} mr={2} float="left" colorScheme={'green'}>Nejlevnější</Badge>
+                    {isCheapestVariant(selectedVariant) &&
+                      <Badge mt={0.5} mr={2} float="left" colorScheme={'green'}>Nejlevnější</Badge>
+                    }
                     <strong>{formatPrice(selectedVariant.price)}</strong>
                   </div>
                 </Flex>
@@ -166,7 +173,7 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
                   <MenuItem bg={variant === selectedVariant ? 'gray.200' : undefined} as={Flex} key={variant.id} onClick={() => setSelectedVariant(variant.id)}>
                     <ProductVariantItem
                       variant={variant}
-                      cheapest={min === variant}
+                      cheapest={isCheapestVariant(variant)}
                     />
                   </MenuItem>
                 ))}
