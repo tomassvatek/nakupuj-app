@@ -13,8 +13,6 @@ interface IProps {
 const Categories = (props: IProps) => {
     const {selected} = props
 
-    console.log(selected)
-
     return (
         <>
             <Heading fontSize="3xl">Kategorie</Heading>
