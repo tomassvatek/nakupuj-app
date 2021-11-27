@@ -73,14 +73,24 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
   const { addItem } = useCart();
   const [amount, setAmount] = useState(1);
   const [min, max] = getRanges(product);
-  
-  const getSelectedVariant = () => {
+
+  const getSelectedVariant = (): IProductVariant | undefined => {
     let variantIndex = 0;
     const variantId = router.query.variant ? parseInt(router.query.variant as any, 10) : undefined;
-    if (product && typeof variantId !== 'undefined') {
-      variantIndex = product.variants.findIndex((i) => i.id === variantId);
+    if (product) {
+      if (typeof variantId !== 'undefined') {
+        variantIndex = product.variants.findIndex((i) => i.id === variantId);
+      } else {
+        variantIndex = product.variants.findIndex((i) => i.id === getCheapestVariantForProduct(product).id);
+      }
     }
-    return product?.variants[variantIndex !== -1 ? variantIndex : 0 ];
+    return product?.variants[variantIndex];
+  }
+
+  const getCheapestVariantForProduct = (product: IProduct): IProductVariant => {
+    let variant = product.variants.reduce(function (prev, curr) { return prev.price < curr.price ? prev : curr });
+    console.log(`variant`, variant);
+    return variant;
   }
 
   const selectedVariant = getSelectedVariant();
@@ -202,7 +212,6 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
           </Container>
         )}
       </Container>
-      
     </main>
   )
 }

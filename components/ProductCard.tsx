@@ -13,7 +13,7 @@ import {
   useDisclosure
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { IProduct } from "../types";
+import { IProduct, IProductVariant } from "../types";
 import { formatPrice } from '../utils/formatters';
 import { useCart } from '../hooks/useCart';
 import AddToCartConfirmation from "./AddToCartConfirmation";
@@ -23,7 +23,7 @@ function ProductCard({ product }: { product: IProduct }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { addItem } = useCart();
   const [amount, setAmount] = useState(1);
-  const variant = product.variants[0];
+  const variant = getCheapestVariantForProduct(product);
 
   const handleAddToCart: React.MouseEventHandler = () => {
     setAmount(1);
@@ -67,19 +67,20 @@ function ProductCard({ product }: { product: IProduct }) {
                   od
                 </Box>
                 <Box as="span" fontWeight="semibold">
-                  {formatPrice(getCheapestPriceForProduct(product))}
+                  {formatPrice(getCheapestVariantForProduct(product).price)}
                 </Box>
               </Box>
             </Flex>
           )}
         </Box>
       </Flex>
+      <AddToCartConfirmation variant={variant} onClose={onClose} isOpen={isOpen} />
     </Box >
   );
 }
 
-const getCheapestPriceForProduct = (product: IProduct): number => {
-  return product.variants.reduce(function (prev, curr) { return prev.price < curr.price ? prev : curr }).price;
+const getCheapestVariantForProduct = (product: IProduct): IProductVariant => {
+  return product.variants.reduce(function (prev, curr) { return prev.price < curr.price ? prev : curr });
 }
 
 export default ProductCard;
