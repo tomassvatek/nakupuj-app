@@ -9,7 +9,6 @@ import {
   Tooltip,
   Center,
   Button,
-  Text,
   useDisclosure
 } from "@chakra-ui/react";
 import NextLink from "next/link";

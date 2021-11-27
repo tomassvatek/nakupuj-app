@@ -154,8 +154,10 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
             <Menu>
               <MenuButton as={Button} textAlign="left" rightIcon={<ChevronDownIcon />}>
                 <Flex justifyContent="space-between">
-                  <span>{selectedVariant.title}</span>
-
+                  <div>
+                    <span>{selectedVariant.title}</span>
+                    <Badge ml={3} mb={0.5} colorScheme={'green'}>Nejlevnější</Badge>
+                  </div>
                   <strong>{formatPrice(selectedVariant.price)}</strong>
                 </Flex>
               </MenuButton>
