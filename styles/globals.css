@@ -29,7 +29,7 @@ a {
 
 .addToCartBtn {
   position: absolute !important;
-  top: 90% !important;
+  top: 50% !important;
   left: 5% !important;
   border-radius: 50% !important;
 }

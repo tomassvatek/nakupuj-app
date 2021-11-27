@@ -15,11 +15,11 @@ const Home: NextPage = () => {
         <title>{getTitle()}</title>
       </Head>
       <Box p={5}>
-        <Heading fontSize="3xl">Všechny produkty</Heading>
+        <Heading mt={5} fontSize="3xl">Všechny produkty</Heading>
         <ProductSlider />
-        <Heading fontSize="3xl">{napoje.name}</Heading>
+        <Heading mt={5} fontSize="3xl">{napoje.name}</Heading>
         <ProductSlider category={napoje.id} />
-        <Heading fontSize="3xl">Novinky</Heading>
+        <Heading mt={5} fontSize="3xl">Novinky</Heading>
         <ProductSlider onlyNew={true} />
       </Box>
     </main>

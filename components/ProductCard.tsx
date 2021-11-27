@@ -9,9 +9,8 @@ import {
   Tooltip,
   Center,
   Button,
-  VStack,
-  useDisclosure,
-  Spacer
+  Text,
+  useDisclosure
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { IProduct } from "../types";
@@ -33,35 +32,28 @@ function ProductCard({ product }: { product: IProduct }) {
   };
 
   return (
-    <Flex p={5} align="center" justifyContent="center" minH={400}>
-      <Box bg={useColorModeValue("white", "gray.800")} maxW="sm" minW={200} minH={200} borderWidth="1px" rounded="lg" shadow="lg" position="relative">
-        <Center className="cardImgContainer" m={3}>
+    <Box bg={useColorModeValue("white", "gray.800")} h={300} w={200} borderWidth="1px" rounded="lg" shadow="lg" mt={3}>
+      <Flex h="100%" flexDirection="column" justifyContent="space-between">
+        <Center className="cardImgContainer" m={3} h="50%">
           <NextLink href={`/product/${product.id}`}>
             <a>
-              <Image src={variant.imageURL} alt={`Obrázek ${product.title}`} fit="scale-down" align="center" roundedTop="lg" maxW={180} maxH={180} />
+              <Image src={variant.imageURL} display="block" alt={`Obrázek ${product.title}`} fit="scale-down" roundedTop="lg" maxH={180} maxW={180} mt={5} />
             </a>
           </NextLink>
-          <Tooltip label="Přidat do košíku" bg="white" placement={"top-start"} color={"gray.800"} fontSize={"1.2em"}>
-            <Button boxSize={10} className="addToCartBtn" onClick={handleAddToCart}>
-              <AddIcon boxSize={5} />
-              <chakra.a href={"#"} display={"flex"} />
-            </Button>
-          </Tooltip>
         </Center>
-
-        <AddToCartConfirmation
-          variant={variant}
-          onClose={onClose}
-          isOpen={isOpen}
-        />
-        <Box p="6">
+        <Tooltip label="Přidat do košíku" bg="white" placement={"top-start"} color={"gray.800"} fontSize={"1.2em"}>
+          <Button boxSize={10} className="addToCartBtn" onClick={handleAddToCart}>
+            <AddIcon boxSize={5} />
+            <chakra.a href={"#"} display={"flex"} />
+          </Button>
+        </Tooltip>
+        <Box pl={4} pr={4} pb={2}>
           {product.isNew && (
             <Badge rounded="full" fontSize="0.6em" colorScheme="red">
               Novinka
             </Badge>
           )}
           <Flex justifyContent="space-between" alignContent="center">
-
             <Box fontSize="xl" fontWeight="semibold" as="h4" lineHeight="tight" maxW={170} noOfLines={2} justifyContent="center">
               <NextLink href={`/product/${product.id}`}>
                 <a>{product.title}</a>
@@ -81,8 +73,8 @@ function ProductCard({ product }: { product: IProduct }) {
             </Flex>
           )}
         </Box>
-      </Box>
-    </Flex >
+      </Flex>
+    </Box >
   );
 }
 
