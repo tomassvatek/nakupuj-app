@@ -89,7 +89,6 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
 
   const getCheapestVariantForProduct = (product: IProduct): IProductVariant => {
     let variant = product.variants.reduce(function (prev, curr) { return prev.price < curr.price ? prev : curr });
-    console.log(`variant`, variant);
     return variant;
   }
 
@@ -125,7 +124,7 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
         <title>{getTitle(product.title)}</title>
       </Head>
 
-      <Container maxW={'6xl'} py={12}>
+      <Container maxW={'6xl'} p={5}>
         <BreadcrumbComponent items={['index']}>
           <BreadcrumbItem>
             <BreadcrumbLink as={NextLink} href={`/product/${product.id}`}>{product.title}</BreadcrumbLink>

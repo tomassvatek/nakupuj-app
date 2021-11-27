@@ -1,4 +1,4 @@
-import { Box, Heading } from '@chakra-ui/layout'
+import { Box, Container, Heading } from '@chakra-ui/layout'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import ProductSlider from '../components/ProductSlider'
@@ -13,7 +13,7 @@ const Home: NextPage = () => {
       <Head>
         <title>{getTitle()}</title>
       </Head>
-      <Box p={5}>
+      <Container maxW={'6xl'} p={5}>
         <Categories/>
         <Heading mt={5} fontSize="3xl">Všechny produkty</Heading>
         <ProductSlider />
@@ -21,7 +21,7 @@ const Home: NextPage = () => {
         <ProductSlider category={napoje.id} />
         <Heading mt={5} fontSize="3xl">Novinky</Heading>
         <ProductSlider onlyNew={true} />
-      </Box>
+      </Container>
     </main>
   )
 }

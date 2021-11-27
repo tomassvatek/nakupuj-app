@@ -57,7 +57,7 @@ function CartItem({ item, onItemRemove, onAmoutChange }: CartItemProps) {
           defaultValue={item.quantity}
           onAmoutChange={(e) => onAmoutChange({ ...e, item })}
         />
-        <Text fontWeight="600" w="90px">
+        <Text fontWeight="600" w="90px" textAlign="right">
           {formatPrice(item.quantity * variant.price)}
         </Text>
         <IconButton
