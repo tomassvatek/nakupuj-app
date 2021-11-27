@@ -10,7 +10,7 @@ import { Button } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { Formik } from 'formik';
 import { useRouter } from 'next/router';
-import { validationSchema } from './formSchema';
+import { validationSchema } from '../../utils/formSchema';
 
 const initialValues = {
   cardNumber: '',
