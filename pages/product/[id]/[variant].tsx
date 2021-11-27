@@ -1,6 +1,3 @@
-// cena 
-// cenová range
-
 import {
   Container,
   SimpleGrid,

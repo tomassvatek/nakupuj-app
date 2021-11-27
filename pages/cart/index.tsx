@@ -2,7 +2,7 @@ import { Box, Container, Heading } from "@chakra-ui/layout";
 import { Button, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartItemList from "../../components/CartItemList";
 import DeliveryOptions from "../../components/DeliveryOptions";
 import {

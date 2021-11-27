@@ -2,8 +2,8 @@ import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import React from "react";
 import { getTitle } from "../../utils/getTitle";
-import { categories, products } from '../../constants'
-import { ICategory, IProduct } from "../../types";
+import { categories } from '../../constants'
+import { ICategory } from "../../types";
 import ProductSlider from "../../components/ProductSlider";
 import { Container, Heading } from "@chakra-ui/layout";
 import ErrorPage from '../404'

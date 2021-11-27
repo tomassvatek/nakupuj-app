@@ -1,8 +1,8 @@
 import React from "react";
 import { Text, Radio } from "@chakra-ui/react";
-import { formatPrice } from '../../../utils/formatters';
+import { formatPrice } from '../../utils/formatters';
 import { InputControl, RadioGroupControl } from 'formik-chakra-ui';
-import { addGaps, addSlash } from '../../../utils/inputFormatters';
+import { addGaps, addSlash } from '../../utils/inputFormatters';
 import { useField, useFormikContext } from 'formik';
 
 interface IProps {
