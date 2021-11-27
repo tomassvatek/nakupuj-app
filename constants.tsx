@@ -121,12 +121,12 @@ export const maso: ICategory = {
 };
 
 export const pecivo: ICategory = {
-  id: 2,
+  id: 5,
   name: "Pečivo",
 };
 
 export const napoje: ICategory = {
-  id: 5,
+  id: 6,
   name: "Nápoje",
 };
 
@@ -142,6 +142,8 @@ export const categories: Record<number, ICategory> = {
   [mlecneVyrobky.id]: mlecneVyrobky,
   [ovoce.id]: ovoce,
   [maso.id]: maso,
+  [pecivo.id]: pecivo,
+  [napoje.id]: napoje,
 };
 
 const avokadoVariants: IProductVariant[] = [
