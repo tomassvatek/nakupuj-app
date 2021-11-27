@@ -7,7 +7,6 @@ import Logo from "./Logo";
 function EmptyCart() {
   return (
     <Box textAlign="center" py={10} px={6} h="78vh">
-      {/* <CheckCircleIcon boxSize={"50px"} color={"green.500"} /> */}
       <Center>
         <Logo />
       </Center>
@@ -20,8 +19,8 @@ function EmptyCart() {
         tu na vás do příští objednávky.
       </Text>
       <Box style={{ paddingTop: "2rem" }}>
-        <NextLink href="/">
-          <Button size="lg">Zpět k nakupu</Button>
+        <NextLink href="/" passHref>
+          <Button as="a" size="lg">Zpět k nákupu</Button>
         </NextLink>
       </Box>
     </Box>

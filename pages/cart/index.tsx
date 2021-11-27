@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/layout";
+import { Box, Container, Heading } from "@chakra-ui/layout";
 import { Button, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -13,6 +13,7 @@ import {
 import { ICartItem, useCart } from "../../hooks/useCart";
 import { getTitle } from "../../utils/getTitle";
 import NextLink from "next/link";
+import BreadcrumbComponent from '../../components/Breadcrumb'
 import EmptyCart from "../../components/EmptyCart";
 
 const Cart: NextPage = () => {
@@ -67,15 +68,28 @@ const Cart: NextPage = () => {
     }
   }
 
-  // if (isEmpty) return <EmptyCart />;
-
-  return (
-    <Box px="20" pt="5" pb="20">
+  if (items.length === 0) return (
+    <Container maxW={'6xl'} p={5}>
       <Head>
-        <Heading>{getTitle("Košík")}</Heading>
+        <title>{getTitle("Košík")}</title>
       </Head>
 
-      <Box p={4}>
+      <Box py={4}>
+        <BreadcrumbComponent items={['index', 'cart']} />
+        <EmptyCart />
+      </Box>
+    </Container>
+  );
+
+  return (
+    <Container maxW={'6xl'} p={5}>
+      <Head>
+        <title>{getTitle("Košík")}</title>
+      </Head>
+
+      <Box py={4}>
+        <BreadcrumbComponent items={['index', 'cart']} />
+
         <Heading mb="5">Košík</Heading>
         <CartItemList
           items={items}
@@ -117,7 +131,7 @@ const Cart: NextPage = () => {
           </NextLink>
         </Box>
       </Box>
-    </Box>
+    </Container>
   );
 };
 
