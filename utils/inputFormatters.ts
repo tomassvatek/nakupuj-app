@@ -6,6 +6,6 @@ export function addGaps(str: string) {
     .trim();
 }
 
-export function addSlash(str) {
+export function addSlash(str: string) {
   return str;
-}
+};
