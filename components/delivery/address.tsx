@@ -42,16 +42,16 @@ const Address: React.FC = () => {
   function RadioCard(props: any) {
     const group = useRadioGroupContext()
     const { value: valueProp } = props
-  
+
     let isChecked = props.isChecked
     if (group?.value != null && valueProp != null) {
       isChecked = group.value === valueProp
     }
-  
+
     let onChange = group?.onChange;
-  
+
     const name = props?.name ?? group?.name
-  
+
     const {
       getInputProps,
       getCheckboxProps,
@@ -62,7 +62,7 @@ const Address: React.FC = () => {
       onChange,
       name,
     })
-  
+
     const checkboxProps = getCheckboxProps(htmlProps)
     const inputProps = getInputProps()
 
@@ -135,7 +135,7 @@ const Address: React.FC = () => {
         size="md"
         style={{ margin: "0.5rem 0" }}
       />
-      <Map />
+      {/* <Map /> */}
       <Text mt={5} fontSize="xl" fontWeight="bold">Vyberte den dodání</Text>
       <div style={{ padding: "0.5rem 0", paddingBottom: "" }}>
         <DeliveryDayPicker />
