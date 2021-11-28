@@ -15,6 +15,7 @@ import { getTitle } from "../../utils/getTitle";
 import NextLink from "next/link";
 import BreadcrumbComponent from '../../components/Breadcrumb'
 import EmptyCart from "../../components/EmptyCart";
+import CartNavigation from '../../components/CartNavigation';
 
 const Cart: NextPage = () => {
   const { items, updateItemQuantity, addItem, emptyCart, removeItem, isEmpty } =
@@ -83,56 +84,61 @@ const Cart: NextPage = () => {
   );
 
   return (
-    <Container maxW={'6xl'} p={5}>
+    <main>
       <Head>
         <title>{getTitle("Košík")}</title>
       </Head>
 
-      <Box py={4}>
+      <Container maxW={'6xl'} p={4}>
         <BreadcrumbComponent items={['index', 'cart']} />
 
-        <Heading mb="5">Košík</Heading>
-        <CartItemList
-          items={items}
-          onAmountChange={(e) => {
-            updateItemQuantity(e.item.id, e.value);
-          }}
-          onItemRemove={(e) => {
-            removeItem(e.id);
-          }}
-        />
-      </Box>
-      <Box pt="5">
+        <CartNavigation activeIndex={0} />
+      </Container>
+
+      <Container maxW={'6xl'} pb={5}>
         <Box pb="5">
-          <Heading as="h2" size="lg" pb="1">
-            Doporučené nákupy
-          </Heading>
-          <Text color="gray.500" fontSize="sm">
-            Zde si můžete vybrat jiný nákup. Pokud se Vám nebude líbit, můžete
-            se vrátit zpět na Váš výber.
-          </Text>
+          <CartItemList
+            items={items}
+            onAmountChange={(e) => {
+              updateItemQuantity(e.item.id, e.value);
+            }}
+            onItemRemove={(e) => {
+              removeItem(e.id);
+            }}
+          />
         </Box>
-        <DeliveryOptions
-          radioValue={selectedOption}
-          innerRadioValue={selectedInnerValue}
-          onChange={handleRadioChange}
-          onInnerOptionChange={handleInnnerRadioChange}
-        />
-        <Box pt="10" textAlign="right">
-          {/* <NextLink href="/cart">
-              <Button aria-label="Košík" leftIcon={<BsCartFill />}>
-                {cartTotal > 0 ? formatPrice(cartTotal) : 'Košík'}
+        <Box pb="5">
+          <Box pb="5">
+            <Heading as="h2" size="lg" pb="1">
+              Doporučené nákupy
+            </Heading>
+            <Text color="gray.500" fontSize="sm">
+              Zde si můžete vybrat jiný nákup. Pokud se Vám nebude líbit, můžete
+              se vrátit zpět na Váš výber.
+            </Text>
+          </Box>
+          <DeliveryOptions
+            radioValue={selectedOption}
+            innerRadioValue={selectedInnerValue}
+            onChange={handleRadioChange}
+            onInnerOptionChange={handleInnnerRadioChange}
+          />
+          <Box pt="10" textAlign="right">
+            {/* <NextLink href="/cart">
+                <Button aria-label="Košík" leftIcon={<BsCartFill />}>
+                  {cartTotal > 0 ? formatPrice(cartTotal) : 'Košík'}
+                </Button>
+                
+              </NextLink> */}
+            <NextLink href="/cart/contact">
+              <Button size="lg" colorScheme="green">
+                Na kontaktní údaje
               </Button>
-              
-            </NextLink> */}
-          <NextLink href="/cart/payment">
-            <Button size="lg" colorScheme="green">
-              Na dopravu a platbu
-            </Button>
-          </NextLink>
+            </NextLink>
+          </Box>
         </Box>
-      </Box>
-    </Container>
+      </Container>
+    </main>
   );
 };
 

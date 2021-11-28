@@ -37,6 +37,13 @@ export const pages = {
   },
 };
 
+export const userData = {
+  firstName: 'Alena',
+  lastName: 'Vránová',
+  email: 'alena@vranova.cz',
+  phone: '607558632'
+};
+
 export const deliveryOptions: DeliveryOptionItem[] = [
   {
     title: "Váš aktuální nákup",

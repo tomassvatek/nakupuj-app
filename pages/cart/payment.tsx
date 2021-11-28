@@ -11,6 +11,8 @@ import NextLink from "next/link";
 import { Formik } from 'formik';
 import { useRouter } from 'next/router';
 import { validationSchema } from '../../utils/formSchema';
+import CartNavigation from '../../components/CartNavigation';
+import BreadcrumbComponent from '../../components/Breadcrumb';
 
 const initialValues = {
   cardNumber: '',
@@ -35,9 +37,13 @@ const Payment: NextPage = () => {
         <title>{getTitle("Doprava a platba")}</title>
       </Head>
 
-      <Container maxW={'4xl'} py={12}>
-        <Heading mb={4}>Doprava a platba</Heading>
+      <Container maxW={'6xl'} p={4}>
+        <BreadcrumbComponent items={['index', 'cart']} />
 
+        <CartNavigation activeIndex={2} />
+      </Container>
+
+      <Container maxW={'4xl'} py={5}>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -58,8 +64,8 @@ const Payment: NextPage = () => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <NextLink href="/cart">
-                      <Button size="lg">Zpět na košík</Button>
+                    <NextLink href="/cart/contact">
+                      <Button size="lg">Zpět na kontaktní údaje</Button>
                     </NextLink>
 
                     <Button type="submit" size="lg" colorScheme="green">
