@@ -6,7 +6,7 @@ export type DeliveryOptionItem = {
   optionId: number | string;
   title: string;
   deliveryDuration: string;
-  price: string;
+  price: number;
   save: number;
   bgColor?: string;
   py?: string;
@@ -18,9 +18,9 @@ type DeliveryOptionProps = RadioProps & DeliveryOptionItem;
 function DeliveryOption({
   title,
   deliveryDuration,
-  price,
   save,
   optionId,
+  price,
   bgColor,
   py = "5",
   childrenOptions,
@@ -38,7 +38,7 @@ function DeliveryOption({
           </Text> */}
           <Badge> {deliveryDuration}</Badge>
           <Text flex="2" fontWeight="600" textAlign="right">
-            {price}
+            {Math.round(price * 100) / 100} Kč
           </Text>
         </Flex>
       </Radio>
