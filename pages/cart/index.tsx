@@ -2,15 +2,12 @@ import { Box, Container, Heading } from "@chakra-ui/layout";
 import { Button, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import CartItemList from "../../components/CartItemList";
 import DeliveryOptions from "../../components/DeliveryOptions";
 import {
   deliveryOptions,
-  eidamVariants,
-  pivoVariants,
   products,
-  videnskeParkyVariants,
 } from "../../constants";
 import { ICartItem, useCart } from "../../hooks/useCart";
 import { getTitle } from "../../utils/getTitle";

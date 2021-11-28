@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import ProductSlider from '../components/ProductSlider'
 import { getTitle } from '../utils/getTitle'
-import {napoje} from '../constants';
+import { napoje } from '../constants';
 import React from "react";
 import Categories from '../components/Categories'
 
@@ -13,8 +13,8 @@ const Home: NextPage = () => {
       <Head>
         <title>{getTitle()}</title>
       </Head>
-      <Container maxW={'6xl'} py={5}>
-        <Categories/>
+      <Container maxW={{ base: '6xl', xl: '8xl' }} py={5}>
+        <Categories />
         <Heading mt={5} fontSize="3xl">Všechny produkty</Heading>
         <ProductSlider />
         <Heading mt={5} fontSize="3xl">{napoje.name}</Heading>

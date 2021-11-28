@@ -26,7 +26,7 @@ const Category: NextPage<Props> = ({ category }) => {
       <Head>
         <title>{getTitle(category.name)}</title>
       </Head>
-      <Container maxW={'6xl'} py={5}>
+      <Container maxW={{ base: '6xl', xl: '8xl' }} py={5}>
         <BreadcrumbComponent items={['index']}>
           <BreadcrumbItem>
             <BreadcrumbLink as={NextLink} href={`/category/${category.id}`}>{category.name}</BreadcrumbLink>
