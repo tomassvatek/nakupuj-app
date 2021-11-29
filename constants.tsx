@@ -53,28 +53,42 @@ export const deliveryOptions: DeliveryOptionItem[] = [
     optionId: "2",
   },
   {
-    title: "Chci to najednou",
-    deliveryDuration: "Za 6 dní",
+    title: "Rohlik",
+    deliveryDuration: "Zítra",
     price: 0,
-    save: 5,
+    save: 4,
     optionId: "3",
-    childrenOptions: [
-      {
-        title: "Rohlik",
-        deliveryDuration: "Zítra",
-        price: 0,
-        save: 4,
-        optionId: "4",
-      },
-      {
-        title: "Kosik",
-        deliveryDuration: "Za 2 dny",
-        price: 0,
-        save: 4,
-        optionId: "5",
-      },
-    ],
   },
+  {
+    title: "Kosik",
+    deliveryDuration: "Za 2 dny",
+    price: 0,
+    save: 4,
+    optionId: "4",
+  },
+  // {
+  //   title: "Chci to najednou",
+  //   deliveryDuration: "Za 6 dní",
+  //   price: 0,
+  //   save: 5,
+  //   optionId: "3",
+  //   childrenOptions: [
+  //     {
+  //       title: "Rohlik",
+  //       deliveryDuration: "Zítra",
+  //       price: 0,
+  //       save: 4,
+  //       optionId: "4",
+  //     },
+  //     {
+  //       title: "Kosik",
+  //       deliveryDuration: "Za 2 dny",
+  //       price: 0,
+  //       save: 4,
+  //       optionId: "5",
+  //     },
+  //   ],
+  // },
 ];
 
 // export const products: IProduct[] = [

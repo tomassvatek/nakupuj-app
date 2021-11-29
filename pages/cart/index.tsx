@@ -2,40 +2,49 @@ import { Box, Container, Heading } from "@chakra-ui/layout";
 import { Button, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import CartItemList from "../../components/CartItemList";
 import DeliveryOptions from "../../components/DeliveryOptions";
-import {
-  deliveryOptions,
-  products,
-} from "../../constants";
+import { deliveryOptions, products } from "../../constants";
 import { ICartItem, useCart } from "../../hooks/useCart";
 import { getTitle } from "../../utils/getTitle";
 import NextLink from "next/link";
-import BreadcrumbComponent from "../../components/Breadcrumb";
 import { DeliveryOptionItem } from "../../components/DeliveryOption";
 import produce from "immer";
 import EmptyCart from "../../components/EmptyCart";
 
 const Cart: NextPage = () => {
-  const {
-    items,
-    updateItemQuantity,
-    addItem,
-    emptyCart,
-    removeItem,
-    cartTotal,
-    isEmpty,
-    setItems,
-  } = useCart();
+  const [selectedOption, setSelectedOption] = useState<number | string>("1");
+  const { items, updateItemQuantity, removeItem, setItems, isEmpty } =
+    useCart();
 
-  const originCart = useMemo<ICartItem[]>(() => {
-    return produce(items, (draft) => draft);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  const originCartRef = useRef<ICartItem[]>([]);
+  const rohlikCartRef = useRef<ICartItem[]>([]);
+  const kosikCartRef = useRef<ICartItem[]>([]);
+  const cheapestCartRef = useRef<ICartItem[]>([]);
+
+  useEffect(() => {
+    originCartRef.current = originCart;
+    cheapestCartRef.current = cheapestCart;
+    rohlikCartRef.current = rohlikCart;
+    kosikCartRef.current = kosikCart;
   }, []);
 
+  const originCart: ICartItem[] = useMemo<ICartItem[]>(() => {
+    if (selectedOption != "1") return originCartRef.current;
+
+    const updatedOrigin = produce(items, (draft) => draft);
+    originCartRef.current = updatedOrigin;
+    return updatedOrigin;
+  }, [items, selectedOption]);
+
   const cheapestCart = useMemo<ICartItem[]>(() => {
-    const copyOrigin = produce(originCart, (draft) => draft);
+    let copyItems;
+    if (selectedOption == "1") copyItems = originCartRef.current;
+    else if (selectedOption == "2") copyItems = items;
+    else return cheapestCartRef.current;
+
+    const copyOrigin = produce(copyItems, (draft) => draft);
     const cheapestCart: ICartItem[] = [];
 
     copyOrigin.forEach((cartItem) => {
@@ -53,41 +62,77 @@ const Cart: NextPage = () => {
         cheapestCart.push(cartItem);
       }
     });
+    cheapestCartRef.current = cheapestCart;
     return cheapestCart;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [items, selectedOption]);
+
+  const rohlikCart = useMemo<ICartItem[]>(() => {
+    let copyItems;
+    if (selectedOption == "1") copyItems = originCartRef.current;
+    else if (selectedOption == "3") copyItems = items;
+    else return rohlikCartRef.current;
+
+    const copyOrigin = produce(copyItems, (draft) => draft);
+    const rohlikCart = copyOrigin.map((cartItem) => {
+      const item: ICartItem = {
+        id: Math.floor(Math.random() * 300000),
+        item: cartItem.item,
+        price: cartItem.price,
+        quantity: cartItem.quantity,
+      };
+      return item;
+    });
+
+    rohlikCartRef.current = rohlikCart;
+    return rohlikCart;
+  }, [items, selectedOption]);
+
+  const kosikCart = useMemo<ICartItem[]>(() => {
+    let copyItems;
+    if (selectedOption == "1") copyItems = originCartRef.current;
+    else if (selectedOption == "4") copyItems = items;
+    else return kosikCartRef.current;
+
+    const copyOrigin = produce(copyItems, (draft) => draft);
+    const kosikCart = copyOrigin.map((cartItem) => {
+      const item: ICartItem = {
+        id: Math.floor(Math.random() * 300000),
+        item: cartItem.item,
+        price: cartItem.price,
+        quantity: cartItem.quantity,
+      };
+      return item;
+    });
+
+    kosikCartRef.current = kosikCart;
+    return kosikCart;
+  }, [items, selectedOption]);
 
   const options = useMemo<DeliveryOptionItem[]>(() => {
     return deliveryOptions.map((option) => {
       if (option.optionId == 1) {
-        const currPrice = originCart?.reduce(
-          (acc, { item }) => acc + item.price,
-          0
-        );
-        return { ...option, price: currPrice ?? cartTotal };
+        const currCartPrice = getCartPrice(originCart);
+        return { ...option, price: currCartPrice };
       }
       if (option.optionId == 2) {
-        const cheapestPrice: number = cheapestCart.reduce((acc, { price }) => {
-          return acc + price;
-        }, 0);
-        return { ...option, price: cheapestPrice };
+        const cheapestCartPrice = getCartPrice(cheapestCart);
+        return { ...option, price: cheapestCartPrice };
       }
+      if (option.optionId == 3) {
+        const rohlikCartPrice = getCartPrice(rohlikCart);
+        return { ...option, price: rohlikCartPrice };
+      }
+      if (option.optionId == 4) {
+        const kosikCartPrice = getCartPrice(kosikCart);
+        return { ...option, price: kosikCartPrice };
+      }
+
       return option;
     });
-  }, [cartTotal, cheapestCart, originCart]);
-
-  const [selectedOption, setSelectedOption] = useState<number | string>("1");
-  const [selectedInnerValue, setInnerSelectedValue] = useState<number | string>(
-    "4"
-  );
+  }, [cheapestCart, kosikCart, originCart, rohlikCart]);
 
   function handleRadioChange(optionId: string) {
     setSelectedOption(optionId);
-    handleDeliveryOptionChange(optionId);
-  }
-
-  function handleInnnerRadioChange(optionId: string) {
-    setInnerSelectedValue(optionId);
     handleDeliveryOptionChange(optionId);
   }
 
@@ -99,26 +144,43 @@ const Cart: NextPage = () => {
       );
   }
 
+  function getCartPrice(cart: ICartItem[]) {
+    return (
+      cart?.reduce((acc, { price, quantity }) => {
+        return acc + price * quantity;
+      }, 0) ?? 0
+    );
+  }
+
   function handleDeliveryOptionChange(optionId: string) {
     switch (optionId) {
       case "1":
-        setItems(originCart);
+        setItems(originCartRef.current);
         break;
       case "2":
         setItems(cheapestCart);
         break;
+      case "3":
+        setItems(rohlikCart);
+        break;
+      case "4":
+        setItems(kosikCart);
+        break;
     }
   }
 
-  if (items.length === 0)
+  function handleAmountChange(e: any) {
+    updateItemQuantity(e.item.id, e.value);
+  }
+
+  if (isEmpty)
     return (
-      <Container maxW={"6xl"} p={5}>
+      <Container maxW={{ base: "6xl", xl: "8xl" }} py={5}>
         <Head>
           <title>{getTitle("Košík")}</title>
         </Head>
 
         <Box py={4}>
-          <BreadcrumbComponent items={["index", "cart"]} />
           <EmptyCart />
         </Box>
       </Container>
@@ -131,14 +193,10 @@ const Cart: NextPage = () => {
       </Head>
 
       <Box py={4}>
-        <BreadcrumbComponent items={["index", "cart"]} />
-
         <Heading mb="5">Košík</Heading>
         <CartItemList
           items={items}
-          onAmountChange={(e) => {
-            updateItemQuantity(e.item.id, e.value);
-          }}
+          onAmountChange={handleAmountChange}
           onItemRemove={(e) => {
             removeItem(e.id);
           }}
@@ -157,9 +215,7 @@ const Cart: NextPage = () => {
         <DeliveryOptions
           cartOptions={options}
           radioValue={selectedOption}
-          innerRadioValue={selectedInnerValue}
           onChange={handleRadioChange}
-          onInnerOptionChange={handleInnnerRadioChange}
         />
         <Box pt="10" textAlign="right">
           <NextLink href="/cart/payment">
