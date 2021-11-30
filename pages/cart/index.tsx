@@ -2,7 +2,7 @@ import { Box, Container, Heading } from "@chakra-ui/layout";
 import { Button, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import CartItemList from "../../components/CartItemList";
 import DeliveryOptions from "../../components/DeliveryOptions";
 import { deliveryOptions, products } from "../../constants";
@@ -15,8 +15,7 @@ import EmptyCart from "../../components/EmptyCart";
 
 const Cart: NextPage = () => {
   const [selectedOption, setSelectedOption] = useState<number | string>("1");
-  const { items, updateItemQuantity, removeItem, setItems, isEmpty } =
-    useCart();
+  const { items, updateItemQuantity, updateItem, removeItem, setItems, isEmpty } = useCart();
 
   const originCartRef = useRef<ICartItem[]>([]);
   const rohlikCartRef = useRef<ICartItem[]>([]);
@@ -200,6 +199,7 @@ const Cart: NextPage = () => {
           onItemRemove={(e) => {
             removeItem(e.id);
           }}
+          updateItem={updateItem}
         />
       </Box>
       <Box pt="5">

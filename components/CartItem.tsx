@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import {
   Flex,
   AspectRatio,
@@ -14,6 +14,9 @@ import { CloseIcon } from "@chakra-ui/icons";
 import { formatPrice, formatWeight } from "../utils/formatters";
 import { ICartItem } from "../hooks/useCart";
 import NextLink from "next/link";
+import ProductVariantItem from "./ProductVariantItem";
+import { IProductVariant } from "../types";
+import { products } from "../constants";
 
 export type AmountChangeEvent = any & {
   item: ICartItem;
@@ -23,10 +26,17 @@ interface CartItemProps {
   item: ICartItem;
   onItemRemove: (item: ICartItem) => void;
   onAmoutChange: (changeEvent: AmountChangeEvent) => void;
+  setSelectedCartItem: Dispatch<SetStateAction<ICartItem | undefined>>;
+  onOpen: () => void;
 }
 
-function CartItem({ item, onItemRemove, onAmoutChange }: CartItemProps) {
+const CartItem = ({ item, onItemRemove, onAmoutChange, setSelectedCartItem, onOpen }: CartItemProps) => {
   const variant = item.item;
+
+  const onChooseAlternativeClick = () => {
+    setSelectedCartItem(item);
+    onOpen();
+  }
 
   return (
     <Flex justify="space-between" align="center">
@@ -48,7 +58,7 @@ function CartItem({ item, onItemRemove, onAmoutChange }: CartItemProps) {
           </NextLink>
           <Text fontSize="sm">
             {formatWeight(variant.weight)} &nbsp;{" "}
-            <Link>Vybrat alternativu</Link>
+            <Link onClick={onChooseAlternativeClick}>Vybrat alternativu</Link>
           </Text>
         </VStack>
       </Flex>
