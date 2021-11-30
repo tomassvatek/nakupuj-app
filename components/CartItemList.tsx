@@ -94,7 +94,7 @@ const CartItemList = ({ items, onItemRemove, onAmountChange, updateItem }: CartI
               {selectedCartItem && (
                 radioGroupVariants.map((v, i) => {
                   return (
-                    <Box p={3} w="100%" borderRadius="5px" bg={selectedOption == i ? "gray.100" : undefined} _hover={selectedOption == i ? { bg: "gray.100" } : { bg: "gray.50" }} >
+                    <Box key={i} p={3} w="100%" borderRadius="5px" bg={selectedOption == i ? "gray.100" : undefined} _hover={selectedOption == i ? { bg: "gray.100" } : { bg: "gray.50" }} >
                       <Radio w="100%" value={i} >
                         <Flex p={3}>
                           <ProductVariantItem variant={v} />

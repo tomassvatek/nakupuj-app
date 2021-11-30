@@ -10,7 +10,7 @@ export type DeliveryOptionItem = {
   bgColor?: string;
   py?: string;
   childrenOptions?: DeliveryOptionItem[];
-  radioValue: number | string;
+  radioValue?: number | string;
 };
 
 type DeliveryOptionProps = RadioProps & DeliveryOptionItem;
