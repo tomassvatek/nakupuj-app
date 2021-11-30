@@ -16,8 +16,8 @@ import * as Yup from 'yup';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 export const validationSchema = Yup.object({
-  firstName: Yup.string(),
-  lastName: Yup.string(),
+  // firstName: Yup.string(),
+  // lastName: Yup.string(),
   email: Yup.string().email('Vyplňte správný e-mail').required('Vyplňte e-mail'),
   phone: Yup.string().required('Vyplňte telefonní číslo'),
 });
@@ -25,7 +25,7 @@ export const validationSchema = Yup.object({
 const Contact: NextPage = () => {
   const [isLoggedIn] = useLocalStorage('login', '');
   const router = useRouter();
-  const initialValues = useMemo(() => isLoggedIn ? { ...userData } : {}, [isLoggedIn]);
+  const initialValues = useMemo(() => isLoggedIn ? { ...userData } : { email: '', phone: '' }, [isLoggedIn]);
 
   const handleSubmit = () => {
     router.push('/cart/payment');
@@ -49,11 +49,10 @@ const Contact: NextPage = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
           validateOnMount
-
         >
           {({ handleSubmit }) => {
             return (
-              <Form>
+              <form onSubmit={handleSubmit}>
                 <Box mb="4">
                   <Stack spacing={4}>
                     <HStack>
@@ -79,11 +78,11 @@ const Contact: NextPage = () => {
                     </NextLink>
 
                     <Button type="submit" size="lg" colorScheme="green">
-                     Na dopravu a platbu
+                      Na dopravu a platbu
                     </Button>
                   </Box>
                 </Box>
-              </Form>
+              </form>
             )
           }}
         </Formik>

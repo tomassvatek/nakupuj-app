@@ -1,6 +1,6 @@
 import { Badge, Box, Flex, Text } from "@chakra-ui/layout";
 import { Radio, RadioProps } from "@chakra-ui/radio";
-import { formatPrice } from "../utils/formatters";
+import { formatPrice } from '../utils/formatters';
 
 export type DeliveryOptionItem = {
   optionId: number | string;
@@ -37,7 +37,7 @@ function DeliveryOption({
           </Text> */}
           <Badge> {deliveryDuration}</Badge>
           <Text flex="2" fontWeight="600" textAlign="right" pr={5}>
-            {formatPrice(Math.round(price * 100) / 100)}
+            {formatPrice(price)}
           </Text>
         </Flex>
       </Radio>

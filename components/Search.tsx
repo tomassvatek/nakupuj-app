@@ -4,16 +4,18 @@ import {
   Flex,
   Menu,
   MenuList,
-  MenuItem,
   Input,
   InputGroup,
   InputLeftElement,
   useMenuButton,
+  Text,
+  Center,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { products } from "../constants";
 import ProductVariantItem from "./ProductVariantItem";
 import {IProductVariant} from "../types";
+import StyledMenuItem from './StyledMenuItem';
 
 // eslint-disable-next-line react/display-name
 const MenuPlacer: any = React.forwardRef<any>(
@@ -64,7 +66,7 @@ export function Search() {
   };
 
   return (
-    <Menu isOpen={true} placement={"auto"} computePositionOnMount>
+    <Menu isOpen={query.length > 2} placement={"bottom-start"} computePositionOnMount>
       <MenuPlacer as={InputGroup}>
         <InputLeftElement pointerEvents="none">
           <SearchIcon />
@@ -79,20 +81,22 @@ export function Search() {
         />
       </MenuPlacer>
 
-      {query ? (
-        <MenuList zIndex="200">
-          {results.length <= 6 && (results.map((variant) => (
-            <NextLink
-              href={`/product/${variant.parentId}/${variant.id}`}
-              key={variant.id}
-            >
-              <MenuItem as={Flex} onClick={handleSelect}>
-                <ProductVariantItem variant={variant} />
-              </MenuItem>
-            </NextLink>
-          )))}
-        </MenuList>
-      ) : null}
+      <MenuList zIndex="25550" width="500px">
+        {results.length <= 6 && results.length > 0 ? results.map((variant) => (
+          <NextLink
+            href={`/product/${variant.parentId}/${variant.id}`}
+            key={variant.id}
+          >
+            <StyledMenuItem as={Flex} onClick={handleSelect}>
+              <ProductVariantItem variant={variant} />
+            </StyledMenuItem>
+          </NextLink>
+        )) : (
+          <Center>
+            <Text color="gray.500">Nic jsme pro vás nenašli.</Text>
+          </Center>
+        )}
+      </MenuList>
     </Menu>
   );
 }

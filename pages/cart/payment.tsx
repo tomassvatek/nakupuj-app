@@ -19,7 +19,7 @@ const initialValues = {
   expiration: '',
   cvv: '',
   deliveryDay: 'Dnes',
-  deliveryTime: '0',
+  deliveryTime: '7:00',
   deliveryType: '1',
   gps: '',
 };
