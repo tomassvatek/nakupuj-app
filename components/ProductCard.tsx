@@ -9,7 +9,8 @@ import {
   Tooltip,
   Center,
   Button,
-  useDisclosure
+  useDisclosure,
+  Text
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { IProduct, IProductVariant } from "../types";
@@ -55,7 +56,7 @@ function ProductCard({ product }: { product: IProduct }) {
           <Flex justifyContent="space-between" alignContent="center">
             <Box fontSize="xl" fontWeight="semibold" as="h4" lineHeight="tight" maxW={170} noOfLines={2} justifyContent="center">
               <NextLink href={`/product/${product.id}`}>
-                <a>{product.title}</a>
+                <Text cursor="pointer" _hover={{ textDecoration: "underline" }}>{product.title}</Text>
               </NextLink>
             </Box>
           </Flex>
