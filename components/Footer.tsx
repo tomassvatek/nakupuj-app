@@ -85,15 +85,15 @@ export default function LargeWithNewsletter() {
           </Stack>
           <Stack align={'flex-start'}>
             <ListHeader>Nakupuj</ListHeader>
-            <Link as={NextLink} href="/about">O nás</Link>
-            <Link as={NextLink} href="/about">Blog</Link>
-            <Link as={NextLink} href="/about">Kontakt</Link>
+            <Link as={NextLink} href="/about"><Text _hover={{ textDecoration: "underline" }} cursor="pointer">O nás</Text></Link>
+            <Link as={NextLink} href="/about"><Text _hover={{ textDecoration: "underline" }} cursor="pointer">Blog</Text></Link>
+            <Link as={NextLink} href="/about"><Text _hover={{ textDecoration: "underline" }} cursor="pointer">Kontakt</Text></Link>
           </Stack>
           <Stack align={'flex-start'}>
             <ListHeader>Pomoc</ListHeader>
-            <Link as={NextLink} href="/about">Nápověda</Link>
-            <Link as={NextLink} href="/about">Obchodní podmínky</Link>
-            <Link as={NextLink} href="/about">Doprava a platba</Link>
+            <Link as={NextLink} href="/about"><Text _hover={{ textDecoration: "underline" }} cursor="pointer">Nápověda</Text></Link>
+            <Link as={NextLink} href="/about"><Text _hover={{ textDecoration: "underline" }} cursor="pointer">Obchodní podmínky</Text></Link>
+            <Link as={NextLink} href="/about"><Text _hover={{ textDecoration: "underline" }} cursor="pointer">Doprava a platba</Text></Link>
           </Stack>
           <Stack align={'flex-start'}>
             <ListHeader>Zůstaňte s námi v kontaktu</ListHeader>

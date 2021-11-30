@@ -124,10 +124,10 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
       <Container maxW={'6xl'} p={5}>
         <BreadcrumbComponent items={['index']}>
           <BreadcrumbItem>
-            <BreadcrumbLink as={NextLink} href={`/category/${product.category.id}`}>{product.category.name}</BreadcrumbLink>
+            <BreadcrumbLink as={NextLink} href={`/category/${product.category.id}`}><Text _hover={{ textDecoration: "underline" }} cursor="pointer">{product.category.name}</Text></BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbItem>
-            <BreadcrumbLink as={NextLink} href={`/product/${product.id}`}>{product.title}</BreadcrumbLink>
+            <BreadcrumbLink as={NextLink} href={`/product/${product.id}`}><Text _hover={{ textDecoration: "underline" }} cursor="pointer">{product.title}</Text></BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbComponent>
 

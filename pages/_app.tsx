@@ -5,6 +5,7 @@ import type { ReactElement, ReactNode } from 'react'
 import Layout from '../components/Layout'
 import { ChakraProvider } from "@chakra-ui/react"
 import { CartProvider } from '../hooks/useCart'
+import nakupujTheme from '../theme';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -25,7 +26,7 @@ export function defaultLayout(page: ReactElement) {
 function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || defaultLayout
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={nakupujTheme}>
       <CartProvider>
         {getLayout(<Component {...pageProps} />)}
       </CartProvider>

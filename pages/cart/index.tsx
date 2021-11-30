@@ -195,7 +195,6 @@ const Cart: NextPage = () => {
 
       <Container maxW={'6xl'} p={4}>
         <BreadcrumbComponent items={['index', 'cart']} />
-
         <CartNavigation activeIndex={0} />
       </Container>
 

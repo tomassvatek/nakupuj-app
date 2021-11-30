@@ -52,7 +52,7 @@ const CartItem = ({ item, onItemRemove, onAmoutChange, setSelectedCartItem, onOp
         </NextLink>
         <VStack align="flex-start" ml="5" pt="2">
           <NextLink href={`/product/${variant.parentId}/${variant.id}`}>
-            <Text fontSize="sm" fontWeight="600" pb="0" cursor="pointer">
+            <Text fontSize="sm" fontWeight="600" pb="0" cursor="pointer" _hover={{ textDecoration: 'underline' }}>
               {variant.title}
             </Text>
           </NextLink>

@@ -1,5 +1,5 @@
 import NextLink from 'next/link';
-import { Button, Box, Heading, Text } from '@chakra-ui/react'
+import { Button, Box, Heading, Text, Flex } from '@chakra-ui/react'
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/modal'
 import React from 'react';
 import { IProductVariant } from '../types';
@@ -24,22 +24,24 @@ function AddToCartConfirmation({ variant, isOpen, onClose }: Props) {
               Vloženo
             </Heading>
             <Text color={'gray.500'}>
-            Do košíku byl přidán produkt <strong>{`"${variant.title}"`}</strong>.
+              Do košíku byl přidán produkt <strong>{`"${variant.title}"`}</strong>.
             </Text>
           </Box>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={onClose} mr={3}>
-            Pokračovat v nákupu
-          </Button>
-          <NextLink passHref href="/cart">
-            <Button as="a" colorScheme="green" onClick={onClose}>
-              Zobrazit košík
+          <Flex w="100%" justifyContent="space-between">
+            <NextLink passHref href="/cart">
+              <Button as="a" colorScheme="green" onClick={onClose}>
+                Zobrazit košík
+              </Button>
+            </NextLink>
+            <Button onClick={onClose}>
+              Pokračovat v nákupu
             </Button>
-          </NextLink>
+          </Flex>
         </ModalFooter>
       </ModalContent>
-    </Modal>
+    </Modal >
   )
 }
 

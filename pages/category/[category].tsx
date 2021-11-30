@@ -5,7 +5,7 @@ import { getTitle } from "../../utils/getTitle";
 import { categories } from '../../constants'
 import { ICategory } from "../../types";
 import ProductSlider from "../../components/ProductSlider";
-import { Container, Heading } from "@chakra-ui/layout";
+import { Container, Heading, Text } from "@chakra-ui/layout";
 import ErrorPage from '../404'
 import NextLink from "next/link";
 import Categories from "../../components/Categories";
@@ -29,7 +29,7 @@ const Category: NextPage<Props> = ({ category }) => {
       <Container maxW={{ base: '6xl', xl: '8xl' }} py={5}>
         <BreadcrumbComponent items={['index']}>
           <BreadcrumbItem>
-            <BreadcrumbLink as={NextLink} href={`/category/${category.id}`}>{category.name}</BreadcrumbLink>
+            <BreadcrumbLink as={NextLink} href={`/category/${category.id}`}><Text _hover={{ textDecoration: "underline" }} cursor="pointer">{category.name}</Text></BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbComponent>
 

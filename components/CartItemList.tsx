@@ -4,6 +4,7 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
+  ModalCloseButton,
   ModalHeader,
   ModalFooter,
   ModalBody,
@@ -77,6 +78,7 @@ const CartItemList = ({ items, onItemRemove, onAmountChange, updateItem }: CartI
       <Modal onClose={onClose} isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent minW={600}>
+          <ModalCloseButton />
           <ModalHeader>Vybrat alternativu</ModalHeader>
           <ModalBody>
             <RadioGroup value={selectedOption} onChange={handleRadioChange}>

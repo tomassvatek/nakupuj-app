@@ -73,7 +73,7 @@ export default function Navbar() {
           </HStack>
           <Flex alignItems={"center"}>
             <NextLink href="/cart">
-              <Button aria-label="Košík" leftIcon={<BsCartFill />}>
+              <Button m={2} aria-label="Košík" leftIcon={<BsCartFill />}>
                 {cartTotal > 0 ? formatPrice(cartTotal) : "Košík"}
               </Button>
             </NextLink>

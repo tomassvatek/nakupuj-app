@@ -42,7 +42,7 @@ function ProductCard({ product }: { product: IProduct }) {
           </NextLink>
         </Center>
         <Tooltip label="Přidat do košíku" bg="white" placement={"top-start"} color={"gray.800"} fontSize={"1.2em"}>
-          <Button boxSize={10} className="addToCartBtn" onClick={handleAddToCart}>
+          <Button boxSize={10} className="addToCartBtn" onClick={handleAddToCart} _focus={{ ring: 3, ringColor: "green.500" }}>
             <AddIcon boxSize={5} />
             <chakra.a href={"#"} display={"flex"} />
           </Button>

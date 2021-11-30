@@ -22,6 +22,7 @@ function Card(props: CardProps) {
       rounded={'md'}
       bg={active ? 'gray.500' : 'white'}
       color={active ? 'white' : 'black'}
+      _hover={active ? { bg: 'gray.500' } : { bg: 'gray.100' }}
     >
       <Flex justifyContent={'space-between'}>
         <Box pl={{ base: 2, md: 4 }}>
