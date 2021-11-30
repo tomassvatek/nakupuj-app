@@ -20,7 +20,7 @@ import { AmountChangeEvent } from "./CartItem";
 import { products } from "../constants";
 import ProductVariantItem from "./ProductVariantItem";
 
-type CartItemListProps = {
+interface CartItemListProps {
   items: ICartItem[];
   onItemRemove: (item: ICartItem) => void;
   onAmountChange: (event: AmountChangeEvent) => void;

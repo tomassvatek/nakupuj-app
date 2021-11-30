@@ -35,49 +35,17 @@ const Payment: NextPage = () => {
   return (
     <main>
       <Head>
-        <title>{getTitle("Doprava a platba")}</title>
+        <title>{getTitle("Souhrn objednávky")}</title>
       </Head>
 
       <Container maxW={'6xl'} p={4}>
         <BreadcrumbComponent items={['index', 'cart']} />
 
-        <CartNavigation activeIndex={2} />
+        <CartNavigation activeIndex={3} />
       </Container>
 
       <Container maxW={'4xl'} py={5}>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-          validateOnMount
-        >
-          {({ handleSubmit }) => {
-            return (
-              <form onSubmit={handleSubmit}>
-                <Address />
-                <PaymentMethod totalAmount={cartTotal} />
-
-                <Box style={{ display: "flex", justifyContent: "center" }}>
-                  <Box
-                    style={{
-                      display: "flex",
-                      width: "100%",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <NextLink href="/cart/contact">
-                      <Button size="lg">Zpět na kontaktní údaje</Button>
-                    </NextLink>
-
-                    <Button type="submit" size="lg" colorScheme="green">
-                      Dokončit nákup
-                    </Button>
-                  </Box>
-                </Box>
-              </form>
-            )
-          }}
-        </Formik>
+        Souhrn objednávky
 
       </Container>
     </main>

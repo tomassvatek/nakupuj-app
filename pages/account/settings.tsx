@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { getTitle } from '../../utils/getTitle'
 import Account from '../../components/Account';
+import { userData } from '../../constants';
 import React from 'react'
 
 import { ButtonGroup } from "@chakra-ui/react";
@@ -14,9 +15,7 @@ import {
 import * as Yup from "yup";
 
 const initialValues = {
-  firstName: 'Alena',
-  lastName: 'Vránová',
-  email: 'alena@vranova.cz',
+  ...userData,
 };
 
 const validationSchema = Yup.object({
