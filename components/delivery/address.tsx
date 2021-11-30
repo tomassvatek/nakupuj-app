@@ -6,7 +6,7 @@ import {
   VStack,
   useRadioGroupContext
 } from "@chakra-ui/react";
-import { InputControl, RadioGroupControl } from 'formik-chakra-ui';
+import { RadioGroupControl } from 'formik-chakra-ui';
 import dynamic from 'next/dynamic'
 import React from "react";
 
@@ -128,14 +128,8 @@ const Address: React.FC = () => {
 
   return (
     <>
-      <Text fontSize="xl" fontWeight="bold">Adresa</Text>
-      <InputControl
-        name="deliveryAddress"
-        inputProps={{ placeholder: 'Doručovací adresa' }}
-        size="md"
-        style={{ margin: "0.5rem 0" }}
-      />
-      {/* <Map /> */}
+      <Map />
+    
       <Text mt={5} fontSize="xl" fontWeight="bold">Vyberte den dodání</Text>
       <div style={{ padding: "0.5rem 0", paddingBottom: "" }}>
         <DeliveryDayPicker />

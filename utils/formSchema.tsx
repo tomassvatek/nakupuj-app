@@ -27,5 +27,5 @@ export const validationSchema = Yup.object({
     }),
   deliveryDay: Yup.string().required('Vyberte den dodání'),
   deliveryTime: Yup.string().required('Vyberte čas, kdy k vám má kurýr přijet'),
-  deliveryAddress: Yup.string().required('Vyplňte doručovací adresu'),
+  gps: Yup.string().required('Vyplňte doručovací adresu'),
 });

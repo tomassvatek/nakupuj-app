@@ -19,6 +19,7 @@ const initialValues = {
   deliveryDay: 'Dnes',
   deliveryTime: '0',
   deliveryType: '1',
+  gps: '',
 };
 
 const Payment: NextPage = () => {
