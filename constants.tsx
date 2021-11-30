@@ -624,6 +624,42 @@ const dzusVariants: IProductVariant[] = [
   },
 ];
 
+const cocaColaVariants: IProductVariant[] = [
+  {
+    id: 39,
+    title: "Coca-Cola",
+    weight: 2.25,
+    price: 37.9,
+    supplier: rohlik,
+    manufacturer: "Coca-Cola HBC Česko a Slovensko",
+    imageURL:
+      "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=500,h=500/https://cdn.rohlik.cz/images/grocery/products/1322831/1322831-1619881765558.jpg",
+    parentId: 14,
+  },
+  {
+    id: 40,
+    title: "Coca-Cola",
+    weight: 2.25,
+    price: 36.9,
+    supplier: kosik,
+    manufacturer: "Coca-Cola Česká Republika",
+    imageURL:
+      "https://static.kosik.cz/images/thumbs/3y/860x800x1_3yo133nmeszs-5449000025173.jpg",
+    parentId: 14,
+  },
+  {
+    id: 41,
+    title: "Coca-Cola 2,25l",
+    weight: 2.25,
+    price: 23.9,
+    supplier: tesco,
+    manufacturer: "Coca-Cola HBC Česko a Slovensko, s.r.o.",
+    imageURL:
+      "https://secure.ce-tescoassets.com/assets/CZ/173/5449000025173/ShotType1_540x540.jpg",
+    parentId: 14,
+  },
+];
+
 export const products: IProduct[] = [
   {
     id: 1,
@@ -705,7 +741,7 @@ export const products: IProduct[] = [
   {
     id: 9,
     title: "Perlivá voda",
-    isNew: false,
+    isNew: true,
     description:
       "Pijete vodu, která urazila dlouhou cestu v hlubinách sopečného Doupovského pohoří. Na své cestě se obohatila minerály, nasytila se přírodním oxidem uhličitým a tak získala svoje charakteristické vlastnosti a chuť.",
     category: napoje,
@@ -723,7 +759,7 @@ export const products: IProduct[] = [
   {
     id: 11,
     title: "Energetické nápoje",
-    isNew: false,
+    isNew: true,
     description:
       "Energetické nápoje jsou nealkoholické nápoje, které obsahují stimulační látky, v největší míře kofein a taurin. Mohou také obsahovat cukr či umělá sladidla, bylinné výtažky a aminokyseliny.",
     category: napoje,
@@ -747,4 +783,13 @@ export const products: IProduct[] = [
     category: napoje,
     variants: dzusVariants,
   },
+  {
+    id: 14,
+    title: "Coca Cola 2,25 l",
+    isNew: false,
+    description:
+      "Coca-Cola je osvěžující nealkoholický nápoj, který přináší okamžiky pohody a radosti již déle než 125 let.",
+    category: napoje,
+    variants: cocaColaVariants,
+  }
 ];

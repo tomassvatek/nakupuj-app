@@ -15,12 +15,12 @@ const Home: NextPage = () => {
       </Head>
       <Container maxW={{ base: '6xl', xl: '8xl' }} py={5}>
         <Categories />
-        <Heading mt={5} fontSize="3xl">Všechny produkty</Heading>
-        <ProductSlider />
-        <Heading mt={5} fontSize="3xl">{napoje.name}</Heading>
-        <ProductSlider category={napoje.id} />
         <Heading mt={5} fontSize="3xl">Novinky</Heading>
         <ProductSlider onlyNew={true} />
+        <Heading mt={5} fontSize="3xl">{napoje.name}</Heading>
+        <ProductSlider category={napoje.id} />
+        <Heading mt={5} fontSize="3xl">Všechny produkty</Heading>
+        <ProductSlider />
       </Container>
     </main>
   )
