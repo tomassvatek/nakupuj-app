@@ -25,9 +25,9 @@ function DeliveryOption({
   radioValue
 }: DeliveryOptionProps) {
   return (
-    <Box borderRadius="5px" w="100%" py={py} pl="5" pr="1" bg={bgColor} _hover={optionId == radioValue ? { bg: bgColor } : { bg: "gray.50" }}>
-      <Radio w="100%" h="100%" value={optionId}>
-        <Flex w="100%" pl="5" align="center" justify="space-between">
+    <Box borderRadius="5px" w="100%" bg={bgColor} _hover={optionId == radioValue ? { bg: bgColor } : { bg: "gray.50" }}>
+      <Radio w="100%" h="100%" value={optionId} pl="5">
+        <Flex w="100%" pl="5" align="center" justify="space-between" my={py} mr="1" >
           <Text flex="6" fontWeight="600">
             {title}
           </Text>

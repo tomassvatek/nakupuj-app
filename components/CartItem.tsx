@@ -41,7 +41,7 @@ const CartItem = ({ item, onItemRemove, onAmoutChange, setSelectedCartItem, onOp
   return (
     <Flex justify="space-between" align="center">
       <Flex>
-        <NextLink href={`product/${variant.id}`}>
+        <NextLink href={`/product/${variant.parentId}`}>
           <AspectRatio w="64px" h="64px" ratio={4 / 3} cursor="pointer">
             <Image
               src={variant.imageURL}
@@ -51,7 +51,7 @@ const CartItem = ({ item, onItemRemove, onAmoutChange, setSelectedCartItem, onOp
           </AspectRatio>
         </NextLink>
         <VStack align="flex-start" ml="5" pt="2">
-          <NextLink href={`product/${variant.parentId}/${variant.id}`}>
+          <NextLink href={`/product/${variant.parentId}/${variant.id}`}>
             <Text fontSize="sm" fontWeight="600" pb="0" cursor="pointer">
               {variant.title}
             </Text>
