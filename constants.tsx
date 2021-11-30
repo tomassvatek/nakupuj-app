@@ -60,14 +60,14 @@ export const deliveryOptions: DeliveryOptionItem[] = [
     optionId: "2",
   },
   {
-    title: "Rohlik",
+    title: "Rohlík",
     deliveryDuration: "Zítra",
     price: 0,
     save: 4,
     optionId: "3",
   },
   {
-    title: "Kosik",
+    title: "Košik",
     deliveryDuration: "Za 2 dny",
     price: 0,
     save: 4,

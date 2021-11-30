@@ -59,11 +59,11 @@ const steps = [
     step: '3',
     url: '/cart/payment',
   },
-  {
-    title: 'Souhrn',
-    step: '4',
-    url: '/cart/summary',
-  },
+  // {
+  //   title: 'Souhrn',
+  //   step: '4',
+  //   url: '/cart/summary',
+  // },
 ];
 
 interface Props {
@@ -73,7 +73,7 @@ interface Props {
 const CartNavigation: React.FC<Props> = ({ activeIndex }) => {
   return (
     <Box maxW="7xl" mx={'auto'} py={5}>
-      <SimpleGrid columns={{ base: 1, md: 4 }} spacing={{ base: 5, lg: 4 }}>
+      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 4 }}>
         {steps.map((step, index) => (
           <NextLink key={index} href={step.url} passHref>
             <a>
