@@ -32,10 +32,6 @@ function DeliveryOption({
           <Text flex="6" fontWeight="600">
             {title}
           </Text>
-          {/* <Text flex="2" textAlign="right">
-            {deliveryDuration}
-          </Text> */}
-          <Badge> {deliveryDuration}</Badge>
           <Text flex="2" fontWeight="600" textAlign="right" pr={5}>
             {formatPrice(price)}
           </Text>
