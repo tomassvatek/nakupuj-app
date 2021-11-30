@@ -42,31 +42,20 @@ const CartItemList = ({ items, onItemRemove, onAmountChange, updateItem }: CartI
     }
   }, [selectedCartItem])
 
-  const getAllVariants = () => {
-    if (selectedCartItem && selectedCartItem.item) {
-      let product = products.find(p => p.id === selectedCartItem.item.parentId);
-      if (product) {
-        setRadioGroupVariants(product.variants);
-        return product.variants;
-      } else {
-        return [];
-      }
-    } else {
-      return [];
-    }
-  }
-
   const handleRadioChange = (optionId: string) => {
     setSelectedOption(Number(optionId));
   }
 
   const onConfirm = () => {
-    let selectedVariant = radioGroupVariants[selectedOption];
-    let updated: ICartItem = {
-      ...selectedCartItem!,
-      item: selectedVariant
-    };
-    updateItem(selectedCartItem!.id, updated);
+    if (selectedCartItem) {
+      let selectedVariant = radioGroupVariants[selectedOption];
+      let updated: ICartItem = {
+        ...selectedCartItem,
+        price: selectedVariant.price,
+        item: selectedVariant
+      }
+      updateItem(selectedCartItem.id, updated);
+    }
     onClose();
   }
 
