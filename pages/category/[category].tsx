@@ -26,6 +26,8 @@ const Category: NextPage<Props> = ({ category }) => {
       <Head>
         <title>{getTitle(category.name)}</title>
       </Head>
+      <Categories selected={category.id} />
+
       <Container maxW={{ base: '6xl', xl: '8xl' }} py={5}>
         <BreadcrumbComponent items={['index']}>
           <BreadcrumbItem>
@@ -33,9 +35,7 @@ const Category: NextPage<Props> = ({ category }) => {
           </BreadcrumbItem>
         </BreadcrumbComponent>
 
-        <Categories selected={category.id} />
         <Heading mt={5} fontSize="3xl">{category.name}</Heading>
-
         <ProductSlider category={category.id} />
       </Container>
     </main>

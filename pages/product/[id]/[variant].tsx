@@ -34,6 +34,7 @@ import React, { useState } from 'react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import ProductVariantItem from '../../../components/ProductVariantItem';
 import { formatPrice } from '../../../utils/formatters';
+import Categories from '../../../components/Categories';
 
 interface Props {
   product?: IProduct,
@@ -120,6 +121,8 @@ const ProductDetail: NextPage<Props> = ({ product }) => {
       <Head>
         <title>{getTitle(product.title)}</title>
       </Head>
+      <Categories selected={product.category.id} />
+
 
       <Container maxW={'6xl'} p={5}>
         <BreadcrumbComponent items={['index']}>
