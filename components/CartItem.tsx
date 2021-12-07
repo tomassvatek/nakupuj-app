@@ -84,6 +84,7 @@ const CartItem = ({
       </Flex>
       <HStack spacing="4">
         <ChangeAmount
+          confirmDelete
           defaultValue={item.quantity}
           onAmoutChange={(e) => onAmoutChange({ ...e, item })}
         />
