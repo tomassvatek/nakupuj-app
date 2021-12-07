@@ -27,15 +27,15 @@ const PaymentMethod: React.FC<IProps> = (props) => {
       {field.value === "1" && (
         <div style={{ display: "flex", paddingTop: "1rem" }}>
           <div style={{ width: "60%" }}>
-            <InputControl name="cardNumber" label="Číslo karty" inputProps={{ placeholder: '1234 1234 1234 1234', maxLength: 19, value: addGaps(values.cardNumber) }}/>
+            <InputControl name="cardNumber" label="Číslo karty" isRequired={true} inputProps={{ placeholder: '1234 1234 1234 1234', maxLength: 19, value: addGaps(values.cardNumber) }} />
           </div>
 
           <div style={{ width: "20%", margin: "0 2rem" }}>
-            <InputControl name="expiration" label="Datum vypršení" inputProps={{ placeholder: '12/34', value: addSlash(values.expiration) }} />
+            <InputControl name="expiration" label="Datum vypršení" isRequired={true} inputProps={{ placeholder: '12/34', value: addSlash(values.expiration) }} />
           </div>
 
           <div style={{ width: "20%" }}>
-            <InputControl name="cvv" label="CVV" inputProps={{ placeholder: '123', maxLength: 4 }} />
+            <InputControl name="cvv" label="CVV" isRequired={true} inputProps={{ placeholder: '123', maxLength: 4 }} />
           </div>
         </div>
       )}

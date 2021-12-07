@@ -16,8 +16,8 @@ import * as Yup from 'yup';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 export const validationSchema = Yup.object({
-  // firstName: Yup.string(),
-  // lastName: Yup.string(),
+  firstName: Yup.string().required('Vyplňte jméno'),
+  lastName: Yup.string().required('Vyplňte příjmení'),
   email: Yup.string().email('Vyplňte správný e-mail').required('Vyplňte e-mail'),
   phone: Yup.string().required('Vyplňte telefonní číslo'),
 });
@@ -56,12 +56,12 @@ const Contact: NextPage = () => {
                 <Box mb="4">
                   <Stack spacing={4}>
                     <HStack>
-                      <InputControl name="firstName" label="Jméno" />
-                      <InputControl name="lastName" label="Příjmení" />
+                      <InputControl name="firstName" label="Jméno" isRequired={true} minHeight={110} />
+                      <InputControl name="lastName" label="Příjmení" isRequired={true} minHeight={110} />
                     </HStack>
 
-                    <InputControl name="email" label="E-mail" />
-                    <InputControl name="phone" label="Telefonní číslo" />
+                    <InputControl name="email" label="E-mail" isRequired={true} minHeight={110} />
+                    <InputControl name="phone" label="Telefonní číslo" isRequired={true} minHeight={110} />
                   </Stack>
                 </Box>
 
