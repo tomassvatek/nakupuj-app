@@ -8,6 +8,7 @@ import {
   HStack,
   IconButton,
   Link,
+  Button,
 } from "@chakra-ui/react";
 import ChangeAmount, { ChangeAmountHandler } from "./ChangeAmout";
 import { CloseIcon } from "@chakra-ui/icons";
@@ -30,13 +31,19 @@ interface CartItemProps {
   onOpen: () => void;
 }
 
-const CartItem = ({ item, onItemRemove, onAmoutChange, setSelectedCartItem, onOpen }: CartItemProps) => {
+const CartItem = ({
+  item,
+  onItemRemove,
+  onAmoutChange,
+  setSelectedCartItem,
+  onOpen,
+}: CartItemProps) => {
   const variant = item.item;
 
   const onChooseAlternativeClick = () => {
     setSelectedCartItem(item);
     onOpen();
-  }
+  };
 
   return (
     <Flex justify="space-between" align="center">
@@ -58,7 +65,12 @@ const CartItem = ({ item, onItemRemove, onAmoutChange, setSelectedCartItem, onOp
           </NextLink>
           <Text fontSize="sm">
             {formatWeight(variant.weight)} &nbsp;{" "}
-            <Link onClick={onChooseAlternativeClick}>Vybrat alternativu</Link>
+            {/* <Link
+              textDecoration="underline"
+              onClick={onChooseAlternativeClick}
+            >
+              Vybrat alternativu
+            </Link> */}
           </Text>
         </VStack>
       </Flex>
@@ -67,6 +79,7 @@ const CartItem = ({ item, onItemRemove, onAmoutChange, setSelectedCartItem, onOp
           defaultValue={item.quantity}
           onAmoutChange={(e) => onAmoutChange({ ...e, item })}
         />
+        <Button onClick={onChooseAlternativeClick}>Změnit</Button>
         <Text fontWeight="600" w="90px" textAlign="right">
           {formatPrice(item.quantity * variant.price)}
         </Text>
@@ -78,6 +91,6 @@ const CartItem = ({ item, onItemRemove, onAmoutChange, setSelectedCartItem, onOp
       </HStack>
     </Flex>
   );
-}
+};
 
 export default CartItem;
