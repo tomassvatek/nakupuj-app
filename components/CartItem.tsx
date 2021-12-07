@@ -29,6 +29,7 @@ interface CartItemProps {
   onAmoutChange: (changeEvent: AmountChangeEvent) => void;
   setSelectedCartItem: Dispatch<SetStateAction<ICartItem | undefined>>;
   onOpen: () => void;
+  setSelectedOption: Dispatch<SetStateAction<number>>;
 }
 
 const CartItem = ({
@@ -37,11 +38,18 @@ const CartItem = ({
   onAmoutChange,
   setSelectedCartItem,
   onOpen,
+  setSelectedOption
 }: CartItemProps) => {
   const variant = item.item;
 
   const onChooseAlternativeClick = () => {
     setSelectedCartItem(item);
+    let selected = products.find(p => p.id === item.item.parentId)!.variants.findIndex(v => v.id === item.item.id);
+    if (selected !== -1) {
+      setSelectedOption(selected);
+    } else {
+      setSelectedOption(0);
+    }
     onOpen();
   };
 

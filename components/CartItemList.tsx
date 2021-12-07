@@ -71,6 +71,7 @@ const CartItemList = ({ items, onItemRemove, onAmountChange, updateItem }: CartI
               onItemRemove={onItemRemove}
               setSelectedCartItem={setselectedCartItem}
               onOpen={onOpen}
+              setSelectedOption={setSelectedOption}
             />
           </Box>
         );
